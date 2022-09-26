@@ -1,0 +1,285 @@
+{
+  "contact_us": "Contact us",
+
+  "whatsapp": "WhatsApp",
+
+  "navbar.extraordinary": "extraordinary",
+
+  "navbar.eyeglasses": "eyeglasses",
+
+  "home.contact_us": "Contact us",
+
+  "home.appointment.title": "Book an\n<b>appointment</b>\nin boutique",
+
+  "home.appointment.subtitle": "Discover our exclusive <b>Eyewear Concierge</b> service: our sales assistants are waiting for you!",
+
+  "home.appointment.times": "From <b>Tuesday</b> to <b>Saturday</b> 10:00-13:00 15:30-19:30. <b>Sunday</b> and <b>Monday</b> only by appointment.",
+
+  "home.appointment.choose_date": "<b>Choose</b> a date:",
+
+  "home.appointment.text": "Our Eyewear Concierge service is at your disposal to clarify any doubt and help with your new <b>extraordinary eyewear</b>.",
+
+  "home.extraordinary_designers_title": "Extraordinary\n<b>eyewear</b>",
+
+  "home.extraordinary_designers_subtitle": "In <b>indice</b> you will find an exclusive selection of the best eyewear worldwide, which is the result of our endless research of <b>extraordinary designers</b>.",
+
+  "home.extraordinary_services_title": "Extraordinary\n<b>services</b>",
+
+  "home.extraordinary_services_subtitle": "<b>indice LAB</b> works with the most advanced optical technologies available worldwide to give your sight an extremely high standard service.",
+
+  "home.designers": "Designers",
+
+  "home.services": "Services",
+
+  "home.title": "indice",
+
+  "home.description": "indice represents our passion for design, innovation and research, turned into the eyewear world.\n\nOur team is young, high-skilled and ready to offer you a service up to your expectations.",
+
+  "home.slider_monthly.title": " Monthly Highlight",
+
+  "home.slider_monthly.text": "Oue <r>Eyewear Concierge</r> service is at your complete disposal. <b>Write us</b> to clarify any doubt and find your extraordinary eyewear!",
+
+  "home.slider_articles.text": "<b>Indice</b> represents our passion for design, innovation and research, turned into the eyewear world. Discover our world and enjoy the journey! :)",
+
+  "collections.title": "indice – Designers",
+
+  "collections.description": "",
+
+  "collections.discover": "Discover",
+
+  "collections.coming_soon": "Coming soon",
+
+  "sidebar.header": "From <b>Tuesday</b> to <b>Saturday</b> 10:00-13:00 15:30-19:30. <b>Sunday</b> and <b>Monday</b> by appointment.",
+
+  "sidebar.home": "HOME",
+
+  "sidebar.designers": "DESIGNER",
+
+  "sidebar.sunglasses": "Sunglasses",
+
+  "sidebar.optical": "Opticals",
+
+  "sidebar.appointments": "Bookings",
+
+  "sidebar.about": "OUR TEAM",
+
+  "sidebar.contacts": "CONTANCTS",
+
+  "sidebar.faq": "FAQs",
+
+  "sidebar.magazine": "MAGAZINE",
+
+  "sidebar.botiques": "BOUTIQUES",
+
+  "sidebar.services": "Services",
+
+  "collection.title": "indice – {collection}",
+
+  "collection.sunglasses": "Sunglasses",
+
+  "collection.optical": "Opticals",
+
+  "collection.description": "{collection}",
+
+  "collection.sunglasses_breadcrumbs": "Sunglasses",
+
+  "collection.sunglasses_title": "\n<b>Extraordinary</b>\nsunglasses",
+
+  "collection.optical_breadcrumbs": "Opticals",
+
+  "collection.optical_title": "\n<b>Extraordinary</b>\nopticals",
+
+  "contacts.title": "We are at your \n<b>disposal</b>",
+
+  "contacts.subtitle": "Our Eyewear Concierge service is at your complete disposal. Write us to clarify any doubt and find your extraordinary eyewear!",
+
+  "contacts.phone_alternative": "Alternatively, contact us at +39 320 63 30 888",
+
+  "contacts.send": "send",
+
+  "contacts.text": "We will automatically know that you are contacting us for",
+
+  "product.title": "indice – {product}",
+
+  "product.description": "{product}",
+
+  "product.shipping_info": "We dispatch all orders within 24 hours to ensure you the best experience",
+
+  "product.facts": "SHIPPING IN 24H – AUTHENTIC PRODUCTS – SAFE PAYMENTS – INDICE PACKAGING",
+
+  "product.related_products_title": "YOU MAY ALSO LOVE",
+
+  "product.buy": "Buy",
+
+  "product.contact_us": "ASK FOR PRICE",
+
+  "product.specialEdition": "Special Edition",
+
+  "breadcrumbs.designers": "Designers",
+
+  "faq": "FAQs",
+
+  "faq.page_title": "indice – FAQs",
+
+  "faq.page_description": "",
+
+  "faq.title": "FAQs at your\n<b>disposal</b>",
+
+  "faq.subtitle": "Got any questions?\nFind the answers down below or contact us!",
+
+  "faq.concierge": "Our Eyewear Concierge service is at your complete disposal. Write us to clarify any doubt and find your extraordinary eyewear!",
+
+  "faq.products": "Products",
+
+  "faq.products.0.title": "Product authenticity",
+
+  "faq.products.0.description": "indice only deals with original products, purchased from the brands. With every order you’ll receive a certificate of authenticity.",
+
+  "faq.products.1.title": "Warranty",
+
+  "faq.products.1.description": "All our products are two years guaranteed from the day of purchase against defects in materials or workmanship.",
+
+  "faq.products.2.title": "Availability",
+
+  "faq.products.2.description": "All products on indice.vision are available in our warehouse and ready for dispatch. Our system updates in real time their availability both online and in store.",
+
+  "faq.payments": "Payments",
+
+  "faq.payments.0.title": "Methods",
+
+  "faq.payments.0.description": "We accepts payments through credit card (American Express, Maestro, Mastercard, Visa), PayPal, Apple Pay, Google Pay, Bancontact and iDeal.\nUWe only use safe and encrypted services. In most cases, the total amount will be charged immediately. Otherwise, our customer service will contact you through email to fix the issue.",
+
+  "faq.payments.2.title": "Personal datas",
+
+  "faq.payments.2.description": "We only work with the safest online methods worldwide. With indice, the customers’ sensitive datas are 100% safe.",
+
+  "faq.shipping": "Shipping and delivery",
+
+  "faq.shipping.0.title": "Order processing",
+
+  "faq.shipping.0.description": "All orders from Monday to Friday are dispatched the same day. We ship through express delivery, which takes 24 hours for UE residents and 3 business days for the rest of the world. \nA Please note that due to Covid-19 delivery can take longer.",
+
+  "faq.shipping.1.title": "Destinations",
+
+  "faq.shipping.1.description": "We ship worldwide.",
+
+  "faq.shipping.2.title": "Tracking",
+
+  "faq.shipping.2.description": "It is possible to track the parcel through the code provided in the shipping confirmation/order placed e-mail.",
+
+  "faq.returns": "Returns and refunds",
+
+  "faq.returns.0.title": "Return policy",
+
+  "faq.returns.0.description": "It is possible to return the goods within 30 days from the date of order. The product must be in the original box without any signs of usage.",
+
+  "faq.returns.1.title": "Modalità",
+
+  "faq.returns.1.description": "In order to organize a return, please visit our return policy page or drop us a line through our contact form.",
+
+  "faq.returns.2.title": "Refunds",
+
+  "faq.returns.2.description": "Refunds are automatically sent to the payment service used while ordering. The procedure takes up to 3 business days.",
+
+  "services.title": "indice – Services",
+
+  "services.description": "",
+
+  "services.visit.title": "Eye test",
+
+  "services.visit.description": "In indice you will find the most advanced optical technologies for a complete and meticulous eye test.",
+
+  "services.rebalance.title": "Frame tune up",
+
+  "services.rebalance.description": "If your frames need a fix, we can do it for you. We will restore it to the best condition possible.",
+
+  "services.assembly.title": "Express lenses customization",
+
+  "services.assembly.description": "Our specialized team ensure express lenses customization for the most common issues.",
+
+  "footer.contacts.title": "Contacts",
+
+  "footer.contacts.email": "info@indice.vision",
+
+  "footer.contacts.phone": "+39 320 63 30 888",
+
+  "footer.social.title": "Social",
+
+  "footer.support.title": "Support",
+
+  "footer.support.faq": "FAQs",
+
+  "footer.support.terms_and_conditions": "Terms e conditions",
+
+  "footer.support.privacy_policy": "Privacy Policy",
+
+  "footer.support.cookie_policy": "Cookie Policy",
+
+  "footer.times.title": "Opening hours",
+
+  "footer.times.detail": "From <b>Tuesday</b> to <b>Saturday</b> 10:00-13:00 15:30-19:30. <b>Sunday</b> and <b>Monday</b> by appointment.",
+
+  "footer.location.title": "Find us",
+
+  "footer.location.detail": "Via Padre Giulio Bevilacqua, 7\n24121 Brescia, Italia",
+
+  "footer.credits.designed_by": "Designed by <b>Enrico Botta</b>",
+
+  "footer.credits.copyright": "© 2021 <b>indice</b>",
+
+  "footer.legal": "Indice srl - P.IVA IT03943290985",
+
+  "capsule.title": "indice – Capsule",
+
+  "capsule.description": "",
+
+  "capsule.0.title": "indice x RETROSUPERFUTURE",
+
+  "capsule.0.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate lobortis ligula sed molestie.",
+
+  "capsule.1.title": "indice x JACQUE MARIE MAGE",
+
+  "capsule.1.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate lobortis ligula sed molestie.",
+
+  "about.title": "indice – About",
+
+  "about.who.title": "Our\n<b>team</b>",
+
+  "about.who.description": "<b>indice</b> represents our passion for design, innovation and research, turned into the eyewear world.\n\nOur team is young, high-skilled and ready to offer you a service up to your expectations.\n\n",
+
+  "about.who.description1": "\n\nOur Eyewear Concierge service is at your disposal to clarify any doubt and help with your new <b>extraordinary eyewear</b>",
+
+  "about.where.title": "Where to\n<b>find us</b>",
+
+  "about.where.description": "<b>indice</b> represents our passion for design, innovation and research, turned into the eyewear world.\n\nOur team is young, high-skilled and ready to offer you a service up to your expectations.",
+
+  "directions": "Directions",
+
+  "modal.call.title": "Choose the boutique you need to talk with",
+
+  "modal.subtile": "Our Eyewear Concierge service it’s at your disposal\n in real time on <b>whatsapp</b>!",
+
+  "modal.call": "Which boutique do you want to talk to?",
+
+  "modal.maps": "Which boutique do you want to reach?",
+
+  "modal.whatapp": "Which boutique do you want to chat with?",
+  "drawer.title": "YOUR SHOPPING BAG",
+  "drawer.label_button": "GO TO CHECKOUT",
+  "drawer.total": " TOTAL: €",
+  "magazine.page_title": "indice - Magazine",
+  "magazine.page_description": "",
+  "botiques.page_title": "indice - Botiques",
+  "botiques.page_description": "",
+  "article.title": "indice – {article}",
+  "article.description": "{article}",
+  "breadcrumbs.magazine": "Magazine",
+  "product.size.title": "size & fit",
+  "product.shipping.title": "shipping & returns",
+  "product.available.stores": "Available <b>online</b> and <b>in store</b> at:",
+  "product.icon.original.certified": "Original and certified",
+  "product.icon.worldwide.shipping": "Worldwide shipping",
+  "product.money.back": "Money back guaranteed",
+  "product.secure.payment": "Secure payment",
+  "product.trackable.orders": "Trackable orders"
+}
