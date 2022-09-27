@@ -19,10 +19,10 @@ const sidebarVariants = {
 }
 
 const Sidebar = () => {
-  const intl = useIntl()
+  const intl = useIntl();
   //const { setSidebarShown } = useContext(SharedStateContext)
-  const [show, setShown] = useState(false)
-  const [selectSingleIcon, setSelectSingleIcon] = useState()
+  const [show, setShown] = useState(false);
+  const [selectSingleIcon, setSelectSingleIcon] = useState();
 
   // BUTTONS IT/EN
   const it = window.location.href.indexOf("/it") !== -1
@@ -30,16 +30,14 @@ const Sidebar = () => {
 
   const {
     setSidebarShown,
-    setShopifyCheckout,
-    shopifyClient,
     setCart,
     shopifyCheckout,
-  } = useContext(SharedStateContext)
+  } = useContext(SharedStateContext);
 
   const changeSiderbar = () => {
     setCart(shopifyCheckout)
     setSidebarShown(false)
-  }
+  };
 
   return (
     <>
@@ -52,30 +50,30 @@ const Sidebar = () => {
         style={{ maxWidth: 500 }}
       >
         <div className="flexMenu mt-8 mx-10">
-          <img className="logoMenu" src={logo} alt="" />
+          <img className="logoMenu" src={logo.src} alt="" />
           <button className="close-menu" onClick={() => setSidebarShown(false)}>
-            <img src={closeIcon} width={10} alt="cart-icon" />
+            <img src={closeIcon.src} width={10} alt="cart-icon" />
           </button>
         </div>
         <div className="flex w-full h-full items-center justify-center">
           <div className="flex flex-col w-10/12 h-full">
             <div className="flex-1 flex flex-col justify-center items-start">
-              <LinkMenu to="/" sidebar>
+              <LinkMenu href="/" sidebar>
                 <FormattedMessage id="sidebar.home" />
               </LinkMenu>
-              <LinkMenu to="/collections" sidebar>
+              <LinkMenu href="/collections" sidebar>
                 <FormattedMessage id="sidebar.designers" />
               </LinkMenu>
-              <LinkMenu to="/botiques" sidebar>
+              <LinkMenu href="/botiques" sidebar>
                 <FormattedMessage id="sidebar.botiques" />
               </LinkMenu>
-              <LinkMenu to="/magazine" sidebar>
+              <LinkMenu href="/magazine" sidebar>
                 <FormattedMessage id="sidebar.magazine" />
               </LinkMenu>
-              <LinkMenu to="/about" sidebar>
+              <LinkMenu href="/about" sidebar>
                 <FormattedMessage id="sidebar.about" />
               </LinkMenu>
-              <LinkMenu to="/faq" sidebar>
+              <LinkMenu href="/faq" sidebar>
                 <FormattedMessage id="sidebar.faq" />
               </LinkMenu>
             </div>
@@ -83,7 +81,7 @@ const Sidebar = () => {
             {/* BUTTONS IT/EN */}
 
             <div className="container-buttons-multilingual">
-              <Link to="/it">
+              <Link href="/it">
                 <div
                   className="button-it font-bold"
                   style={{ color: `${it ? "#800000" : ""}` }}
@@ -92,7 +90,7 @@ const Sidebar = () => {
                 </div>
               </Link>
               <span className="separator font-bold">|</span>
-              <Link to="/en">
+              <Link href="/en">
                 <div
                   className="button-en font-bold"
                   style={{ color: `${en ? "#800000" : ""}` }}
@@ -113,7 +111,7 @@ const Sidebar = () => {
                     }}
                   >
                     <img
-                      src={icon.iconSrc}
+                      src={icon.iconSrc.src}
                       alt={icon.alt}
                       style={{
                         width: "30px",
@@ -124,7 +122,7 @@ const Sidebar = () => {
                   </div>
                 ))}
                 <img
-                  src={shoppingBag}
+                  src={shoppingBag.src}
                   alt=""
                   style={{
                     width: "30px",

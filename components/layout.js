@@ -1,42 +1,66 @@
-import React, {useEffect, useMemo, useState} from "react"
-import PropTypes from "prop-types"
-import {IntlProvider} from "react-intl"
-import it from "../intl/it.json"
-import en from "../intl/en.json"
-
-import SharedStateContext from "../components/shared-state-context"
-import {AnimatePresence, motion} from "framer-motion"
-import Sidebar from "../components/sidebar"
-import Contact from "../components/contact"
-import Client from "shopify-buy"
-import Link from "../components/LanguagesLink"
-//IMAGES
-import logoIta from "../assets/images/logoIta.png"
-import logoEng from "../assets/images/logoEng.png"
-import menuBurgher from "../assets/images/menu-burger.svg"
-import cartIcon from "../assets/images/shopping-bag.svg"
-
-import Drawer from "../components/drawer"
+//REACT
+import React, {useEffect, useMemo, useState} from "react";
+//HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
+//UTILS
 import {getCookie} from "../utils/cookie"
+//PROP-TYPES
+import PropTypes from "prop-types";
+//INTL
+import {IntlProvider} from "react-intl";
+//LANGUAGES
+import it from "../intl/it.json";
+import en from "../intl/en.json";
+//SHOPIFY-BUY
+import Client from "shopify-buy";
 
-const Layout = ({children, location, pageContext}) => {
-    const [currentSidebarTitle, setCurrentSidebarTitle] = useState("")
+import SharedStateContext from "../components/shared-state-context";
+//FRAMER-MOTION
+import {AnimatePresence, motion} from "framer-motion";
+//COMPONENTS
+import Sidebar from "../components/sidebar";
+import Contact from "../components/contact";
+import Link from "../components/LanguagesLink";
+import Drawer from "../components/drawer";
+//IMAGES
+import logoIta from "../assets/images/logoIta.png";
+import logoEng from "../assets/images/logoEng.png";
+import menuBurgher from "../assets/images/menu-burger.svg";
+import cartIcon from "../assets/images/shopping-bag.svg";
 
-    const [sidebarShown, _setSidebarShown] = useState(false)
+const Layout = ({children}) => {
+    const [contactShown, _setContactShown] = useState(false);
+    const [contactProduct, setContactProduct] = useState(null);
+    const [cart, setCart] = useState(null);
+    const [sidebarShown, _setSidebarShown] = useState(false);
+    const [shopifyClient, setShopifyClient] = useState(null);
+    const [shopifyCheckout, setShopifyCheckout] = useState(null);
+
+    const isDesktop = useMediaQuery(768);
+    const messages = {
+        it: it,
+        en: en,
+    }
+    let language;
+
+    const totalQuantity = shopifyCheckout?.lineItems
+        .map(item => item.quantity)
+        .reduce((prev, curr) => prev + curr, 0)
+
+    //FUNCTIONS
+    const errorMissingTranslation = () => {
+        //console.log("Error MISSING TRANSLATION]")
+    }
+
+    //USE-MEMO
     const setSidebarShown = useMemo(
         () => sidebarShown => {
             // Prevents scrolling of contents behind the sidebar
             document.body.style.overflow = sidebarShown ? "hidden" : "visible"
-            _setSidebarShown(sidebarShown)
+            _setSidebarShown(sidebarShown);
         },
         [_setSidebarShown]
     )
-
-    const [contactShown, _setContactShown] = useState(false);
-    const [contactProduct, setContactProduct] = useState(null);
-    const [cart, setCart] = useState(null);
-    const isDesktop = useMediaQuery(768);
 
     const setContactShown = useMemo(
         () => (contactShown, contactProduct = null) => {
@@ -48,9 +72,7 @@ const Layout = ({children, location, pageContext}) => {
         [_setContactShown, setContactProduct]
     )
 
-    const [shopifyClient, setShopifyClient] = useState(null)
-    const [shopifyCheckout, setShopifyCheckout] = useState(null)
-
+    //USE-EFFECT
     useEffect(() => {
         const doAsync = async () => {
             // Initializing a client to return translated content
@@ -71,19 +93,6 @@ const Layout = ({children, location, pageContext}) => {
         doAsync();
     }, [setShopifyClient, setShopifyCheckout, 'it'])
 
-    const messages = {
-        it: it,
-        en: en,
-    }
-    let language;
-
-    const errorMissingTranslation = () => {
-        //console.log("Error MISSING TRANSLATION]")
-    }
-
-    const totalQuantity = shopifyCheckout?.lineItems
-        .map(item => item.quantity)
-        .reduce((prev, curr) => prev + curr, 0)
     return (
         <SharedStateContext.Provider
             value={{
@@ -96,7 +105,6 @@ const Layout = ({children, location, pageContext}) => {
                 shopifyClient,
                 shopifyCheckout,
                 setShopifyCheckout,
-                setCurrentSidebarTitle,
                 cart,
                 setCart,
             }}
@@ -127,12 +135,6 @@ const Layout = ({children, location, pageContext}) => {
                                 ) : (
                                     <img className="logo" src={logoEng.src} alt="indice-logo"/>
                                 )}
-                                {/* <div className="font-semibold subtitle-logo md:text-sm">
-                  <FormattedMessage id="navbar.eyeglasses" />{" "}
-                  <span className="text-indice-red italic">
-                    <FormattedMessage id="navbar.extraordinary" />
-                  </span>
-                </div> */}
                             </div>
                         </Link>
                         <button
@@ -171,7 +173,7 @@ const Layout = ({children, location, pageContext}) => {
                                 onClick={() => {
                                     setSidebarShown(false)
                                 }}
-                            ></motion.div>
+                            />
                         )}
                     </AnimatePresence>
                     <AnimatePresence>
@@ -186,7 +188,7 @@ const Layout = ({children, location, pageContext}) => {
                                 onClick={() => {
                                     setCart(false)
                                 }}
-                            ></motion.div>
+                            />
                         )}
                     </AnimatePresence>
                     <AnimatePresence>{sidebarShown && <Sidebar/>}</AnimatePresence>
@@ -237,4 +239,4 @@ Layout.propTypes = {
     children: PropTypes.node,
 }
 
-export default Layout
+export default Layout;
