@@ -24,7 +24,7 @@ const SliderArticles = ({articles}) => {
                 >
                     <div className="swiper">
                         <div className="swiper-wrapper">
-                            {articles.map(article => (
+                            {articles?.map(article => (
                                 <SwiperSlide
                                     className="swiper-slide swiper-slideCustom"
                                     key={article.id}
