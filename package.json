@@ -21,7 +21,7 @@
     "react-intl": "^6.1.1",
     "react-responsive": "^9.0.0",
     "sass": "^1.55.0",
-    "shopify-buy": "^2.16.1",
+    "shopify-buy": "^2.11.0",
     "swiper": "8.0.6"
   },
   "devDependencies": {

@@ -79,9 +79,9 @@ const Drawer = ({ handleClose, setCart }) => {
     setCart(cartContent)
   }
   const { shopifyCheckout } = useContext(SharedStateContext)
-  const goToCheckout = () => {
-    window.open(shopifyCheckout.webUrl, "_self")
-  }
+  // const goToCheckout = () => {
+  //   window.open(shopifyCheckout.webUrl, "_self")
+  //}
   const { cart } = useContext(SharedStateContext)
 
   const items = parserLineItems(getItems(cart))

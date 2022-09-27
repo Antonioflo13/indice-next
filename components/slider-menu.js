@@ -1,11 +1,11 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import { FormattedMessage } from "react-intl"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import LinkMenu from "../components/linkMenu"
-import { useMediaQuery } from "react-responsive"
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const SliderMenu = () => {
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" })
+    const isDesktop = useMediaQuery(768);
   return (
     <>
       {isDesktop ? (

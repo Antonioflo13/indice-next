@@ -27,7 +27,7 @@ async function request(requestTo, query) {
 
     try {
         return await fetch(URL, options).then(response => {
-            return response.json()
+            return response.json();
         })
     } catch (error) {
         throw new Error("Products not fetched")

@@ -8,18 +8,15 @@ import SliderArticles from "../components/slider-articles"
 import AnimatedPage from "../components/animated-page";
 import Layout from "../components/layout";
 
-const IndexPage = ({ collections, articles }) => {
-    console.log('collections', collections);
-    console.log('articles', articles);
-    const data = [];
+const IndexPage = ({ collections, articles}) => {
     const [show, setShown] = useState(false);
+    articles = articles.data.allArticles;
     let selectSingleIcon;
 
     return (
-       <div>
            <Layout>
                <AnimatedPage fullHeight>
-                   <SliderArticles data={data} />
+                   <SliderArticles articles={articles} />
                    <SliderMenu />
                    <SliderHomeCollection />
                    {show && (
@@ -27,7 +24,6 @@ const IndexPage = ({ collections, articles }) => {
                    )}
                </AnimatedPage>
            </Layout>
-       </div>
     )
 }
 
@@ -35,8 +31,8 @@ export async function getStaticProps() {
     const collections = await getAllCollections();
     const articles = await getAllArticles();
     return {
-        props: { collections, articles }, // will be passed to the page component as props
+        props: { collections, articles },
     }
 }
 
-export default IndexPage
+export default IndexPage;
