@@ -73,7 +73,6 @@ const CollectionsPage = ({collections}) => {
                                             </motion.h2>
                                             <p className="text-xs mt-2">{collection.description}</p>
                                             </span>
-
                                         </Link>
                                     </div>
                                 </li>
