@@ -21,7 +21,9 @@ const LinkMenu = ({children, to, sidebar}) => {
                     setSidebarShown(false)
                 }}
             >
-                <p className="mt-3 font-semibold text-xs uppercase">{children}</p>
+                <Link href={to}>
+                    <p className="mt-3 font-semibold text-xs uppercase">{children}</p>
+                </Link>
             </motion.button>
         )
     } else {

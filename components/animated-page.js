@@ -1,9 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import classnames from "classnames"
-import {motion} from "framer-motion"
-import Footer from "./footer"
-import {useMediaQuery} from "react-responsive"
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import {motion} from "framer-motion";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const AnimatedPage = ({children, margins, fullHeight, grey, noAnimate}) => {
     const url = typeof window !== 'undefined' ? window.location.href : '';
@@ -31,7 +30,6 @@ const AnimatedPage = ({children, margins, fullHeight, grey, noAnimate}) => {
                     ) : (
                         children
                     )}
-                    {!url.includes('products') && <Footer/>}
                 </>
             </motion.div>
             <style jsx="true">

@@ -24,7 +24,7 @@ const PageTitle = ({
               height: "1rem",
             }}
           >
-            <img style={{ marginRight: "1px" }} src={iconHome} alt="" />
+            <img style={{ marginRight: "1px" }} src={iconHome.src} alt="" />
           </motion.div>
         </Link>
         <div className="flex flex-wrap items-center mt-1 ml-2">

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react"
 import AnimatedPage from "../components/animated-page"
 import useMediaQuery from "../hooks/useMediaQuery";
-import Link from "../components/LanguagesLink"
+import Link from 'next/Link';
 import {motion} from "framer-motion"
 import SharedStateContext from "../components/shared-state-context"
 import {useIntl} from "react-intl"
@@ -31,6 +31,8 @@ const CollectionsPage = ({collections}) => {
         }
     }
 
+    console.log(collectionsListByAlphabet);
+
     collectionsListByAlphabet.map(
         collectionsList => (collectionsList.collectionsList[0].viewLetter = true)
     )
@@ -52,24 +54,26 @@ const CollectionsPage = ({collections}) => {
 
                                     <div
                                         className={`${
-                                            collection.products.length > 0
+                                            collection.products.edges.length > 0
                                                 ? "available"
                                                 : "unavailable"
                                         } mb-6`}
                                     >
                                         <Link
-                                            to={
-                                                collection.products.length > 0
-                                                    ? collection.handle === "indice-capsule-collection"
-                                                        ? `/${collection.handle}`
-                                                        : `/collections/${collection.handle}`
-                                                    : null
+                                            href={
+                                                collection.products.edges.length > 0
+                                                && collection.handle === "indice-capsule-collection"
+                                                    ? `/${collection.handle}`
+                                                    : `/collections/${collection.handle}`
                                             }
                                         >
-                                            <motion.h2 className=" text-indice text-xl font-bold uppercase">
+                                            <span>
+                                                 <motion.h2 className=" text-indice text-xl font-bold uppercase">
                                                 {collection.title}
                                             </motion.h2>
                                             <p className="text-xs mt-2">{collection.description}</p>
+                                            </span>
+
                                         </Link>
                                     </div>
                                 </li>
