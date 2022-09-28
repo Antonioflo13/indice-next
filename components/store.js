@@ -37,7 +37,7 @@ const Store = ({ isAbout, isModal, selectSingleIcon }) => {
               >
                 <div style={{ width: "85px", height: "85px" }}>
                   <img
-                    src={store.image.src}
+                    src={store.image.src.src}
                     alt={store.image.alt}
                     style={{
                       borderRadius: "1rem",

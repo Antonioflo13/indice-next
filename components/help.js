@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import Incons from '../data/icons'
+import Icons from '../data/icons'
 import Label from './label'
 import ModalsIcons from './modalsIcons'
 import SharedStateContext from './shared-state-context'
@@ -9,8 +9,8 @@ const Help = () => {
   const intl = useIntl()
   const { setContactShown } = useContext(SharedStateContext)
   const [show, setShown] = useState(false)
-  const [selectSingleIcon, setSelectSingleIcon] = useState()
-  const whatappIcon = Incons(intl).find(x => x.id === 2)
+  const [selectSingleIcon, setSelectSingleIcon] = useState();
+  const whatappIcon = Icons(intl).find(x => x.id === 2);
   return (
     <>
       <div className="w-full flex flex-col items-start md:items-end md:text-right">

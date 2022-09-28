@@ -13,7 +13,7 @@ const ModalsIcons = ({ selectSingleIcon, setShown }) => {
           <div className="flex flex-col-reverse items-end">
             <button className="close-menu" onClick={() => setShown(false)}>
               <span>
-                <img src={closeIcon} width={10} alt="cart-icon" />
+                <img src={closeIcon.src} width={10} alt="cart-icon" />
               </span>
             </button>
           </div>
@@ -22,7 +22,7 @@ const ModalsIcons = ({ selectSingleIcon, setShown }) => {
               <div style={{ display: "flex", marginTop: "20px" }}>
                 <img
                   className="removeIconMobile"
-                  src={selectSingleIcon.iconSrc}
+                  src={selectSingleIcon.iconSrc.src}
                   alt={selectSingleIcon.alt}
                   style={{ width: "45px", paddingRight: "15px" }}
                 />
