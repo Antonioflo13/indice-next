@@ -1,7 +1,7 @@
-import React, {useContext, useEffect} from "react"
+import React, {useContext} from "react"
 import AnimatedPage from "../components/animated-page"
 import useMediaQuery from "../hooks/useMediaQuery";
-import Link from 'next/Link';
+import Link from "next/link";
 import {motion} from "framer-motion"
 import SharedStateContext from "../components/shared-state-context"
 import {useIntl} from "react-intl"
