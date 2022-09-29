@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 //FORMATTED MESSAGES
-import { FormattedMessage } from "react-intl"
+import { FormattedMessage } from "react-intl";
 //ICONS
-import Badge from "../images/product-page/badge.png"
-import Delivery from "../images/product-page/delivery.png"
-import HandShake from "../images/product-page/hand-shake.png"
-import Transaction from "../images/product-page/transaction.png"
-import Worldwide from "../images/product-page/worldwide.png"
+import Badge from "../images/product-page/badge.png";
+import Delivery from "../images/product-page/delivery.png";
+import HandShake from "../images/product-page/hand-shake.png";
+import Transaction from "../images/product-page/transaction.png";
+import Worldwide from "../images/product-page/worldwide.png";
 
 const ProductIcon = () => {
   const icons = [
@@ -40,7 +40,7 @@ const ProductIcon = () => {
       alt: "Badge",
       description: "product.icon.worldwide.shipping",
     },
-  ]
+  ];
   return (
     <>
       <div className="flex justify-between items-center w-full mt-4 mb-4">
@@ -82,7 +82,7 @@ const ProductIcon = () => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default ProductIcon
+export default ProductIcon;

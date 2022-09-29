@@ -1,7 +1,7 @@
 import request from "./request";
 
 async function getAllArticles() {
-    const query = `
+  const query = `
 {
     allArticles(orderBy: _createdAt_ASC, locale: it) {
           id
@@ -16,7 +16,7 @@ async function getAllArticles() {
 }
 `;
 
-    return await request('datoCMS', query);
+  return await request("datoCMS", query);
 }
 
 export default getAllArticles;

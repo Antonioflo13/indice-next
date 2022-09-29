@@ -1,77 +1,79 @@
-import React from "react"
-import {FormattedMessage as OriginalFormattedMessage} from "react-intl"
-import {Swiper, SwiperSlide} from 'swiper/react';
+import React from "react";
+import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useMediaQuery from "../hooks/useMediaQuery";
-import EffectCarousel from "../utils/effect-carousel.esm"
-import {Autoplay} from "swiper"
-import Link from "./LanguagesLink"
-import mainClasses from "./css/main.module.scss"
+import EffectCarousel from "../utils/effect-carousel.esm";
+import { Autoplay } from "swiper";
+import Link from "./LanguagesLink";
+import mainClasses from "./css/main.module.scss";
 
-const SliderArticles = ({articles}) => {
-    const isDesktop = useMediaQuery(768);
+const SliderArticles = ({ articles }) => {
+  const isDesktop = useMediaQuery(768);
 
-    return (
-        <>
-            <div className={`${mainClasses.mtCustom} ${mainClasses.containerSliderArticles}`}>
-                <Swiper
-                    className={mainClasses.swiperCarousel}
-                    modules={[EffectCarousel, Autoplay]}
-                    grabCursor={true}
-                    loop={true}
-                    loopedSlides={5}
-                    slidesPerView={"auto"}
-                    autoplay={{delay: 5000, disableOnInteraction: false}}
+  return (
+    <>
+      <div
+        className={`${mainClasses.mtCustom} ${mainClasses.containerSliderArticles}`}
+      >
+        <Swiper
+          className={mainClasses.swiperCarousel}
+          modules={[EffectCarousel, Autoplay]}
+          grabCursor={true}
+          loop={true}
+          loopedSlides={5}
+          slidesPerView={"auto"}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+        >
+          <div className="swiper">
+            <div className="swiper-wrapper">
+              {articles?.map(article => (
+                <SwiperSlide
+                  className="swiper-slide swiper-slideCustom"
+                  key={article.id}
+                  style={{ cursor: "pointer" }}
                 >
-                    <div className="swiper">
-                        <div className="swiper-wrapper">
-                            {articles?.map(article => (
-                                <SwiperSlide
-                                    className="swiper-slide swiper-slideCustom"
-                                    key={article.id}
-                                    style={{cursor: "pointer"}}
-                                >
-                                    <Link
-                                        to={`/magazine/${article.handle}`}
-                                        key={article.id}
-                                        className="linkSliderHomeArticle"
-                                    >
-                                        <div className="swiper-carousel-animate-opacity w-100/100">
-                                            <img
-                                                className="object-cover w-100/100"
-                                                src={
-                                                    isDesktop
-                                                        ? article.imageheader.url
-                                                        : article.imageheadermobile?.url
-                                                }
-                                                alt=""
-                                            />
-                                            <div className="slide-content">
-                                                <h2 className="text-white">{article.title}</h2>
-                                                <p className="text-white">{article.description}</p>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </SwiperSlide>
-                            ))}
-                        </div>
+                  <Link
+                    to={`/magazine/${article.handle}`}
+                    key={article.id}
+                    className="linkSliderHomeArticle"
+                  >
+                    <div className="swiper-carousel-animate-opacity w-100/100">
+                      <img
+                        className="object-cover w-100/100"
+                        src={
+                          isDesktop
+                            ? article.imageheader.url
+                            : article.imageheadermobile?.url
+                        }
+                        alt=""
+                      />
+                      <div className="slide-content">
+                        <h2 className="text-white">{article.title}</h2>
+                        <p className="text-white">{article.description}</p>
+                      </div>
                     </div>
-                </Swiper>
+                  </Link>
+                </SwiperSlide>
+              ))}
             </div>
-            <div className="ml-1 text-xs mt-6 mb-20 text-center px-5">
-                <FormattedMessage id="home.slider_articles.text"/>
-            </div>
-        </>
-    )
-}
+          </div>
+        </Swiper>
+      </div>
+      <div className="ml-1 text-xs mt-6 mb-20 text-center px-5">
+        <FormattedMessage id="home.slider_articles.text" />
+      </div>
+    </>
+  );
+};
 
-export default SliderArticles
+export default SliderArticles;
 
-const FormattedMessage = ({values, ...props}) => (
-    <OriginalFormattedMessage
-        values={{
-            b: chunk => <b>{chunk}</b>,
-            ...values,
-        }}
-        {...props}
-    />
-)
+const FormattedMessage = ({ values, ...props }) => (
+  <OriginalFormattedMessage
+    values={{
+      b: chunk => <b>{chunk}</b>,
+      ...values,
+    }}
+    {...props}
+  />
+);

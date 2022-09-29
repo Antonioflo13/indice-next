@@ -1,31 +1,31 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { AnimatePresence, motion } from "framer-motion"
-import React, { useContext, useState } from "react"
-import { FormattedMessage } from "react-intl"
-import Label from "./label"
-import Modal from "./modal"
-import PageTitle from "./page-title"
-import SharedStateContext from "./shared-state-context"
-import { stores } from "../data/stores"
-import closeIcon from "../assets/images/cross.svg"
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useContext, useState } from "react";
+import { FormattedMessage } from "react-intl";
+import Label from "./label";
+import Modal from "./modal";
+import PageTitle from "./page-title";
+import SharedStateContext from "./shared-state-context";
+import { stores } from "../data/stores";
+import closeIcon from "../assets/images/cross.svg";
 
 const Contact = ({ setShown }) => {
-  const { contactProduct } = useContext(SharedStateContext)
-  const [sendingForm, setSendingForm] = useState(false)
-  const [disabled, setDisabled] = useState(true)
+  const { contactProduct } = useContext(SharedStateContext);
+  const [sendingForm, setSendingForm] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const initialValues = {
     store: "",
     name: "",
     email: "",
     phone: "",
     message: "",
-  }
-  const [formValues, setFormValues] = useState(initialValues)
-  const [successShown, setSuccessShown] = useState(false)
-  const [errorShown, setErrorShown] = useState(false)
+  };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [successShown, setSuccessShown] = useState(false);
+  const [errorShown, setErrorShown] = useState(false);
   const handleChange = e => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
 
     if (
       formValues.store.length > 0 &&
@@ -34,12 +34,12 @@ const Contact = ({ setShown }) => {
       formValues.phone.length > 0 &&
       formValues.message.length > 0
     ) {
-      setDisabled(false)
+      setDisabled(false);
     }
-  }
+  };
 
   const handleSubmit = e => {
-    setSendingForm(true)
+    setSendingForm(true);
     fetch("https://submit-form.com/bevHjZg7", {
       method: "POST",
       headers: {
@@ -49,22 +49,22 @@ const Contact = ({ setShown }) => {
       body: JSON.stringify(formValues),
     })
       .then(() => {
-        setFormValues(initialValues)
-        setSuccessShown(true)
-        setDisabled(true)
+        setFormValues(initialValues);
+        setSuccessShown(true);
+        setDisabled(true);
       })
       .catch(_error => {
-        setErrorShown(true)
+        setErrorShown(true);
       })
       .finally(() => {
-        setSendingForm(false)
-      })
-    e.preventDefault()
-  }
+        setSendingForm(false);
+      });
+    e.preventDefault();
+  };
 
-  const Brescia = stores[0].name
-  const Forte = stores[1].name
-  const Roma = stores[2].name
+  const Brescia = stores[0].name;
+  const Forte = stores[1].name;
+  const Roma = stores[2].name;
 
   return (
     <>
@@ -124,9 +124,9 @@ const Contact = ({ setShown }) => {
                     <button
                       className="mr-2 text-gray-800"
                       onClick={e => {
-                        setSuccessShown(false)
-                        setErrorShown(false)
-                        e.preventDefault()
+                        setSuccessShown(false);
+                        setErrorShown(false);
+                        e.preventDefault();
                       }}
                     >
                       <span>
@@ -279,10 +279,10 @@ const Contact = ({ setShown }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
 
 const Input = props => (
   <input
@@ -290,4 +290,4 @@ const Input = props => (
     style={{ borderRadius: "1.5rem" }}
     {...props}
   />
-)
+);

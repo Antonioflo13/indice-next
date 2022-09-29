@@ -1,7 +1,7 @@
-import React from "react"
-import { stores } from "../data/stores"
-import { motion } from "framer-motion"
-import { FormattedMessage } from "react-intl"
+import React from "react";
+import { stores } from "../data/stores";
+import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 
 const Store = ({ isAbout, isModal, selectSingleIcon }) => {
   return (
@@ -156,7 +156,7 @@ const Store = ({ isAbout, isModal, selectSingleIcon }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default Store
+export default Store;

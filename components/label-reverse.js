@@ -1,8 +1,8 @@
-import { motion, useMotionValue } from "framer-motion"
-import React from "react"
+import { motion, useMotionValue } from "framer-motion";
+import React from "react";
 
 const LabelReverse = ({ children, disabled = false, style = {}, ...props }) => {
-  const opacity = useMotionValue(disabled ? 0.6 : 1.0)
+  const opacity = useMotionValue(disabled ? 0.6 : 1.0);
   return (
     <motion.button
       whileHover={{ scale: 1.1 }}
@@ -13,7 +13,7 @@ const LabelReverse = ({ children, disabled = false, style = {}, ...props }) => {
     >
       {children}
     </motion.button>
-  )
-}
+  );
+};
 
-export default LabelReverse
+export default LabelReverse;

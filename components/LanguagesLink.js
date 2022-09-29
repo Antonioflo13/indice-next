@@ -1,13 +1,13 @@
-import React, { useContext } from "react"
-import SharedStateContext from "./shared-state-context"
+import React, { useContext } from "react";
+import SharedStateContext from "./shared-state-context";
 import Link from "next/link";
 
 const LanguagesLink = ({ to, ref, ...rest }) => {
-  const { lang } = useContext(SharedStateContext)
+  const { lang } = useContext(SharedStateContext);
 
   // Empty links should just not do anything
   if (!to) {
-    return rest.children
+    return rest.children;
   }
 
   return (
@@ -17,7 +17,7 @@ const LanguagesLink = ({ to, ref, ...rest }) => {
       {...rest}
       href={`/it`}
     />
-  )
-}
+  );
+};
 
 export default LanguagesLink;

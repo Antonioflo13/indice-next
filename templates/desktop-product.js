@@ -1,17 +1,17 @@
 import {
   FormattedMessage as OriginalFormattedMessage,
   FormattedNumber,
-} from "react-intl"
-import Label from "../components/label"
-import "swiper/swiper-bundle.min.css"
-import "swiper/swiper.min.css"
-import SliderRelatedProducts from "../components/slider-related-products"
-import React from "react"
-import { stores } from "../data/stores"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons"
+} from "react-intl";
+import Label from "../components/label";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import SliderRelatedProducts from "../components/slider-related-products";
+import React from "react";
+import { stores } from "../data/stores";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 //COMPONENTS
-import ProductIcon from "../components/product-icon"
+import ProductIcon from "../components/product-icon";
 
 const DesktopProduct = props => {
   const {
@@ -23,7 +23,7 @@ const DesktopProduct = props => {
     collectionHandle,
     accordion,
     setAccordion,
-  } = props
+  } = props;
 
   return (
     <>
@@ -205,10 +205,10 @@ const DesktopProduct = props => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default DesktopProduct
+export default DesktopProduct;
 
 const FormattedMessage = ({ values, ...props }) => (
   <OriginalFormattedMessage
@@ -219,4 +219,4 @@ const FormattedMessage = ({ values, ...props }) => (
     }}
     {...props}
   />
-)
+);

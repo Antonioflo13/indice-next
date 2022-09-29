@@ -1,31 +1,31 @@
-import React from "react"
-import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
-import { FormattedNumber, useIntl } from "react-intl"
-import Link from "../components/link"
-import AnimatedPage from "../components/animated-page"
-import PageTitle from "../components/page-title"
-import { useMediaQuery } from "react-responsive"
-import SliderArticleCollection from "./slider-article-collection"
-import SliderArticleProducts from "./slider-article-products"
+import React from "react";
+import { graphql } from "gatsby";
+import { Helmet } from "react-helmet";
+import { FormattedNumber, useIntl } from "react-intl";
+import Link from "../components/link";
+import AnimatedPage from "../components/animated-page";
+import PageTitle from "../components/page-title";
+import { useMediaQuery } from "react-responsive";
+import SliderArticleCollection from "./slider-article-collection";
+import SliderArticleProducts from "./slider-article-products";
 
 const Magazine = ({ data }) => {
-  const intl = useIntl()
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" })
-  const article = data.datoCmsArticle
-  const productsinArticle = []
+  const intl = useIntl();
+  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
+  const article = data.datoCmsArticle;
+  const productsinArticle = [];
 
   Object.entries(article).forEach(item => {
     if (item[0].includes("product")) {
       if (item[1] !== "") {
-        const titleItem = item[1].toUpperCase()
+        const titleItem = item[1].toUpperCase();
         const filterResultSlider = data.allShopifyProduct.edges.find(
           item => item.node.title === titleItem
-        )
-        productsinArticle.push(filterResultSlider)
+        );
+        productsinArticle.push(filterResultSlider);
       }
     }
-  })
+  });
 
   return (
     <>
@@ -136,8 +136,8 @@ const Magazine = ({ data }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
 export const data = graphql`
   query article($id: String!, $shopifyCollection: String!) {
@@ -202,9 +202,9 @@ export const data = graphql`
       }
     }
   }
-`
+`;
 
-export default Magazine
+export default Magazine;
 
 // const Product = ({ product, collection }) => {
 //   return (

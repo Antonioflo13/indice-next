@@ -1,6 +1,6 @@
-import imageStoreBrescia from "../assets/images/store-brescia.jpeg"
-import imageStoreForte from "../assets/images/store-forte.jpeg"
-import imageStoreCortina from "../assets/images/store-cortina.jpeg"
+import imageStoreBrescia from "../assets/images/store-brescia.jpeg";
+import imageStoreForte from "../assets/images/store-forte.jpeg";
+import imageStoreCortina from "../assets/images/store-cortina.jpeg";
 
 export const stores = [
   {
@@ -42,4 +42,4 @@ export const stores = [
       "https://www.google.com/maps/place/Via+Roma,+3,+32043+Cortina+d'Ampezzo+BL/@46.5363362,12.1405604,17z/data=!4m5!3m4!1s0x47783437a8a7a989:0xf76335ec2d28bd6a!8m2!3d46.5363928!4d12.1406207",
     linkMex: "https://wa.me/+393206330888",
   },
-]
+];

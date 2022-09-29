@@ -1,12 +1,12 @@
-import React from "react"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { data } from "../data/queryHomeCollection"
-import { FormattedMessage as OriginalFormattedMessage } from "react-intl"
-import Link from "../components/LanguagesLink"
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { data } from "../data/queryHomeCollection";
+import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
+import Link from "../components/LanguagesLink";
 
 const SliderHomeCollection = () => {
-  const products = data.shopifyCollection.products
-  const handleCollection = data.shopifyCollection.handle
+  const products = data.shopifyCollection.products;
+  const handleCollection = data.shopifyCollection.handle;
 
   return (
     <>
@@ -103,10 +103,10 @@ const SliderHomeCollection = () => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SliderHomeCollection
+export default SliderHomeCollection;
 
 const FormattedMessage = ({ values, ...props }) => (
   <OriginalFormattedMessage
@@ -117,4 +117,4 @@ const FormattedMessage = ({ values, ...props }) => (
     }}
     {...props}
   />
-)
+);

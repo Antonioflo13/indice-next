@@ -1,5 +1,5 @@
-import React from 'react'
+import React from "react";
 
-const SharedStateContext = React.createContext({})
+const SharedStateContext = React.createContext({});
 
-export default SharedStateContext
+export default SharedStateContext;

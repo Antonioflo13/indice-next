@@ -1,5 +1,5 @@
-import React from "react"
-import PageTitle from "../components/page-title"
+import React from "react";
+import PageTitle from "../components/page-title";
 
 const Breadcrumbs = ({ title }) => {
   return (
@@ -30,7 +30,7 @@ const Breadcrumbs = ({ title }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default Breadcrumbs
+export default Breadcrumbs;

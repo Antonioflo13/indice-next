@@ -1,6 +1,6 @@
-import React from "react"
-import { FormattedNumber } from "react-intl"
-import Link from "./LanguagesLink"
+import React from "react";
+import { FormattedNumber } from "react-intl";
+import Link from "./LanguagesLink";
 
 const Product = ({ product, collectionHandle }) => {
   return (
@@ -35,7 +35,7 @@ const Product = ({ product, collectionHandle }) => {
         )}
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

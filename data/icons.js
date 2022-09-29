@@ -1,6 +1,6 @@
-import mex from "../assets/images/mex.svg"
-import map from "../assets/images/map.svg"
-import call from "../assets/images/call.svg"
+import mex from "../assets/images/mex.svg";
+import map from "../assets/images/map.svg";
+import call from "../assets/images/call.svg";
 
 const Incons = intl => {
   return [
@@ -25,7 +25,7 @@ const Incons = intl => {
       iconSrc: mex,
       alt: "icona whatapp",
     },
-  ]
-}
+  ];
+};
 
-export default Incons
+export default Incons;

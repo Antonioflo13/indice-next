@@ -1,7 +1,7 @@
 import request from "./request";
 
 async function getAllCollections() {
-    const query = `
+  const query = `
 {
     collections(
       sortKey: TITLE, first: 250
@@ -25,9 +25,9 @@ async function getAllCollections() {
       }
     }
  }
-`
+`;
 
-    return await request('shopify', query);
+  return await request("shopify", query);
 }
 
 export default getAllCollections;

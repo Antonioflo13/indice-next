@@ -1,9 +1,9 @@
-import React from "react"
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js"
-import "swiper/swiper-bundle.min.css"
-import "swiper/swiper.min.css"
-import { FormattedMessage as OriginalFormattedMessage } from "react-intl"
-import Link from "../components/LanguagesLink"
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
+import Link from "../components/LanguagesLink";
 
 const SliderArticleProducts = ({ productsinArticle }) => {
   return (
@@ -75,10 +75,10 @@ const SliderArticleProducts = ({ productsinArticle }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SliderArticleProducts
+export default SliderArticleProducts;
 
 const FormattedMessage = ({ values, ...props }) => (
   <OriginalFormattedMessage
@@ -89,4 +89,4 @@ const FormattedMessage = ({ values, ...props }) => (
     }}
     {...props}
   />
-)
+);

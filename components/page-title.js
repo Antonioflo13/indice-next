@@ -1,8 +1,8 @@
-import Link from "./LanguagesLink"
-import React from "react"
-import { FormattedMessage } from "react-intl"
-import { motion } from "framer-motion"
-import iconHome from "../assets/images/home.svg"
+import Link from "./LanguagesLink";
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { motion } from "framer-motion";
+import iconHome from "../assets/images/home.svg";
 
 const PageTitle = ({
   title,
@@ -83,12 +83,12 @@ const PageTitle = ({
       </div>
     )}
   </div>
-)
+);
 
-export default PageTitle
+export default PageTitle;
 
 export const Bold = ({ children }) => (
   <span className="text-2xl md:text-4xl font-black italic mackay text-indice-red">
     {children}
   </span>
-)
+);

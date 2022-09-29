@@ -1,24 +1,24 @@
-import React, { useContext, useEffect } from "react"
-import { graphql } from "gatsby"
-import AnimatedPage from "../components/animated-page"
-import { FormattedMessage, FormattedNumber, useIntl } from "react-intl"
-import Link from "../components/link"
-import SharedStateContext from "../components/shared-state-context"
-import PageTitle, { Bold } from "../components/page-title"
-import { Helmet } from "react-helmet"
-import { useMediaQuery } from "react-responsive"
+import React, { useContext, useEffect } from "react";
+import { graphql } from "gatsby";
+import AnimatedPage from "../components/animated-page";
+import { FormattedMessage, FormattedNumber, useIntl } from "react-intl";
+import Link from "../components/link";
+import SharedStateContext from "../components/shared-state-context";
+import PageTitle, { Bold } from "../components/page-title";
+import { Helmet } from "react-helmet";
+import { useMediaQuery } from "react-responsive";
 
 const CollectionTemplate = ({ data: { shopifyCollection } }) => {
-  const intl = useIntl()
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" })
-  const { setCurrentSidebarTitle } = useContext(SharedStateContext)
+  const intl = useIntl();
+  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
+  const { setCurrentSidebarTitle } = useContext(SharedStateContext);
   useEffect(() => {
-    setCurrentSidebarTitle("")
-  }, [setCurrentSidebarTitle])
+    setCurrentSidebarTitle("");
+  }, [setCurrentSidebarTitle]);
 
   const isBrand =
     shopifyCollection.handle !== "optical" &&
-    shopifyCollection.handle !== "sunglasses"
+    shopifyCollection.handle !== "sunglasses";
 
   return (
     <>
@@ -94,7 +94,7 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
                     id={`collection.${shopifyCollection.handle}_title`}
                     values={{
                       b: chunk => {
-                        chunk
+                        chunk;
                       },
                       title: (
                         <div className="mt-10 text-indice text-xl font-bold uppercase">
@@ -173,8 +173,8 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query CollectionQuery($id: String!) {
@@ -209,9 +209,9 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default CollectionTemplate
+export default CollectionTemplate;
 
 const Product = ({ product, collection }) => {
   return (
@@ -248,5 +248,5 @@ const Product = ({ product, collection }) => {
           )}
       </div>
     </Link>
-  )
-}
+  );
+};

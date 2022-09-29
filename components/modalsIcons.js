@@ -1,9 +1,9 @@
-import React from "react"
-import Modal from "./modal"
-import Store from "./store"
-import closeIcon from "../assets/images/cross.svg"
-import { motion } from "framer-motion"
-import { FormattedMessage } from "react-intl"
+import React from "react";
+import Modal from "./modal";
+import Store from "./store";
+import closeIcon from "../assets/images/cross.svg";
+import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 
 const ModalsIcons = ({ selectSingleIcon, setShown }) => {
   return (
@@ -61,7 +61,7 @@ const ModalsIcons = ({ selectSingleIcon, setShown }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default ModalsIcons
+export default ModalsIcons;

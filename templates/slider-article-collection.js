@@ -1,13 +1,13 @@
-import React from "react"
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js"
-import "swiper/swiper-bundle.min.css"
-import "swiper/swiper.min.css"
-import { FormattedMessage as OriginalFormattedMessage } from "react-intl"
-import Link from "../components/link"
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
+import Link from "../components/link";
 
 const SliderArticleCollection = ({ shopifyCollection }) => {
-  const products = shopifyCollection?.products
-  const handleCollection = shopifyCollection?.handle
+  const products = shopifyCollection?.products;
+  const handleCollection = shopifyCollection?.handle;
 
   return (
     <>
@@ -78,10 +78,10 @@ const SliderArticleCollection = ({ shopifyCollection }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SliderArticleCollection
+export default SliderArticleCollection;
 
 const FormattedMessage = ({ values, ...props }) => (
   <OriginalFormattedMessage
@@ -92,4 +92,4 @@ const FormattedMessage = ({ values, ...props }) => (
     }}
     {...props}
   />
-)
+);

@@ -3,8 +3,7 @@ export const data = {
     handle: "off-white",
     products: [
       {
-        id:
-          "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU3Mjg2NDYyNDE=",
+        id: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU3Mjg2NDYyNDE=",
         handle: "carrara",
         title: "CARRARA",
         vendor: "Off-White",
@@ -28,8 +27,7 @@ export const data = {
         ],
       },
       {
-        id:
-          "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU3MjQ1ODMwMDk=",
+        id: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU3MjQ1ODMwMDk=",
         handle: "washington-1",
         title: "NASSAU",
         vendor: "OFF-WHITE",
@@ -53,8 +51,7 @@ export const data = {
         ],
       },
       {
-        id:
-          "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU2NzYwNTM2MDE=",
+        id: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MzU2NzYwNTM2MDE=",
         handle: "virgil",
         title: "VIRGIL",
         vendor: "Off-White",
@@ -79,4 +76,4 @@ export const data = {
       },
     ],
   },
-}
+};

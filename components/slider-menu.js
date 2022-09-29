@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react"
-import { FormattedMessage } from "react-intl"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import LinkMenu from "../components/linkMenu"
+import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
+import { Swiper, SwiperSlide } from "swiper/react";
+import LinkMenu from "../components/linkMenu";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 const SliderMenu = () => {
-    const isDesktop = useMediaQuery(768);
+  const isDesktop = useMediaQuery(768);
   return (
     <>
       {isDesktop ? (
@@ -125,7 +125,7 @@ const SliderMenu = () => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SliderMenu
+export default SliderMenu;

@@ -1,22 +1,22 @@
-import React, { useContext, useState } from "react"
-import { numberWithCommas, parserLineItems } from "../utils/parser"
-import SharedStateContext from "./shared-state-context"
-import { useIntl } from "react-intl"
-import closeIcon from "../assets/images/cross.svg"
-import { motion } from "framer-motion"
-import { getCookie } from "../utils/cookie"
-import paypal from "../assets/images/1.svg"
-import mastercard from "../assets/images/2.svg"
-import visa from "../assets/images/3.svg"
-import amex from "../assets/images/4.svg"
-import logo from "../assets/images/logo-black.png"
+import React, { useContext, useState } from "react";
+import { numberWithCommas, parserLineItems } from "../utils/parser";
+import SharedStateContext from "./shared-state-context";
+import { useIntl } from "react-intl";
+import closeIcon from "../assets/images/cross.svg";
+import { motion } from "framer-motion";
+import { getCookie } from "../utils/cookie";
+import paypal from "../assets/images/1.svg";
+import mastercard from "../assets/images/2.svg";
+import visa from "../assets/images/3.svg";
+import amex from "../assets/images/4.svg";
+import logo from "../assets/images/logo-black.png";
 
 const getItems = cart => {
   if (cart) {
-    const { lineItems } = cart
-    return lineItems
+    const { lineItems } = cart;
+    return lineItems;
   }
-}
+};
 
 const sidebarVariants = {
   hidden: { x: "100%", transition: { type: "tween" } },
@@ -24,15 +24,15 @@ const sidebarVariants = {
     x: "0",
     transition: { type: "tween", staggerChildren: 0.1, when: "beforeChildren" },
   },
-}
+};
 
 const Drawer = ({ handleClose, setCart }) => {
-  const [isVisible, setIsVisible] = useState(true)
-  const intl = useIntl()
-  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext)
+  const [isVisible, setIsVisible] = useState(true);
+  const intl = useIntl();
+  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
 
   const handleAddItem = async id => {
-    const checkoutId = getCookie("checkoutId")
+    const checkoutId = getCookie("checkoutId");
     const updatedCheckout = await shopifyClient.checkout.addLineItems(
       checkoutId,
       [
@@ -41,15 +41,15 @@ const Drawer = ({ handleClose, setCart }) => {
           quantity: 1,
         },
       ]
-    )
-    const { lineItems, totalPrice } = updatedCheckout
-    const cartContent = { lineItems, totalPrice }
+    );
+    const { lineItems, totalPrice } = updatedCheckout;
+    const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout)
-    setCart(cartContent)
-  }
+    await setShopifyCheckout(updatedCheckout);
+    setCart(cartContent);
+  };
   const handleRemoveItem = async id => {
-    const checkoutId = getCookie("checkoutId")
+    const checkoutId = getCookie("checkoutId");
     const updatedCheckout = await shopifyClient.checkout.addLineItems(
       checkoutId,
       [
@@ -58,33 +58,33 @@ const Drawer = ({ handleClose, setCart }) => {
           quantity: -1,
         },
       ]
-    )
-    const { lineItems, totalPrice } = updatedCheckout
-    const cartContent = { lineItems, totalPrice }
+    );
+    const { lineItems, totalPrice } = updatedCheckout;
+    const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout)
-    setCart(cartContent)
-  }
+    await setShopifyCheckout(updatedCheckout);
+    setCart(cartContent);
+  };
   const handleRemoveItems = async id => {
-    const checkoutId = getCookie("checkoutId")
-    const lineItemIdsToRemove = [id]
+    const checkoutId = getCookie("checkoutId");
+    const lineItemIdsToRemove = [id];
     const updatedCheckout = await shopifyClient.checkout.removeLineItems(
       checkoutId,
       lineItemIdsToRemove
-    )
-    const { lineItems, totalPrice } = updatedCheckout
-    const cartContent = { lineItems, totalPrice }
+    );
+    const { lineItems, totalPrice } = updatedCheckout;
+    const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout)
-    setCart(cartContent)
-  }
-  const { shopifyCheckout } = useContext(SharedStateContext)
+    await setShopifyCheckout(updatedCheckout);
+    setCart(cartContent);
+  };
+  const { shopifyCheckout } = useContext(SharedStateContext);
   // const goToCheckout = () => {
   //   window.open(shopifyCheckout.webUrl, "_self")
   //}
-  const { cart } = useContext(SharedStateContext)
+  const { cart } = useContext(SharedStateContext);
 
-  const items = parserLineItems(getItems(cart))
+  const items = parserLineItems(getItems(cart));
 
   return (
     <>
@@ -103,8 +103,8 @@ const Drawer = ({ handleClose, setCart }) => {
                 <button
                   className="close-menu"
                   onClick={() => {
-                    handleClose()
-                    setIsVisible(false)
+                    handleClose();
+                    setIsVisible(false);
                   }}
                 >
                   <span>
@@ -157,7 +157,7 @@ const Drawer = ({ handleClose, setCart }) => {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
             </div>
             <div className="drawer-recap">
@@ -335,7 +335,7 @@ const Drawer = ({ handleClose, setCart }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default Drawer
+export default Drawer;

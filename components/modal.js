@@ -1,5 +1,5 @@
-import { motion } from "framer-motion"
-import React from "react"
+import { motion } from "framer-motion";
+import React from "react";
 
 const Modal = ({ children, setShown, customWidthModal }) => {
   return (
@@ -34,7 +34,7 @@ const Modal = ({ children, setShown, customWidthModal }) => {
         onClick={event => {
           // Prevents dismissal from children clicks
           if (event.target === event.currentTarget) {
-            setShown(false)
+            setShown(false);
           }
         }}
       >
@@ -64,7 +64,7 @@ const Modal = ({ children, setShown, customWidthModal }) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

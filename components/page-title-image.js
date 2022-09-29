@@ -1,9 +1,9 @@
-import Link from "./LanguagesLink"
-import React from "react"
-import { FormattedMessage } from "react-intl"
-import iconHome from "../images/home.svg"
-import { motion } from "framer-motion"
-import Image from "./image-shop"
+import Link from "./LanguagesLink";
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import iconHome from "../images/home.svg";
+import { motion } from "framer-motion";
+import Image from "./image-shop";
 
 const PageTitleImage = ({
   title,
@@ -93,12 +93,12 @@ const PageTitleImage = ({
       </div>
     )}
   </div>
-)
+);
 
-export default PageTitleImage
+export default PageTitleImage;
 
 export const Bold = ({ children }) => (
   <span className="text-2xl md:text-4xl font-black italic mackay text-indice-red">
     {children}
   </span>
-)
+);

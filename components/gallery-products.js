@@ -1,15 +1,15 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const GalleryProducts = ({ images }) => {
-  const [imageList, setImageList] = useState([...images])
+  const [imageList, setImageList] = useState([...images]);
   const chageView = item => {
-    let imageListChange = [...images]
+    let imageListChange = [...images];
     const index = imageListChange.findIndex(
       image => image.originalSrc === item.originalSrc
-    )
-    imageListChange.unshift(imageListChange.splice(index, 1)[0])
-    setImageList(imageListChange)
-  }
+    );
+    imageListChange.unshift(imageListChange.splice(index, 1)[0]);
+    setImageList(imageListChange);
+  };
 
   return (
     <>
@@ -55,7 +55,7 @@ const GalleryProducts = ({ images }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default GalleryProducts
+export default GalleryProducts;

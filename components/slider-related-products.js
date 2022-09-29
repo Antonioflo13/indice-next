@@ -1,14 +1,14 @@
-import React from "react"
+import React from "react";
 //SWIPER
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js"
-import "swiper/swiper-bundle.min.css"
-import "swiper/swiper.min.css"
-import "swiper/modules/pagination/pagination.min.css"
-import { FormattedMessage as OriginalFormattedMessage } from "react-intl"
-import Link from "./LanguagesLink"
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import "swiper/modules/pagination/pagination.min.css";
+import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
+import Link from "./LanguagesLink";
 
 const sliderRelatedProducts = props => {
-  const { relatedProducts, collectionHandle } = props
+  const { relatedProducts, collectionHandle } = props;
 
   return (
     <>
@@ -104,10 +104,10 @@ const sliderRelatedProducts = props => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default sliderRelatedProducts
+export default sliderRelatedProducts;
 
 const FormattedMessage = ({ values, ...props }) => (
   <OriginalFormattedMessage
@@ -118,4 +118,4 @@ const FormattedMessage = ({ values, ...props }) => (
     }}
     {...props}
   />
-)
+);

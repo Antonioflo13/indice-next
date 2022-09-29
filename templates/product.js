@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from "react"
-import { graphql } from "gatsby"
-import AnimatedPage from "../components/animated-page"
-import { useIntl } from "react-intl"
-import SharedStateContext from "../components/shared-state-context"
-import PageTitle from "../components/page-title"
-import GalleryProducts from "../components/gallery-products"
-import { Helmet } from "react-helmet"
-import { getCookie, setCookie } from "../utils/cookie"
-import { useMediaQuery } from "react-responsive"
+import React, { useContext, useEffect } from "react";
+import { graphql } from "gatsby";
+import AnimatedPage from "../components/animated-page";
+import { useIntl } from "react-intl";
+import SharedStateContext from "../components/shared-state-context";
+import PageTitle from "../components/page-title";
+import GalleryProducts from "../components/gallery-products";
+import { Helmet } from "react-helmet";
+import { getCookie, setCookie } from "../utils/cookie";
+import { useMediaQuery } from "react-responsive";
 //COMPONENTS
-import MobileProduct from "../templates/mobile-product"
-import DesktopProduct from "./desktop-product"
+import MobileProduct from "../templates/mobile-product";
+import DesktopProduct from "./desktop-product";
 
 const ProductTemplate = ({
   data: {
@@ -19,28 +19,27 @@ const ProductTemplate = ({
   },
   pageContext: { productHandle, collectionHandle },
 }) => {
-  const { setCurrentSidebarTitle, setContactShown, setCart } = useContext(
-    SharedStateContext
-  )
+  const { setCurrentSidebarTitle, setContactShown, setCart } =
+    useContext(SharedStateContext);
   const [accordion, setAccordion] = React.useState({
     size: false,
     shipping: false,
-  })
+  });
   useEffect(() => {
-    setCurrentSidebarTitle("")
-  }, [setCurrentSidebarTitle])
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" })
+    setCurrentSidebarTitle("");
+  }, [setCurrentSidebarTitle]);
+  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 
-  const relatedProducts = products.filter(p => p.id !== shopifyProduct.id)
+  const relatedProducts = products.filter(p => p.id !== shopifyProduct.id);
 
-  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext)
+  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
 
   const buy = async () => {
     // const checkoutId = shopifyCheckout.id
-    let checkoutId = getCookie("checkoutId")
+    let checkoutId = getCookie("checkoutId");
     if (!checkoutId) {
-      checkoutId = (await shopifyClient.checkout.create()).id
-      setCookie("checkoutId", checkoutId, 90)
+      checkoutId = (await shopifyClient.checkout.create()).id;
+      setCookie("checkoutId", checkoutId, 90);
     }
 
     const updatedCheckout = await shopifyClient.checkout.addLineItems(
@@ -51,22 +50,22 @@ const ProductTemplate = ({
           quantity: 1,
         },
       ]
-    )
+    );
 
-    const { lineItems, totalPrice } = updatedCheckout
-    const cartContent = { lineItems, totalPrice }
+    const { lineItems, totalPrice } = updatedCheckout;
+    const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout)
-    setCart(cartContent)
-  }
+    await setShopifyCheckout(updatedCheckout);
+    setCart(cartContent);
+  };
 
   const askForPrice = () => {
-    setContactShown(true, shopifyProduct)
-  }
+    setContactShown(true, shopifyProduct);
+  };
 
-  const mainImage = <GalleryProducts images={shopifyProduct.images} />
+  const mainImage = <GalleryProducts images={shopifyProduct.images} />;
 
-  const intl = useIntl()
+  const intl = useIntl();
 
   return (
     <>
@@ -200,8 +199,8 @@ const ProductTemplate = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
 export const query = graphql`
   fragment Product on ShopifyProduct {
@@ -241,6 +240,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default ProductTemplate
+export default ProductTemplate;
