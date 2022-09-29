@@ -40,7 +40,7 @@ const CollectionsPage = ({ collections }) => {
   return (
     <Layout>
       <AnimatedPage margins={true}>
-        {isDesktop && <Breadcrumbs title="Botiques" />}
+        {isDesktop && <Breadcrumbs title="Boutiques" />}
         <ul className="containerDesigner">
           {collectionsListByAlphabet.map((letter, index) => (
             <React.Fragment key={index}>
@@ -80,7 +80,7 @@ const CollectionsPage = ({ collections }) => {
             </React.Fragment>
           ))}
         </ul>
-        {!isDesktop && <Breadcrumbs title="Botiques" />}
+        {!isDesktop && <Breadcrumbs title="Boutiques" />}
       </AnimatedPage>
       <style jsx="true">
         {`

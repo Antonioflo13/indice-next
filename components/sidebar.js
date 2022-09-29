@@ -8,6 +8,7 @@ import SharedStateContext from "./shared-state-context";
 import closeIcon from "../assets/images/cross.svg";
 import logo from "../assets/images/logo-black.png";
 import shoppingBag from "../assets/images/shopping-bag-red.svg";
+import Boutiques from "../pages/boutiques";
 
 const sidebarVariants = {
   hidden: { x: "-100%", transition: { type: "tween" } },
@@ -54,7 +55,7 @@ const Sidebar = () => {
               <LinkMenu to="/collections" sidebar>
                 <FormattedMessage id="sidebar.designers" />
               </LinkMenu>
-              <LinkMenu to="/botiques" sidebar>
+              <LinkMenu to="/boutiques" sidebar>
                 <FormattedMessage id="sidebar.botiques" />
               </LinkMenu>
               <LinkMenu to="/magazine" sidebar>

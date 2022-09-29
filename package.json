@@ -22,7 +22,7 @@
     "react-responsive": "^9.0.0",
     "sass": "^1.55.0",
     "shopify-buy": "^2.11.0",
-    "swiper": "8.0.6"
+    "swiper": "^8.4.2"
   },
   "devDependencies": {
     "@types/node": "17.0.35",

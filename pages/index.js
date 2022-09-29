@@ -16,7 +16,7 @@ const IndexPage = ({ articles }) => {
   let selectSingleIcon;
 
   return (
-    <Layout>
+    <Layout articles={articles}>
       <AnimatedPage fullHeight>
         <SliderArticles articles={articles} />
         <SliderMenu />
