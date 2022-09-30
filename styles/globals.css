@@ -1,6 +1,9 @@
 /*! purgecss start ignore */
 @tailwind base;
 @tailwind components;
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
 /*
 .tl-edges {
   @apply h-full;

@@ -13,6 +13,7 @@ import Layout from "../components/layout";
 const IndexPage = ({ articles }) => {
   const [show, setShown] = useState(false);
   articles = articles.data.allArticles;
+  console.log(articles)
   let selectSingleIcon;
 
   return (

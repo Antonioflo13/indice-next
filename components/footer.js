@@ -10,7 +10,7 @@ import Link from "./LanguagesLink";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
 import logo from "../assets/images/logo-black.png";
 import { stores } from "../data/stores";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const Footer = () => {
   const [accordion, setAccordion] = React.useState({
@@ -19,7 +19,7 @@ const Footer = () => {
     wherIs: false,
   });
 
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
+  const isDesktop = useMediaQuery(768);
 
   return (
     <>
