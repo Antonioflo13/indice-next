@@ -10,7 +10,6 @@ import Image from "next/image";
 
 const SliderArticles = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
-
   return (
     <>
       <div className={mainClasses.mtCustom}>
