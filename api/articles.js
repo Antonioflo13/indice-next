@@ -12,6 +12,9 @@ async function getAllArticles() {
           imageheader {
             url
           }
+          imageheadermobile {
+            url
+          }
     }
 }
 `;

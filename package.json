@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "LUXURYEYEWEAR": "dotenv -e .env.LUXURYEYEWEAR next dev"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -12,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "classnames": "^2.3.2",
+    "dotenv-cli": "^6.0.0",
     "framer-motion": "^7.3.6",
     "graphql-request": "^5.0.0",
     "next": "latest",

@@ -6,40 +6,41 @@ import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
 import Link from "./LanguagesLink";
 import mainClasses from "./css/main.module.scss";
+import Image from "next/image";
 
 const SliderArticles = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
 
   return (
     <>
-      <div
-        className={`${mainClasses.mtCustom} ${mainClasses.containerSliderArticles}`}
-      >
+      <div className={mainClasses.mtCustom}>
         <Swiper
-          className={mainClasses.swiperCarousel}
           modules={[EffectCarousel, Autoplay]}
+          effect="carousel"
           grabCursor={true}
           loop={true}
           loopedSlides={5}
           slidesPerView={"auto"}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
         >
-          <div className="swiper">
+          <div className={mainClasses.swiper}>
             <div className="swiper-wrapper">
               {articles?.map(article => (
                 <SwiperSlide
-                  className="swiper-slide swiper-slideCustom"
+                  className={`${mainClasses["swiper-slide"]} ${mainClasses["swiper-slideCustom"]}`}
                   key={article.id}
                   style={{ cursor: "pointer" }}
                 >
                   <Link
                     to={`/magazine/${article.handle}`}
                     key={article.id}
-                    className="linkSliderHomeArticle"
+                    className={mainClasses.linkSliderHomeArticle}
                   >
-                    <div className="swiper-carousel-animate-opacity w-100/100">
-                      <img
-                        className="object-cover w-100/100"
+                    <div className="swiper-carousel-animate-opacity">
+                      <Image
+                        className="object-cover rounded-md"
+                        layout={"fill"}
+                        priority={true}
                         src={
                           isDesktop
                             ? article.imageheader.url
@@ -47,7 +48,7 @@ const SliderArticles = ({ articles }) => {
                         }
                         alt=""
                       />
-                      <div className="slide-content">
+                      <div className={mainClasses["slide-content"]}>
                         <h2 className="text-white">{article.title}</h2>
                         <p className="text-white">{article.description}</p>
                       </div>

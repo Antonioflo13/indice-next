@@ -54,14 +54,14 @@ const CollectionsPage = ({ collections }) => {
 
                   <div
                     className={`${
-                      collection.products.edges.length > 0
+                      collection.products?.edges?.length > 0
                         ? "available"
                         : "unavailable"
                     } mb-6`}
                   >
                     <Link
                       href={
-                        collection.products.edges.length > 0 &&
+                        collection.products?.edges?.length > 0 &&
                         collection.handle === "indice-capsule-collection"
                           ? `/${collection.handle}`
                           : `/collections/${collection.handle}`

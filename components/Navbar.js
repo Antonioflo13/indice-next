@@ -134,6 +134,7 @@ export const Navbar = () => {
             transition={{ type: "tween" }}
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             className="fixed top-0 right-0 h-full w-full z-10"
+            c
             onClick={() => {
               setCart(false);
             }}
