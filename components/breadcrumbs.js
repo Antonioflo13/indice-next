@@ -22,6 +22,7 @@ const Breadcrumbs = ({ title }) => {
             margin-left: auto;
             margin-right: auto;
           }
+
           @media (max-width: 768px) {
             .breadcrumbs {
               margin-top: 40px;
