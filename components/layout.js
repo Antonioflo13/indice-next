@@ -17,11 +17,13 @@ import SharedStateContext from "../components/shared-state-context";
 //COMPONENTS
 import { Navbar } from "./Navbar";
 import Footer from "./footer";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const Layout = ({ children }) => {
   const [shopifyClient, setShopifyClient] = useState(null);
   const [shopifyCheckout, setShopifyCheckout] = useState(null);
   const [language, _setLanguage] = useState("en");
+  const isDesktop = useMediaQuery(768);
   const router = useRouter();
   const messages = {
     it: it,
@@ -77,7 +79,7 @@ const Layout = ({ children }) => {
       >
         <Navbar />
         {children}
-        {router.pathname !== "product" && <Footer />}
+        {router.pathname !== "/product" && isDesktop && <Footer />}
       </IntlProvider>
     </SharedStateContext.Provider>
   );
