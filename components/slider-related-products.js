@@ -1,9 +1,6 @@
 import React from "react";
 //SWIPER
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
-import "swiper/modules/pagination/pagination.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
 import Link from "./LanguagesLink";
 

@@ -1,16 +1,12 @@
 import React from "react";
 //SWIPER
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
-import "swiper/modules/pagination/pagination.min.css";
 //NAVIGATE
-import { navigate } from "gatsby";
 import { FormattedNumber } from "react-intl";
 //FORMAT MESSAGE
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
-import { BottomSheet } from "react-spring-bottom-sheet";
+import BottomSheet from "./bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
 //ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,8 +14,8 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 //STORE BOUTIQUES
 import { stores } from "../data/stores";
 //ICONS
-import RowLeft from "../images/product-page/angle-left.png";
-import RowRight from "../images/product-page/angle-right.png";
+import RowLeft from "../assets/images/product-page/angle-left.png";
+import RowRight from "../assets/images/product-page/angle-right.png";
 
 //COMPONENTS
 import Label from "../components/label";
@@ -39,32 +35,32 @@ const MobileProductTemplate = props => {
     setAccordion,
   } = props;
   //SWIPER NAVIGATION
-  const indexSlide = shopifyProducts.findIndex(
-    product => product.handle === shopifyProduct.handle
-  );
-  const swipeToProduct = swiper => {
-    let index = indexSlide;
-    if (swiper.swipeDirection === "prev" || swiper === "prev") {
-      index = indexSlide === 0 ? shopifyProducts.length - 1 : indexSlide - 1;
-    } else if (swiper.swipeDirection === "next" || swiper === "next") {
-      index = indexSlide === shopifyProducts.length - 1 ? 0 : indexSlide + 1;
-    }
-    if (index < shopifyProducts.length) {
-      navigate(
-        `/en/collections/${collectionHandle}/products/${shopifyProducts[index].handle}`
-      );
-    }
-  };
+  // const indexSlide = shopifyProducts.findIndex(
+  //   product => product.handle === shopifyProduct.handle
+  // );
+  // const swipeToProduct = swiper => {
+  //   let index = indexSlide;
+  //   if (swiper.swipeDirection === "prev" || swiper === "prev") {
+  //     index = indexSlide === 0 ? shopifyProducts.length - 1 : indexSlide - 1;
+  //   } else if (swiper.swipeDirection === "next" || swiper === "next") {
+  //     index = indexSlide === shopifyProducts.length - 1 ? 0 : indexSlide + 1;
+  //   }
+  //   // if (index < shopifyProducts.length) {
+  //   //   navigate(
+  //   //     `/en/collections/${collectionHandle}/products/${shopifyProducts[index].handle}`
+  //   //   );
+  //   // }
+  // };
   return (
     <>
       <Swiper
-        initialSlide={indexSlide}
-        onActiveIndexChange={swipeToProduct}
-        loop={true}
+        // initialSlide={indexSlide}
+        // onActiveIndexChange={swipeToProduct}
+        // loop={true}
         style={{ position: "relative" }}
       >
-        {shopifyProducts.map(index => (
-          <SwiperSlide key={index.id}>
+        {["title"].map((index, i) => (
+          <SwiperSlide key={i}>
             <Swiper
               id="swiper-image-pdp"
               style={{ height: "55vh" }}
@@ -75,32 +71,29 @@ const MobileProductTemplate = props => {
               pagination={true}
               modules={[Pagination]}
             >
-              {shopifyProduct.images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img src={image.originalSrc} alt={image.originalSrc} />
-                </SwiperSlide>
-              ))}
+              {shopifyProduct.variants.edges[0].node.product.images.nodes.map(
+                (image, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={image.originalSrc} alt={image.originalSrc} />
+                  </SwiperSlide>
+                )
+              )}
             </Swiper>
           </SwiperSlide>
         ))}
       </Swiper>
       <button onClick={() => swipeToProduct("prev")}>
-        <img className="rowLeft" src={RowLeft} width={12} alt="row-left" />
+        <img className="rowLeft" src={RowLeft.src} width={12} alt="row-left" />
       </button>
       <button onClick={() => swipeToProduct("next")}>
-        <img className="rowRight" src={RowRight} width={12} alt="row-right" />
+        <img
+          className="rowRight"
+          src={RowRight.src}
+          width={12}
+          alt="row-right"
+        />
       </button>
-      <BottomSheet
-        open={true}
-        expandOnContentDrag
-        blocking={false}
-        skipInitialTransition
-        defaultSnap={({ maxHeight }) => maxHeight / 2.5}
-        snapPoints={({ maxHeight }) => [
-          maxHeight - maxHeight / 10,
-          maxHeight / 4.5,
-        ]}
-      >
+      <BottomSheet>
         <div className="customStyle mb-10">
           <div className="w-full flex flex-col justify-start items-center">
             <div className="text-indice-red text-xs font-bold italic mackay noToHead">
@@ -113,12 +106,14 @@ const MobileProductTemplate = props => {
           <div className="text-center text-sm mb-5 mt-2">
             {shopifyProduct.availableForSale &&
             !shopifyProduct.tags.includes("nfs") &&
-            shopifyProduct.variants[0].quantityAvailable > 0 ? (
+            shopifyProduct.variants.edges[0].node.quantityAvailable > 0 ? (
               <>
                 <FormattedNumber
                   style="currency" // eslint-disable-line
-                  value={shopifyProduct.variants[0].priceV2.amount}
-                  currency={shopifyProduct.variants[0].priceV2.currencyCode}
+                  value={shopifyProduct.variants.edges[0].node.priceV2.amount}
+                  currency={
+                    shopifyProduct.variants.edges[0].node.priceV2.currencyCode
+                  }
                   minimumFractionDigits={2}
                 />
 
@@ -233,12 +228,12 @@ const MobileProductTemplate = props => {
               </>
             )}
           </div>
-          {relatedProducts.length > 0 && (
-            <SliderRelatedProducts
-              relatedProducts={relatedProducts}
-              collectionHandle={collectionHandle}
-            />
-          )}
+          {/*{relatedProducts.length > 0 && (*/}
+          {/*  <SliderRelatedProducts*/}
+          {/*    relatedProducts={relatedProducts}*/}
+          {/*    collectionHandle={collectionHandle}*/}
+          {/*  />*/}
+          {/*)}*/}
         </div>
         <Footer />
       </BottomSheet>
@@ -276,6 +271,7 @@ const MobileProductTemplate = props => {
         #swiper-image-pdp .swiper-pagination-bullet {
           background-color: black;
         }
+
         .rowLeft {
           position: absolute;
           bottom: 18%;

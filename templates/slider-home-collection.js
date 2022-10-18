@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { data } from "../data/queryHomeCollection";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
-import Link from "../components/LanguagesLink";
+import Link from "next/link";
 
 const SliderHomeCollection = () => {
   const products = data.shopifyCollection.products;
@@ -31,9 +31,7 @@ const SliderHomeCollection = () => {
         >
           {products?.map(item => (
             <SwiperSlide key={item.id}>
-              <Link
-                to={`/collections/${handleCollection}/products/${item.handle}`}
-              >
+              <Link href="/product">
                 <div className="container-slider">
                   <img
                     className="img-product"

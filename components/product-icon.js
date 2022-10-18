@@ -2,11 +2,11 @@ import React from "react";
 //FORMATTED MESSAGES
 import { FormattedMessage } from "react-intl";
 //ICONS
-import Badge from "../images/product-page/badge.png";
-import Delivery from "../images/product-page/delivery.png";
-import HandShake from "../images/product-page/hand-shake.png";
-import Transaction from "../images/product-page/transaction.png";
-import Worldwide from "../images/product-page/worldwide.png";
+import Badge from "../assets/images/product-page/badge.png";
+import Delivery from "../assets/images/product-page/delivery.png";
+import HandShake from "../assets/images/product-page/hand-shake.png";
+import Transaction from "../assets/images/product-page/transaction.png";
+import Worldwide from "../assets/images/product-page/worldwide.png";
 
 const ProductIcon = () => {
   const icons = [
@@ -53,7 +53,7 @@ const ProductIcon = () => {
               <img
                 className="icon"
                 key={index}
-                src={icon.icon}
+                src={icon.icon.src}
                 alt={icon.alt}
               />
             </div>

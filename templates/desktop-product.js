@@ -3,8 +3,6 @@ import {
   FormattedNumber,
 } from "react-intl";
 import Label from "../components/label";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
 import SliderRelatedProducts from "../components/slider-related-products";
 import React from "react";
 import { stores } from "../data/stores";
@@ -38,12 +36,14 @@ const DesktopProduct = props => {
           <div className="flex items-center text-sm flex-col mb-5">
             {shopifyProduct.availableForSale &&
             !shopifyProduct.tags.includes("nfs") &&
-            shopifyProduct.variants[0].quantityAvailable > 0 ? (
+            shopifyProduct.variants.edges[0].node.quantityAvailable > 0 ? (
               <>
                 <FormattedNumber
                   style="currency" // eslint-disable-line
-                  value={shopifyProduct.variants[0].priceV2.amount}
-                  currency={shopifyProduct.variants[0].priceV2.currencyCode}
+                  value={shopifyProduct.variants.edges[0].node.priceV2.amount}
+                  currency={
+                    shopifyProduct.variants.edges[0].node.priceV2.currencyCode
+                  }
                   minimumFractionDigits={2}
                 />
 
@@ -83,21 +83,21 @@ const DesktopProduct = props => {
                 <div className="containerStoresPDP">
                   <img
                     className="available-store-img"
-                    src={stores[1].image.src}
+                    src={stores[1].image.src.src}
                   />
                   <div className="textStores">{stores[1].name}</div>
                 </div>
                 <div className="containerStoresPDP">
                   <img
                     className="available-store-img"
-                    src={stores[1].image.src}
+                    src={stores[1].image.src.src}
                   />
                   <div className="textStores">{stores[1].name}</div>
                 </div>
                 <div className="containerStoresPDP">
                   <img
                     className="available-store-img"
-                    src={stores[1].image.src}
+                    src={stores[1].image.src.src}
                   />
                   <div className="textStores">{stores[1].name}</div>
                 </div>
@@ -166,7 +166,7 @@ const DesktopProduct = props => {
       <div className="md:hidden my-8 w-full flex items-center justify-center">
         {shopifyProduct.availableForSale &&
         !shopifyProduct.tags.includes("nfs") &&
-        shopifyProduct.variants[0].quantityAvailable > 0 ? (
+        shopifyProduct.variants.edges[0].node.quantityAvailable > 0 ? (
           <Label onClick={buy}>
             <FormattedMessage id="product.buy" />
           </Label>
@@ -184,12 +184,12 @@ const DesktopProduct = props => {
       <div className="my-20 text-xs text-center px-5">
         <FormattedMessage id="home.slider_monthly.text" />
       </div>
-      {relatedProducts.length > 0 && (
-        <SliderRelatedProducts
-          relatedProducts={relatedProducts}
-          collectionHandle={collectionHandle}
-        />
-      )}
+      {/*{relatedProducts.length > 0 && (*/}
+      {/*  <SliderRelatedProducts*/}
+      {/*    relatedProducts={relatedProducts}*/}
+      {/*    collectionHandle={collectionHandle}*/}
+      {/*  />*/}
+      {/*)}*/}
       <style jsx="true">
         {`
           .buyContainer {
