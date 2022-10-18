@@ -77,7 +77,7 @@ const Layout = ({ children }) => {
       >
         <Navbar />
         {children}
-        {router.pathname !== "products" && <Footer />}
+        {router.pathname !== "product" && <Footer />}
       </IntlProvider>
     </SharedStateContext.Provider>
   );

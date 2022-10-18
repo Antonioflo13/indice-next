@@ -97,13 +97,6 @@ body {
   -o-border-outline: 0 !important;
   -webkit-border-outline: 0 !important;
 }
-
-#___gatsby,
-#gatsby-focus-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
 .h-screen-fixed {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
@@ -115,6 +108,24 @@ body {
 
 .product-description br {
   line-height: 2;
+}
+
+.customStyle {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: white;
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 2.25rem;
+}
+
+@media (max-width: 768px) {
+  .customStyle {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0rem;
+  }
 }
 /*! purgecss end ignore */
 

@@ -165,26 +165,9 @@ const ProductTemplate = ({
           width: 30vw !important;
           height: 40px !important;
         }
-        .available-store-container {
-          display: flex;
-          width: 100%;
-          text-align: center;
-          gap: 1rem;
-        }
         .textStores {
           width: 100px;
           margin: 0 auto;
-        }
-        .available-store-img {
-          border-radius: 20px;
-          height: 55px;
-          margin: 0 auto;
-          width: 100px;
-          object-fit: fill;
-        }
-        .containerAccordion {
-          display: flex;
-          justify-content: space-between;
         }
         @media (max-width: 768px) {
           .button-price button {

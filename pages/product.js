@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import getProduct from "../api/product";
+import { getProductsById } from "../api/collections";
 import SharedStateContext from "../components/shared-state-context";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { getCookie, setCookie } from "../utils/cookie";
@@ -11,9 +12,8 @@ import DesktopProduct from "../templates/desktop-product";
 import MobileProduct from "../templates/mobile-product";
 import Layout from "../components/layout";
 
-const Product = ({ resProduct }) => {
+const Product = ({ resProduct, CollectionProducts }) => {
   const product = resProduct.data.product;
-  console.log(product);
   const { setCurrentSidebarTitle, setContactShown, setCart } =
     useContext(SharedStateContext);
   const [accordion, setAccordion] = React.useState({
@@ -25,7 +25,7 @@ const Product = ({ resProduct }) => {
   // }, [setCurrentSidebarTitle]);
   const isDesktop = useMediaQuery(768);
 
-  // const relatedProducts = products.filter(p => p.id !== shopifyProduct.id);
+  const relatedProducts = CollectionProducts.data.collection.products.nodes;
 
   const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
 
@@ -119,7 +119,7 @@ const Product = ({ resProduct }) => {
             buy={buy}
             askForPrice={askForPrice}
             mainImage={mainImage}
-            // relatedProducts={relatedProducts}
+            relatedProducts={relatedProducts}
             // collectionHandle={collectionHandle}
             accordion={accordion}
             setAccordion={setAccordion}
@@ -131,59 +131,23 @@ const Product = ({ resProduct }) => {
             buy={buy}
             askForPrice={askForPrice}
             mainImage={mainImage}
-            // relatedProducts={relatedProducts}
+            relatedProducts={relatedProducts}
             // collectionHandle={collectionHandle}
             accordion={accordion}
             setAccordion={setAccordion}
           />
         )}
       </AnimatedPage>
-      <style jsx="true">{`
-        .button-price button {
-          width: 30vw !important;
-          height: 40px !important;
-        }
-        .available-store-container {
-          display: flex;
-          width: 100%;
-          text-align: center;
-          gap: 1rem;
-        }
-        .textStores {
-          width: 100px;
-          margin: 0 auto;
-        }
-        .available-store-img {
-          border-radius: 20px;
-          height: 55px;
-          margin: 0 auto;
-          width: 100px;
-          object-fit: fill;
-        }
-        .containerAccordion {
-          display: flex;
-          justify-content: space-between;
-        }
-        @media (max-width: 768px) {
-          .button-price button {
-            width: 90% !important;
-            height: 45px !important;
-          }
-        }
-        @media (min-width: 1440px) {
-          .button-price button {
-            width: 20vw !important;
-          }
-        }
-      `}</style>
+      <style jsx="true">{``}</style>
     </Layout>
   );
 };
 
 export async function getStaticProps() {
   const resProduct = await getProduct();
+  const CollectionProducts = await getProductsById();
   return {
-    props: { resProduct },
+    props: { resProduct, CollectionProducts },
   };
 }
 

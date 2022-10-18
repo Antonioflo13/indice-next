@@ -163,44 +163,64 @@ const DesktopProduct = props => {
           <div className="hidden md:block">{mainImage}</div>
         </div>
       </div>
-      <div className="md:hidden my-8 w-full flex items-center justify-center">
-        {shopifyProduct.availableForSale &&
-        !shopifyProduct.tags.includes("nfs") &&
-        shopifyProduct.variants.edges[0].node.quantityAvailable > 0 ? (
-          <Label onClick={buy}>
-            <FormattedMessage id="product.buy" />
-          </Label>
-        ) : (
-          <Label onClick={askForPrice}>
-            <FormattedMessage id="product.contact_us" />
-          </Label>
-        )}
-      </div>
-      <div
-        className="md:hidden mt-12 text-xs whitespace-pre-line product-description"
-        dangerouslySetInnerHTML={{ __html: shopifyProduct.descriptionHtml }}
-      />
-
       <div className="my-20 text-xs text-center px-5">
         <FormattedMessage id="home.slider_monthly.text" />
       </div>
-      {/*{relatedProducts.length > 0 && (*/}
-      {/*  <SliderRelatedProducts*/}
-      {/*    relatedProducts={relatedProducts}*/}
-      {/*    collectionHandle={collectionHandle}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {relatedProducts.length > 0 && (
+        <SliderRelatedProducts
+          relatedProducts={relatedProducts}
+          collectionHandle={collectionHandle}
+        />
+      )}
       <style jsx="true">
         {`
+          .button-price button {
+            width: 30vw !important;
+            height: 40px !important;
+          }
+
+          @media (max-width: 768px) {
+            .button-price button {
+              width: 90% !important;
+              height: 45px !important;
+            }
+          }
+
+          @media (min-width: 1440px) {
+            .button-price button {
+              width: 20vw !important;
+            }
+          }
           .buyContainer {
             width: 40%;
           }
           .imageContainer {
             width: 60%;
           }
+          .textStores {
+            width: 100px;
+            margin: 0 auto;
+          }
+          .available-store-img {
+            border-radius: 20px;
+            height: 55px;
+            margin: 0 auto;
+            width: 100px;
+            object-fit: fill;
+          }
+          .containerAccordion {
+            display: flex;
+            justify-content: space-between;
+          }
           .customTemplate {
             display: flex;
             justify-content: center;
+          }
+          .available-store-container {
+            display: flex;
+            width: 100%;
+            text-align: center;
+            gap: 1rem;
           }
         `}
       </style>

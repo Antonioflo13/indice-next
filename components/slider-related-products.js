@@ -6,7 +6,7 @@ import Link from "./LanguagesLink";
 
 const sliderRelatedProducts = props => {
   const { relatedProducts, collectionHandle } = props;
-
+  console.log(relatedProducts);
   return (
     <>
       <div>
@@ -16,7 +16,7 @@ const sliderRelatedProducts = props => {
         <div>
           <Swiper
             id="swiper-related-products"
-            slidesPerView={2.3}
+            slidesPerView={2}
             centeredSlides={true}
             spaceBetween={90}
             loop={true}
@@ -37,7 +37,10 @@ const sliderRelatedProducts = props => {
                   <div className="container-slider">
                     <img
                       className="img-product"
-                      src={item.images[0].originalSrc}
+                      src={
+                        item.variants.edges[0].node.product.images.nodes[0]
+                          .originalSrc
+                      }
                       alt="product"
                     />
                     <div className="text-indice-red text-xs font-bold italic mackay noToHead">

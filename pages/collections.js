@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 import SharedStateContext from "../components/shared-state-context";
 import { useIntl } from "react-intl";
 import Breadcrumbs from "../components/breadcrumbs";
-import getAllCollections from "../api/collections";
-import getAllArticles from "../api/articles";
+import { getAllCollections } from "../api/collections";
 import Layout from "../components/layout";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
+  console.log(collections);
   const isDesktop = useMediaQuery("768");
   const { setCurrentSidebarTitle } = useContext(SharedStateContext);
   let collectionsListByAlphabet = [];

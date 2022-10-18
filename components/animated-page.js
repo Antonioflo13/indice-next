@@ -6,7 +6,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 
 const AnimatedPage = ({ children, margins, fullHeight, grey, noAnimate }) => {
   const url = typeof window !== "undefined" ? window.location.href : "";
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
+  const isDesktop = useMediaQuery(768);
   return (
     <>
       <motion.div
@@ -25,7 +25,7 @@ const AnimatedPage = ({ children, margins, fullHeight, grey, noAnimate }) => {
           {margins ? (
             <div
               className={classnames(
-                url.includes("products") && !isDesktop
+                url.includes("product") && !isDesktop
                   ? "w-full"
                   : "w-full customStyle"
               )}
