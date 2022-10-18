@@ -7,7 +7,6 @@ const useMediaQuery = width => {
     window.addEventListener("resize", e => {
       setIsWidth(e.target.innerWidth >= width);
     });
-
     setIsWidth(window.innerWidth >= width);
   }, []);
 
