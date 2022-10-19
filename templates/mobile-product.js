@@ -53,7 +53,7 @@ const MobileProductTemplate = props => {
     // }
   };
   return (
-    <>
+    <div>
       <Swiper
         initialSlide={indexSlide}
         onActiveIndexChange={swipeToProduct}
@@ -64,7 +64,7 @@ const MobileProductTemplate = props => {
           <SwiperSlide key={index.id}>
             <Swiper
               id="swiper-image-pdp"
-              style={{ height: "55vh" }}
+              style={{ height: "75vh" }}
               className="bg-indice-grey"
               direction={"vertical"}
               loop={true}
@@ -81,8 +81,14 @@ const MobileProductTemplate = props => {
               )}
             </Swiper>
             <div className="bottom-sheet">
-              <BottomSheet style={{ backgroundColor: "white" }}>
+              <BottomSheet>
                 <div className="customStyle mb-10">
+                  <div
+                    className="flex justify-center"
+                    style={{ padding: "10px 0" }}
+                  >
+                    <div className="slide-icon"></div>
+                  </div>
                   <div className="w-full flex flex-col justify-start items-center">
                     <div className="text-indice-red text-xs font-bold italic mackay noToHead">
                       {index.vendor}
@@ -234,8 +240,8 @@ const MobileProductTemplate = props => {
                       collectionHandle={collectionHandle}
                     />
                   )}
+                  <Footer />
                 </div>
-                <Footer />
               </BottomSheet>
             </div>
           </SwiperSlide>
@@ -257,6 +263,12 @@ const MobileProductTemplate = props => {
           display: block;
           height: 300px;
           object-fit: cover;
+        }
+
+        .slide-icon {
+          border: 2px solid grey;
+          width: 30px;
+          border-radius: 10px;
         }
 
         .rowLeft {
@@ -334,7 +346,7 @@ const MobileProductTemplate = props => {
           gap: 1rem;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
