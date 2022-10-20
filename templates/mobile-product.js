@@ -66,7 +66,7 @@ const MobileProductTemplate = props => {
           <SwiperSlide key={index.id}>
             <Swiper
               id="swiper-image-pdp"
-              style={{ height: "75vh" }}
+              style={{ height: "65vh" }}
               className="bg-indice-grey"
               direction={"vertical"}
               loop={true}
@@ -86,7 +86,7 @@ const MobileProductTemplate = props => {
                 position: fixed;
                 width: 100%;
                 height: 100%;
-                top: 0;
+                bottom: 0;
                 pointer-events: none;
                 z-index: 1;
               `}
