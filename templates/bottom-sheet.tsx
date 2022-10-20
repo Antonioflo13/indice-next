@@ -64,12 +64,12 @@ const BottomSheet: React.FC<Props> = ({
     const threshold = 100 / velocity;
 
     if (mode === "expanded") {
-      isExpanded(true);
+      isExpanded(false);
       return deltaY > threshold ? collapsedY : expandedY;
     }
 
     if (mode === "collapsed") {
-      isExpanded(false);
+      isExpanded(true);
       return deltaY < -threshold ? expandedY : collapsedY;
     }
 
