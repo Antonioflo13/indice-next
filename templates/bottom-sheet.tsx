@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { animated, useSpring, config } from "react-spring";
 import { useGesture } from "react-use-gesture";
+// @ts-ignore
 import clamp from "lodash-es/clamp";
 
 type Mode = "collapsed" | "expanded";
@@ -11,6 +12,8 @@ interface Props {
   mode?: Mode;
   onModeChange?: (mode: Mode) => void;
   style?: React.CSSProperties;
+  isExpanded: boolean;
+  children: JSX.Element;
 }
 
 const getY = (height: number, mode: Mode): number => {
