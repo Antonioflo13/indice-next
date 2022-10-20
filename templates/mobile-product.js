@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -16,12 +16,12 @@ import { stores } from "../data/stores";
 //ICONS
 import RowLeft from "../assets/images/product-page/angle-left.png";
 import RowRight from "../assets/images/product-page/angle-right.png";
-
 //COMPONENTS
 import Label from "../components/label";
 import ProductIcon from "../components/product-icon";
 import SliderRelatedProducts from "../components/slider-related-products";
 import Footer from "../components/footer";
+import { css } from "emotion";
 
 const MobileProductTemplate = props => {
   const {
@@ -36,6 +36,7 @@ const MobileProductTemplate = props => {
   } = props;
   //SWIPER NAVIGATION
   console.log(relatedProducts);
+  const [isExpanded, setIsExpanded] = useState(false);
   const indexSlide = relatedProducts.findIndex(
     product => product.handle === shopifyProduct.handle
   );
@@ -56,9 +57,10 @@ const MobileProductTemplate = props => {
     <div>
       <Swiper
         initialSlide={indexSlide}
+        allowSlideNext={!isExpanded}
+        allowSlidePrev={!isExpanded}
         onActiveIndexChange={swipeToProduct}
         loop={true}
-        style={{ position: "relative" }}
       >
         {relatedProducts.map(index => (
           <SwiperSlide key={index.id}>
@@ -70,7 +72,6 @@ const MobileProductTemplate = props => {
               loop={true}
               slidesPerView={1}
               pagination={true}
-              modules={[Pagination]}
             >
               {index.variants.edges[0].node.product.images.nodes.map(
                 (image, index) => (
@@ -80,9 +81,29 @@ const MobileProductTemplate = props => {
                 )
               )}
             </Swiper>
-            <div className="bottom-sheet">
-              <BottomSheet>
-                <div className="customStyle mb-10">
+            <div
+              className={css`
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                pointer-events: none;
+                z-index: 1;
+              `}
+            >
+              <BottomSheet
+                defaultMode="collapsed"
+                height={570}
+                style={{ pointerEvents: "all" }}
+                isExpanded={expanded => setIsExpanded(expanded)}
+              >
+                <div
+                  className="customStyle mb-10"
+                  style={{
+                    height: "100%",
+                    overflow: !isExpanded ? "hidden" : "scroll",
+                  }}
+                >
                   <div
                     className="flex justify-center"
                     style={{ padding: "10px 0" }}
@@ -91,22 +112,26 @@ const MobileProductTemplate = props => {
                   </div>
                   <div className="w-full flex flex-col justify-start items-center">
                     <div className="text-indice-red text-xs font-bold italic mackay noToHead">
-                      {index.vendor}
+                      {shopifyProduct.vendor}
                     </div>
                     <div className="ml-1 text-xs uppercase font-bold mt-2">
-                      {index.title}
+                      {shopifyProduct.title}
                     </div>
                   </div>
                   <div className="text-center text-sm mb-5 mt-2">
-                    {index.availableForSale &&
-                    !index.tags.includes("nfs") &&
-                    index.variants.edges[0].node.quantityAvailable > 0 ? (
+                    {shopifyProduct.availableForSale &&
+                    !shopifyProduct.tags.includes("nfs") &&
+                    shopifyProduct.variants.edges[0].node.quantityAvailable >
+                      0 ? (
                       <>
                         <FormattedNumber
                           style="currency" // eslint-disable-line
-                          value={index.variants.edges[0].node.priceV2.amount}
+                          value={
+                            shopifyProduct.variants.edges[0].node.priceV2.amount
+                          }
                           currency={
-                            index.variants.edges[0].node.priceV2.currencyCode
+                            shopifyProduct.variants.edges[0].node.priceV2
+                              .currencyCode
                           }
                           minimumFractionDigits={2}
                         />
@@ -137,7 +162,7 @@ const MobileProductTemplate = props => {
                   <div
                     className="md:hidden mt-6 text-xs whitespace-pre-line product-description"
                     dangerouslySetInnerHTML={{
-                      __html: index.descriptionHtml,
+                      __html: shopifyProduct.descriptionHtml,
                     }}
                   />
                   <div className="text-xs my-5 mb-10">
@@ -259,12 +284,6 @@ const MobileProductTemplate = props => {
         />
       </button>
       <style jsx="true">{`
-        #swiper-image-pdp .swiper-slide img {
-          display: block;
-          height: 300px;
-          object-fit: cover;
-        }
-
         .slide-icon {
           border: 2px solid grey;
           width: 30px;
