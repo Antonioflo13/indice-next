@@ -57,8 +57,8 @@ const MobileProductTemplate = props => {
     <div>
       <Swiper
         initialSlide={indexSlide}
-        allowSlideNext={!isExpanded}
-        allowSlidePrev={!isExpanded}
+        allowSlideNext={isExpanded}
+        allowSlidePrev={isExpanded}
         onActiveIndexChange={swipeToProduct}
         loop={true}
       >
@@ -101,7 +101,7 @@ const MobileProductTemplate = props => {
                   className="customStyle mb-10"
                   style={{
                     height: "100%",
-                    overflow: !isExpanded ? "hidden" : "scroll",
+                    overflow: isExpanded ? "hidden" : "scroll",
                   }}
                 >
                   <div
