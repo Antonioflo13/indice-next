@@ -86,7 +86,7 @@ const MobileProductTemplate = props => {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                bottom: 0;
+                top: 0;
                 pointer-events: none;
                 z-index: 1;
               `}
