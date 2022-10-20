@@ -93,7 +93,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={480}
+                height={450}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
@@ -101,7 +101,7 @@ const MobileProductTemplate = props => {
                   className="customStyle mb-10"
                   style={{
                     height: "100%",
-                    overflow: isExpanded ? "hidden" : "scroll",
+                    overflow: !isExpanded ? "hidden" : "scroll",
                   }}
                 >
                   <div
