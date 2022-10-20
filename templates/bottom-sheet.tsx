@@ -12,7 +12,7 @@ interface Props {
   mode?: Mode;
   onModeChange?: (mode: Mode) => void;
   style?: React.CSSProperties;
-  isExpanded: boolean;
+  isExpanded: () => boolean;
   children: JSX.Element;
 }
 
