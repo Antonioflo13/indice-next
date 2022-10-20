@@ -5,6 +5,7 @@ import { useGesture } from "react-use-gesture";
 import clamp from "lodash-es/clamp";
 
 type Mode = "collapsed" | "expanded";
+type Expanded = true | false;
 
 interface Props {
   height: number;
@@ -12,7 +13,7 @@ interface Props {
   mode?: Mode;
   onModeChange?: (mode: Mode) => void;
   style?: React.CSSProperties;
-  isExpanded(): any;
+  isExpanded(Expanded: Expanded): any;
   children: JSX.Element;
 }
 
