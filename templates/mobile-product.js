@@ -83,7 +83,7 @@ const MobileProductTemplate = props => {
             </Swiper>
             <div
               className={css`
-                position: absolute;
+                position: fixed;
                 width: 100%;
                 height: 100%;
                 top: 0;
@@ -93,7 +93,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={450}
+                height={550}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
