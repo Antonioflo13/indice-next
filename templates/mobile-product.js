@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -53,6 +53,10 @@ const MobileProductTemplate = props => {
     //   );
     // }
   };
+  const [heightPage, setHeightPage] = useState(0);
+  useEffect(() => {
+    setHeightPage(window.innerHeight);
+  });
   return (
     <div>
       <Swiper
@@ -66,7 +70,7 @@ const MobileProductTemplate = props => {
           <SwiperSlide key={index.id}>
             <Swiper
               id="swiper-image-pdp"
-              style={{ height: "60vh" }}
+              style={{ height: "75vh" }}
               className="bg-indice-grey"
               direction={"vertical"}
               loop={true}
@@ -93,7 +97,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={window.innerHeight - 330}
+                height={heightPage - 300}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >

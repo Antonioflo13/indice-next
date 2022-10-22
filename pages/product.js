@@ -11,6 +11,7 @@ import PageTitle from "../components/page-title";
 import DesktopProduct from "../templates/desktop-product";
 import MobileProduct from "../templates/mobile-product";
 import Layout from "../components/layout";
+import { Navbar } from "../components/Navbar";
 
 const Product = ({ resProduct, CollectionProducts }) => {
   const product = resProduct.data.product;
@@ -65,81 +66,40 @@ const Product = ({ resProduct, CollectionProducts }) => {
   );
 
   return (
-    <Layout>
-      <AnimatedPage margins={true} noAnimate={true}>
-        <div className="flex">
-          <div className="w-full md:w-1/ mt-8">
-            {isDesktop && (
-              <PageTitle
-                breadcrumbs={[
-                  {
-                    title: "breadcrumbs.designers",
-                    link: "/collections",
-                  },
+    <div className="pt-20">
+      <Navbar />
+      <div className="customStyle">
+        <PageTitle
+          breadcrumbs={[
+            {
+              title: "breadcrumbs.designers",
+              link: "/collections",
+            },
 
-                  {
-                    title: product.vendor,
-                    // link: "/collections/" + collectionHandle,
-                  },
-                  {
-                    title: product.title,
-                    // link: "/collections/" + productHandle,
-                  },
-                ]}
-                title=" "
-              />
-            )}
-          </div>
-        </div>
-        {!isDesktop && (
-          <div className="mt-10 customStyle">
-            <PageTitle
-              breadcrumbs={[
-                {
-                  title: "breadcrumbs.designers",
-                  link: "/collections",
-                },
-
-                {
-                  title: product.vendor,
-                  // link: "/collections/" + collectionHandle,
-                },
-                {
-                  title: product.title,
-                  // link: "/collections/" + productHandle,
-                },
-              ]}
-              title=" "
-            />
-          </div>
-        )}
-        {isDesktop ? (
-          <DesktopProduct
-            shopifyProduct={product}
-            buy={buy}
-            askForPrice={askForPrice}
-            mainImage={mainImage}
-            relatedProducts={relatedProducts}
-            // collectionHandle={collectionHandle}
-            accordion={accordion}
-            setAccordion={setAccordion}
-          />
-        ) : (
-          <MobileProduct
-            // shopifyProducts={products}
-            shopifyProduct={product}
-            buy={buy}
-            askForPrice={askForPrice}
-            mainImage={mainImage}
-            relatedProducts={relatedProducts}
-            // collectionHandle={collectionHandle}
-            accordion={accordion}
-            setAccordion={setAccordion}
-          />
-        )}
-      </AnimatedPage>
-      <style jsx="true">{``}</style>
-    </Layout>
+            {
+              title: product.vendor,
+              // link: "/collections/" + collectionHandle,
+            },
+            {
+              title: product.title,
+              // link: "/collections/" + productHandle,
+            },
+          ]}
+          title=" "
+        />
+      </div>
+      <MobileProduct
+        // shopifyProducts={products}
+        shopifyProduct={product}
+        buy={buy}
+        askForPrice={askForPrice}
+        mainImage={mainImage}
+        relatedProducts={relatedProducts}
+        // collectionHandle={collectionHandle}
+        accordion={accordion}
+        setAccordion={setAccordion}
+      />
+    </div>
   );
 };
 
