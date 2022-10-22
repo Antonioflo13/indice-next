@@ -68,26 +68,6 @@ const Product = ({ resProduct, CollectionProducts }) => {
   return (
     <div className="pt-20">
       <Navbar />
-      <div className="customStyle">
-        <PageTitle
-          breadcrumbs={[
-            {
-              title: "breadcrumbs.designers",
-              link: "/collections",
-            },
-
-            {
-              title: product.vendor,
-              // link: "/collections/" + collectionHandle,
-            },
-            {
-              title: product.title,
-              // link: "/collections/" + productHandle,
-            },
-          ]}
-          title=" "
-        />
-      </div>
       <MobileProduct
         // shopifyProducts={products}
         shopifyProduct={product}
