@@ -292,7 +292,7 @@ const MobileProductTemplate = props => {
       </button>
       <style jsx="true">{`
         .vertical-swiper-container {
-          height: 70vh;
+          height: 75vh;
         }
         .slide-icon {
           border: 2px solid grey;
