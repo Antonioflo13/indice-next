@@ -91,28 +91,6 @@ const Product = ({ resProduct, CollectionProducts }) => {
             )}
           </div>
         </div>
-        {!isDesktop && (
-          <div className="mt-10 customStyle">
-            <PageTitle
-              breadcrumbs={[
-                {
-                  title: "breadcrumbs.designers",
-                  link: "/collections",
-                },
-
-                {
-                  title: product.vendor,
-                  // link: "/collections/" + collectionHandle,
-                },
-                {
-                  title: product.title,
-                  // link: "/collections/" + productHandle,
-                },
-              ]}
-              title=" "
-            />
-          </div>
-        )}
         {isDesktop ? (
           <DesktopProduct
             shopifyProduct={product}
