@@ -151,7 +151,11 @@ const MobileProductTemplate = props => {
                   isExpanded={expanded => setIsExpanded(expanded)}
                 >
                   <div
-                    className="customStyle mb-10"
+                    className={css`
+                      background: white;
+                      overflow: auto;
+                      -webkit-overflow-scrolling: touch;
+                    `}
                     style={{
                       height: "100vh",
                       overflow: isExpanded ? "scroll" : "hidden",
