@@ -22,7 +22,7 @@ const getY = (height: number, mode: Mode): number => {
     return height * 0.9;
   }
 
-  return height * 0.001;
+  return height * 0.1;
 };
 
 const BottomSheet: React.FC<Props> = ({
