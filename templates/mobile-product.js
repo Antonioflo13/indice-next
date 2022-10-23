@@ -158,7 +158,7 @@ const MobileProductTemplate = props => {
                     `}
                     style={{
                       height: "100vh",
-                      overflow: "hidden",
+                      overflow: isExpanded ? "auto" : "hidden",
                     }}
                   >
                     <div
