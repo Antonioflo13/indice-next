@@ -153,12 +153,12 @@ const MobileProductTemplate = props => {
                   <div
                     className={css`
                       background: white;
-                      overflow: auto;
                       -webkit-overflow-scrolling: touch;
                     `}
                     style={{
                       height: "100vh",
                       overflow: isExpanded ? "auto" : "hidden",
+                      overscrollBehaviour: "contain",
                     }}
                   >
                     <div
