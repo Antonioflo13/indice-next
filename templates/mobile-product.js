@@ -80,7 +80,7 @@ const MobileProductTemplate = props => {
         <div
           className={css`
             padding: 0 1em 1em 1em;
-            overflow: auto;
+            overflow: hidden;
             margin-bottom: 60px;
             -webkit-overflow-scrolling: touch;
 
