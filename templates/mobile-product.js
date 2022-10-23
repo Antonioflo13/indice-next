@@ -329,9 +329,7 @@ const MobileProductTemplate = props => {
       </div>
       <style jsx="true">{`
         .vertical-swiper-container {
-          display: flex;
-          align-items: center;
-          height: 70vh;
+          height: 100vh;
         }
         .slide-icon {
           border: 2px solid grey;
