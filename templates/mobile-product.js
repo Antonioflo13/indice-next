@@ -105,7 +105,7 @@ const MobileProductTemplate = props => {
                   className="customStyle mb-10"
                   style={{
                     height: "100vh",
-                    overflow: isExpanded ? "scroll" : "hidden",
+                    overflow: isExpanded ? "hidden" : "scroll",
                   }}
                 >
                   <div
