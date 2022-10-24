@@ -333,7 +333,7 @@ const MobileProductTemplate = props => {
       </div>
       <style jsx="true">{`
         body {
-          overflow: hidden;
+          overflow: hidden !important;
         }
         .vertical-swiper-container {
           height: 100vh;
