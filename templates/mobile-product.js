@@ -136,8 +136,8 @@ const MobileProductTemplate = props => {
                           minimumFractionDigits={2}
                         />
 
-                        <div className="button-price">
-                          <Label onClick={buy}>
+                        <div>
+                          <Label style={{ width: "100%" }} onClick={buy}>
                             <FormattedMessage id="product.buy" />
                           </Label>
                         </div>
@@ -148,8 +148,11 @@ const MobileProductTemplate = props => {
                           <FormattedMessage id="product.specialEdition" />
                         </div>
 
-                        <div className="button-price">
-                          <Label onClick={askForPrice}>
+                        <div>
+                          <Label
+                            style={{ width: "100%" }}
+                            onClick={askForPrice}
+                          >
                             <FormattedMessage id="product.contact_us" />
                           </Label>
                         </div>
@@ -304,45 +307,11 @@ const MobileProductTemplate = props => {
           z-index: 2;
         }
 
-        .bottom-sheet {
-          width: 100%;
-          max-height: 295px;
-          position: absolute;
-          bottom: 0;
-          z-index: 2;
-          transition: all 0.2s ease-in-out;
-        }
-        .bottom-sheet {
-          border-radius: 15px;
-          bottom: -180px;
-        }
-        .button-price button {
-          width: 30vw !important;
-          height: 40px !important;
-        }
-
-        @media (max-width: 768px) {
-          .button-price button {
-            width: 90% !important;
-            height: 45px !important;
-          }
-        }
-
-        @media (min-width: 1440px) {
-          .button-price button {
-            width: 20vw !important;
-          }
-        }
-        .buyContainer {
-          width: 40%;
-        }
-        .imageContainer {
-          width: 60%;
-        }
         .textStores {
           width: 100px;
           margin: 0 auto;
         }
+
         .available-store-img {
           border-radius: 20px;
           height: 55px;
@@ -350,14 +319,12 @@ const MobileProductTemplate = props => {
           width: 100px;
           object-fit: fill;
         }
+
         .containerAccordion {
           display: flex;
           justify-content: space-between;
         }
-        .customTemplate {
-          display: flex;
-          justify-content: center;
-        }
+
         .available-store-container {
           display: flex;
           width: 100%;
