@@ -22,7 +22,7 @@ const getY = (height: number, mode: Mode): number => {
     return height * 0.9;
   }
 
-  return height * 0.1;
+  return height * 0.01;
 };
 
 const BottomSheet: React.FC<Props> = ({
@@ -40,9 +40,21 @@ const BottomSheet: React.FC<Props> = ({
   }));
   const collapsedY = getY(height, "collapsed");
   const expandedY = getY(height, "expanded");
+  let body = document.querySelector("body");
 
   useEffect(() => {
     set({ y: mode === "collapsed" ? collapsedY : expandedY });
+    if (mode === "collapsed") {
+      isExpanded(true);
+      if (body) {
+        body.style.overflow = "hidden";
+      }
+    } else {
+      isExpanded(false);
+      if (body) {
+        body.style.overflow = "auto";
+      }
+    }
   }, [mode, collapsedY, expandedY, set]);
 
   useEffect(() => {
@@ -64,12 +76,10 @@ const BottomSheet: React.FC<Props> = ({
     const threshold = 100 / velocity;
 
     if (mode === "expanded") {
-      isExpanded(false);
       return deltaY > threshold ? collapsedY : expandedY;
     }
 
     if (mode === "collapsed") {
-      isExpanded(true);
       let body = document.querySelector("body");
       if (body) {
         body.style.overflow = "hidden";

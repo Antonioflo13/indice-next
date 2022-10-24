@@ -66,10 +66,10 @@ const Product = ({ resProduct, CollectionProducts }) => {
 
   return (
     <Layout>
-      <AnimatedPage margins={true} noAnimate={true}>
-        <div className="flex">
-          <div className="w-full md:w-1/ mt-8">
-            {isDesktop && (
+      <AnimatedPage margins={true} noAnimate={true} fullHeight={true}>
+        {isDesktop && (
+          <div className="flex">
+            <div className="w-full md:w-1/ mt-8">
               <PageTitle
                 breadcrumbs={[
                   {
@@ -88,9 +88,9 @@ const Product = ({ resProduct, CollectionProducts }) => {
                 ]}
                 title=" "
               />
-            )}
+            </div>
           </div>
-        </div>
+        )}
         {isDesktop ? (
           <DesktopProduct
             shopifyProduct={product}
