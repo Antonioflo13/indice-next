@@ -97,7 +97,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={heightPage - 100}
+                height={heightPage - 50}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
