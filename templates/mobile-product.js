@@ -70,7 +70,7 @@ const MobileProductTemplate = props => {
           <SwiperSlide key={index.id}>
             <Swiper
               id="swiper-image-pdp"
-              style={{ height: "100vh", paddingTop: "70px" }}
+              style={{ height: "100vh", paddingTop: "50%" }}
               className="bg-indice-grey"
               direction={"vertical"}
               loop={true}
@@ -97,7 +97,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={heightPage - 50}
+                height={heightPage - 10}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
