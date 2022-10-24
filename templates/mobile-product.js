@@ -97,7 +97,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={800}
+                height={heightPage - 50}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
@@ -116,26 +116,22 @@ const MobileProductTemplate = props => {
                   </div>
                   <div className="w-full flex flex-col justify-start items-center">
                     <div className="text-indice-red text-xs font-bold italic mackay noToHead">
-                      {shopifyProduct.vendor}
+                      {index.vendor}
                     </div>
                     <div className="ml-1 text-xs uppercase font-bold mt-2">
-                      {shopifyProduct.title}
+                      {index.title}
                     </div>
                   </div>
                   <div className="text-center text-sm mb-5 mt-2">
-                    {shopifyProduct.availableForSale &&
-                    !shopifyProduct.tags.includes("nfs") &&
-                    shopifyProduct.variants.edges[0].node.quantityAvailable >
-                      0 ? (
+                    {index.availableForSale &&
+                    !index.tags.includes("nfs") &&
+                    index.variants.edges[0].node.quantityAvailable > 0 ? (
                       <>
                         <FormattedNumber
                           style="currency" // eslint-disable-line
-                          value={
-                            shopifyProduct.variants.edges[0].node.priceV2.amount
-                          }
+                          value={index.variants.edges[0].node.priceV2.amount}
                           currency={
-                            shopifyProduct.variants.edges[0].node.priceV2
-                              .currencyCode
+                            index.variants.edges[0].node.priceV2.currencyCode
                           }
                           minimumFractionDigits={2}
                         />
@@ -166,7 +162,7 @@ const MobileProductTemplate = props => {
                   <div
                     className="md:hidden mt-6 text-xs whitespace-pre-line product-description"
                     dangerouslySetInnerHTML={{
-                      __html: shopifyProduct.descriptionHtml,
+                      __html: index.descriptionHtml,
                     }}
                   />
                   <div className="text-xs my-5 mb-10">
