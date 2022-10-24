@@ -21,7 +21,7 @@ const getY = (height: number, mode: Mode): number => {
   if (mode === "collapsed") {
     return height * 0.94;
   }
-  return height * 0.2;
+  return height * 0.24;
 };
 
 const BottomSheet: React.FC<Props> = ({
