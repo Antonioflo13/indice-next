@@ -47,12 +47,12 @@ const BottomSheet: React.FC<Props> = ({
     if (mode === "collapsed") {
       isExpanded(true);
       if (body) {
-        body.style.overflow = "hidden";
+        body.style.overflow = "auto";
       }
     } else {
       isExpanded(false);
       if (body) {
-        body.style.overflow = "auto";
+        body.style.overflow = "hidden";
       }
     }
   }, [mode, collapsedY, expandedY, set]);
