@@ -22,7 +22,7 @@ const getY = (height: number, mode: Mode): number => {
     return height * 0.9;
   }
 
-  return height * 0.01;
+  return height * 0.1;
 };
 
 const BottomSheet: React.FC<Props> = ({
@@ -47,7 +47,7 @@ const BottomSheet: React.FC<Props> = ({
     if (mode === "collapsed") {
       isExpanded(true);
       if (body) {
-        body.style.overflow = "auto";
+        body.style.overflow = "hidden";
       }
     } else {
       isExpanded(false);
