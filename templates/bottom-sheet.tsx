@@ -70,6 +70,10 @@ const BottomSheet: React.FC<Props> = ({
 
     if (mode === "collapsed") {
       isExpanded(true);
+      let body = document.querySelector("body");
+      if (body) {
+        body.style.overflow = "hidden";
+      }
       return deltaY < -threshold ? expandedY : collapsedY;
     }
 
