@@ -84,6 +84,22 @@ const MobileProductTemplate = props => {
                   </SwiperSlide>
                 )
               )}
+              <button onClick={() => swipeToProduct("prev")}>
+                <img
+                  className="rowLeft"
+                  src={RowLeft.src}
+                  width={12}
+                  alt="row-left"
+                />
+              </button>
+              <button onClick={() => swipeToProduct("next")}>
+                <img
+                  className="rowRight"
+                  src={RowRight.src}
+                  width={12}
+                  alt="row-right"
+                />
+              </button>
             </Swiper>
             <div
               className={css`
@@ -275,17 +291,6 @@ const MobileProductTemplate = props => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <button onClick={() => swipeToProduct("prev")}>
-        <img className="rowLeft" src={RowLeft.src} width={12} alt="row-left" />
-      </button>
-      <button onClick={() => swipeToProduct("next")}>
-        <img
-          className="rowRight"
-          src={RowRight.src}
-          width={12}
-          alt="row-right"
-        />
-      </button>
       <style jsx="true">{`
         .slide-icon {
           border: 2px solid grey;
