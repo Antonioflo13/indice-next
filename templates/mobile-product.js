@@ -40,6 +40,7 @@ const MobileProductTemplate = props => {
   const indexSlide = relatedProducts.findIndex(
     product => product.handle === shopifyProduct.handle
   );
+  let index = null;
   const swipeToProduct = swiper => {
     let index = indexSlide;
     if (swiper.swipeDirection === "prev" || swiper === "prev") {
