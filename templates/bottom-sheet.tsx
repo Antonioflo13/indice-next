@@ -21,7 +21,7 @@ const getY = (height: number, mode: Mode): number => {
   if (mode === "collapsed") {
     return height * 0.94;
   }
-  return height * 0.24;
+  return height * 0.23;
 };
 
 const BottomSheet: React.FC<Props> = ({
@@ -110,7 +110,7 @@ const BottomSheet: React.FC<Props> = ({
         config: {
           mass: velocity,
           tension: 500 * velocity,
-          friction: 100,
+          friction: 800,
         },
       });
 
