@@ -19,9 +19,9 @@ interface Props {
 
 const getY = (height: number, mode: Mode): number => {
   if (mode === "collapsed") {
-    return height * 0.99;
+    return height;
   }
-  return height * 0.17;
+  return height * 0.15;
 };
 
 const BottomSheet: React.FC<Props> = ({
