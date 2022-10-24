@@ -49,7 +49,7 @@ const MobileProductTemplate = props => {
     }
     // if (index < shopifyProducts.length) {
     //   navigate(
-    //     `/en/collections/${collectionHandle}/products/${shopifyProducts[index].handle}`
+    //     `/collections/${collectionHandle}/products/${shopifyProducts[index].handle}`
     //   );
     // }
   };
@@ -97,7 +97,7 @@ const MobileProductTemplate = props => {
             >
               <BottomSheet
                 defaultMode="collapsed"
-                height={heightPage - 50}
+                height={heightPage - 5}
                 style={{ pointerEvents: "all" }}
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
