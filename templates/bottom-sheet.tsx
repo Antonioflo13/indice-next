@@ -110,7 +110,7 @@ const BottomSheet: React.FC<Props> = ({
         config: {
           mass: velocity,
           tension: 500 * velocity,
-          friction: 50,
+          friction: 100,
         },
       });
 
