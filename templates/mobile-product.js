@@ -57,7 +57,7 @@ const MobileProductTemplate = props => {
   const [heightPage, setHeightPage] = useState(0);
   useEffect(() => {
     setHeightPage(window.innerHeight);
-  }, []);
+  }, [window.innerHeight]);
   const bottomSheetRef = useRef();
   let bottomSheetScrollTop = bottomSheetRef.current?.scrollTop;
   useEffect(() => {
@@ -307,14 +307,14 @@ const MobileProductTemplate = props => {
 
         .rowLeft {
           position: absolute;
-          bottom: 18%;
+          bottom: 25%;
           left: 20px;
           z-index: 2;
         }
 
         .rowRight {
           position: absolute;
-          bottom: 18%;
+          bottom: 25%;
           right: 20px;
           z-index: 2;
         }
