@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 //SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, EffectCreative } from "swiper";
 //NAVIGATE
 import { FormattedNumber } from "react-intl";
 //FORMAT MESSAGE
@@ -71,17 +71,28 @@ const MobileProductTemplate = props => {
         allowSlidePrev={isExpanded}
         onActiveIndexChange={swipeToProduct}
         loop={true}
+        effect={"creative"}
+        creativeEffect={{
+          prev: {
+            opacity: 0,
+          },
+          next: {
+            opacity: 1,
+          },
+        }}
+        modules={[EffectCreative]}
       >
         {relatedProducts.map(index => (
           <SwiperSlide key={index.id}>
             <Swiper
               id="swiper-image-pdp"
-              style={{ height: "100vh", paddingTop: "50%" }}
+              style={{ height: "100vh", paddingTop: "30%" }}
               className="bg-indice-grey"
               direction={"vertical"}
               loop={true}
               slidesPerView={1}
               pagination={true}
+              modules={[Pagination]}
             >
               {index.variants.edges[0].node.product.images.nodes.map(
                 (image, index) => (
@@ -307,14 +318,14 @@ const MobileProductTemplate = props => {
 
         .rowLeft {
           position: absolute;
-          bottom: 25%;
+          bottom: 35%;
           left: 20px;
           z-index: 2;
         }
 
         .rowRight {
           position: absolute;
-          bottom: 25%;
+          bottom: 35%;
           right: 20px;
           z-index: 2;
         }
@@ -342,6 +353,7 @@ const MobileProductTemplate = props => {
           width: 100%;
           text-align: center;
           gap: 1rem;
+        }
         }
       `}</style>
     </div>
