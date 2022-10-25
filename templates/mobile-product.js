@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 //SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -58,6 +58,11 @@ const MobileProductTemplate = props => {
   useEffect(() => {
     setHeightPage(window.innerHeight);
   }, []);
+  const bottomSheetRef = useRef();
+  let bottomSheetScrollTop = bottomSheetRef.current?.scrollTop;
+  useEffect(() => {
+    bottomSheetScrollTop = 0;
+  }, [isExpanded]);
   return (
     <div>
       <Swiper
@@ -119,6 +124,7 @@ const MobileProductTemplate = props => {
                 isExpanded={expanded => setIsExpanded(expanded)}
               >
                 <div
+                  ref={bottomSheetRef}
                   className="customStyle mb-10"
                   style={{
                     height: "100vh",
