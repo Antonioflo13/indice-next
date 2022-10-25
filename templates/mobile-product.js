@@ -315,7 +315,6 @@ const MobileProductTemplate = props => {
           width: 30px;
           border-radius: 10px;
         }
-
         .rowLeft {
           position: absolute;
           bottom: 35%;
@@ -347,13 +346,11 @@ const MobileProductTemplate = props => {
           display: flex;
           justify-content: space-between;
         }
-
         .available-store-container {
           display: flex;
           width: 100%;
           text-align: center;
           gap: 1rem;
-        }
         }
       `}</style>
     </div>
