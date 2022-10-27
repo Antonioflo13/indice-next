@@ -3,7 +3,7 @@ import React from "react";
 
 const Modal = ({ children, setShown, customWidthModal }) => {
   return (
-    <>
+    <div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -63,7 +63,7 @@ const Modal = ({ children, setShown, customWidthModal }) => {
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 
