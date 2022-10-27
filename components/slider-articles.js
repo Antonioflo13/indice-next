@@ -6,7 +6,7 @@ import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
 import Link from "./LanguagesLink";
 import mainClasses from "./css/main.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const SliderArticles = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
