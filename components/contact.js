@@ -1,14 +1,14 @@
 //REACT
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+//STATE
+import { useSelector } from "react-redux";
 //INTL
 import { FormattedMessage } from "react-intl";
 //MOTION
 import { AnimatePresence, motion } from "framer-motion";
 //COMPONENTS
-import Label from "./label";
 import Modal from "./modal";
 import PageTitle from "./page-title";
-import SharedStateContext from "./shared-state-context";
 import { stores } from "../data/stores";
 //ICONS
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
@@ -17,7 +17,8 @@ import closeIcon from "../assets/images/cross.svg";
 
 const Contact = ({ setShown }) => {
   //STATE
-  const { contactProduct } = useContext(SharedStateContext);
+  const showDialogContact = useSelector(state => state.dialogContact.value);
+
   const [sendingForm, setSendingForm] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [formValues, setFormValues] = useState(initialValues);

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import SharedStateContext from "./shared-state-context";
+import React from "react";
 import Link from "next/link";
 
 const LanguagesLink = ({ to, ref, ...rest }) => {

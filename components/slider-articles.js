@@ -38,7 +38,7 @@ const SliderArticles = ({ articles }) => {
                     <div className="swiper-carousel-animate-opacity">
                       <Image
                         className="object-cover rounded-md"
-                        layout={"fill"}
+                        fill={true}
                         priority={true}
                         src={
                           isDesktop

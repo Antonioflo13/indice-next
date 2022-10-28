@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
-import AnimatedPage from "../components/animated-page";
-import useMediaQuery from "../hooks/useMediaQuery";
+//REACT
+import React from "react";
+//NEXT
 import Link from "next/link";
-import { motion } from "framer-motion";
-import SharedStateContext from "../components/shared-state-context";
-import { useIntl } from "react-intl";
+//HOOKS
+import useMediaQuery from "../hooks/useMediaQuery";
+//COMPONENTS
+import AnimatedPage from "../components/animated-page";
 import Breadcrumbs from "../components/breadcrumbs";
-import { getAllCollections } from "../api/collections";
+import { motion } from "framer-motion";
 import Layout from "../components/layout";
+//API
+import { getAllCollections } from "../api/collections";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
-  console.log(collections);
+  //HHOKS
   const isDesktop = useMediaQuery("768");
-  const { setCurrentSidebarTitle } = useContext(SharedStateContext);
+  //generates alphabetical order products
   let collectionsListByAlphabet = [];
   let alphabeticList = [];
   for (const product of collections) {
@@ -30,8 +33,6 @@ const CollectionsPage = ({ collections }) => {
       }
     }
   }
-
-  console.log(collectionsListByAlphabet);
 
   collectionsListByAlphabet.map(
     collectionsList => (collectionsList.collectionsList[0].viewLetter = true)
