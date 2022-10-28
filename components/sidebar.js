@@ -1,14 +1,21 @@
-import { motion } from "framer-motion";
+//REACT
 import React, { useContext, useState } from "react";
+//STORE
+import { useSelector, useDispatch } from "react-redux";
+import { setLanguage } from "../store/modules/language";
+//MOTION
+import { motion } from "framer-motion";
+//INTL
 import { FormattedMessage, useIntl } from "react-intl";
-import ModalsIcons from "./modalsIcons";
-import Icons from "../data/icons";
-import LinkMenu from "./linkMenu";
 import SharedStateContext from "./shared-state-context";
+//ICONS
+import Icons from "../data/Icons";
 import closeIcon from "../assets/images/cross.svg";
 import logo from "../assets/images/logo-black.png";
 import shoppingBag from "../assets/images/shopping-bag-red.svg";
-import Boutiques from "../pages/boutiques";
+//COMPONENTS
+import ModalsIcons from "./modalsIcons";
+import LinkMenu from "./linkMenu";
 
 const sidebarVariants = {
   hidden: { x: "-100%", transition: { type: "tween" } },
@@ -19,10 +26,15 @@ const sidebarVariants = {
 };
 
 const Sidebar = () => {
+  //STORE
+  const dispatch = useDispatch();
+  const language = useSelector(state => state.language.value);
+  //INTL
   const intl = useIntl();
+  //STATE
   const [show, setShown] = useState(false);
   const [selectSingleIcon, setSelectSingleIcon] = useState();
-  const { setSidebarShown, setCart, shopifyCheckout, language, setLanguage } =
+  const { setSidebarShown, setCart, shopifyCheckout } =
     useContext(SharedStateContext);
 
   const changeSidebar = () => {
@@ -73,7 +85,7 @@ const Sidebar = () => {
 
             <div className="container-buttons-multilingual">
               <button
-                onClick={() => setLanguage("it")}
+                onClick={() => dispatch(setLanguage("it"))}
                 className="button-it font-bold"
                 style={{ color: `${language === "it" ? "#800000" : ""}` }}
               >
@@ -82,7 +94,7 @@ const Sidebar = () => {
               <span className="separator font-bold">|</span>
 
               <button
-                onClick={() => setLanguage("en")}
+                onClick={() => dispatch(setLanguage("en"))}
                 className="button-en font-bold"
                 style={{ color: `${language === "en" ? "#800000" : ""}` }}
               >

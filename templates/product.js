@@ -11,6 +11,7 @@ import { useMediaQuery } from "react-responsive";
 //COMPONENTS
 import MobileProduct from "../templates/mobile-product";
 import DesktopProduct from "./desktop-product";
+import { useSelector } from "react-redux";
 
 const ProductTemplate = ({
   data: {
@@ -32,7 +33,8 @@ const ProductTemplate = ({
 
   const relatedProducts = products.filter(p => p.id !== shopifyProduct.id);
 
-  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
+  const { setShopifyCheckout } = useContext(SharedStateContext);
+  const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
 
   const buy = async () => {
     // const checkoutId = shopifyCheckout.id

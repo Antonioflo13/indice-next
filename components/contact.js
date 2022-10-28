@@ -1,19 +1,28 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AnimatePresence, motion } from "framer-motion";
+//REACT
 import React, { useContext, useState } from "react";
+//INTL
 import { FormattedMessage } from "react-intl";
+//MOTION
+import { AnimatePresence, motion } from "framer-motion";
+//COMPONENTS
 import Label from "./label";
 import Modal from "./modal";
 import PageTitle from "./page-title";
 import SharedStateContext from "./shared-state-context";
 import { stores } from "../data/stores";
+//ICONS
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import closeIcon from "../assets/images/cross.svg";
 
 const Contact = ({ setShown }) => {
+  //STATE
   const { contactProduct } = useContext(SharedStateContext);
   const [sendingForm, setSendingForm] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [successShown, setSuccessShown] = useState(false);
+  const [errorShown, setErrorShown] = useState(false);
   const initialValues = {
     store: "",
     name: "",
@@ -21,9 +30,11 @@ const Contact = ({ setShown }) => {
     phone: "",
     message: "",
   };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [successShown, setSuccessShown] = useState(false);
-  const [errorShown, setErrorShown] = useState(false);
+  const Brescia = stores[0].name;
+  const Forte = stores[1].name;
+  const Roma = stores[2].name;
+
+  //FUNCTIONS
   const handleChange = e => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
 
@@ -61,10 +72,6 @@ const Contact = ({ setShown }) => {
       });
     e.preventDefault();
   };
-
-  const Brescia = stores[0].name;
-  const Forte = stores[1].name;
-  const Roma = stores[2].name;
 
   return (
     <>

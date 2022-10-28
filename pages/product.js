@@ -11,9 +11,14 @@ import PageTitle from "../components/page-title";
 import DesktopProduct from "../templates/desktop-product";
 import MobileProduct from "../templates/mobile-product";
 import Layout from "../components/layout";
+import { useDispatch, useSelector } from "react-redux";
+import { setShopifyCheckout } from "../store/modules/shopify";
 
 const Product = ({ resProduct, CollectionProducts }) => {
   const product = resProduct.data.product;
+  //STORE
+  const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
+  const dispatch = useDispatch();
   const { setCurrentSidebarTitle, setContactShown, setCart } =
     useContext(SharedStateContext);
   const [accordion, setAccordion] = React.useState({
@@ -27,21 +32,17 @@ const Product = ({ resProduct, CollectionProducts }) => {
 
   const relatedProducts = CollectionProducts.data.collection.products.nodes;
 
-  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
-
   const buy = async () => {
-    // const checkoutId = shopifyCheckout.id
     let checkoutId = getCookie("checkoutId");
     if (!checkoutId) {
       checkoutId = (await shopifyClient.checkout.create()).id;
       setCookie("checkoutId", checkoutId, 90);
     }
-
     const updatedCheckout = await shopifyClient.checkout.addLineItems(
       checkoutId,
       [
         {
-          variantId: shopifyProduct.variants[0].shopifyId,
+          variantId: product.id,
           quantity: 1,
         },
       ]
@@ -49,8 +50,7 @@ const Product = ({ resProduct, CollectionProducts }) => {
 
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
-
-    await setShopifyCheckout(updatedCheckout);
+    await dispatch(setShopifyCheckout(updatedCheckout));
     setCart(cartContent);
   };
 

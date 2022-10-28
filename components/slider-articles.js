@@ -5,7 +5,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
 import Link from "./LanguagesLink";
-import mainClasses from "./css/main.module.scss";
+import mainClasses from "./scss/main.module.scss";
 import Image from "next/image";
 
 const SliderArticles = ({ articles }) => {
