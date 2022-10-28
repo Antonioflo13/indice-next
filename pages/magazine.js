@@ -5,7 +5,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 //COMPONENTS
 import AnimatedPage from "../components/animated-page";
 import Breadcrumbs from "../components/breadcrumbs";
-import Link from "../components/LanguagesLink";
+import Link from "next/link";
 import Layout from "../components/layout";
 import getAllArticles from "../api/articles";
 
@@ -74,7 +74,12 @@ const Magazine = ({ articles }) => {
           {isDesktop && <Breadcrumbs title="Magazine" />}
           <div className="container-articles">
             {list.map(item => (
-              <Link to={`/magazine/${item.handle}`} key={item.id}>
+              <Link
+                exit={{ length: 0.15 }}
+                entry={{ delay: 0.15, length: 0.3 }}
+                href={`/magazine/${item.handle}`}
+                key={item.id}
+              >
                 <div className="article">
                   <img
                     className="article-image"
