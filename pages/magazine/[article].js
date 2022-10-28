@@ -1,27 +1,32 @@
+//REACT
 import React from "react";
-import AnimatedPage from "../components/animated-page";
-import PageTitle from "../components/page-title";
-import { useMediaQuery } from "react-responsive";
-import getAllArticle from "../api/article";
+//API
+import getAllArticles from "../../api/articles";
+import getArticle from "../../api/article";
+//HOOKS
+import useMediaQuery from "../../hooks/useMediaQuery";
+//COMPONENTS
+import AnimatedPage from "../../components/animated-page";
+import PageTitle from "../../components/page-title";
 // import SliderArticleCollection from "../templates/slider-article-collection";
 // import SliderArticleProducts from "../templates/slider-article-products";
 
-const Article = ({ data }) => {
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
-  const article = data.datoCmsArticle;
+const Article = ({ article }) => {
+  const isDesktop = useMediaQuery(768);
   const productsinArticle = [];
+  article = article.data.article;
 
-  Object.entries(article).forEach(item => {
-    if (item[0].includes("product")) {
-      if (item[1] !== "") {
-        const titleItem = item[1].toUpperCase();
-        const filterResultSlider = data.allShopifyProduct.edges.find(
-          item => item.node.title === titleItem
-        );
-        productsinArticle.push(filterResultSlider);
-      }
-    }
-  });
+  // Object.entries(article).forEach(item => {
+  //   if (item[0].includes("product")) {
+  //     if (item[1] !== "") {
+  //       const titleItem = item[1].toUpperCase();
+  //       const filterResultSlider = data.allShopifyProduct.edges.find(
+  //         item => item.node.title === titleItem
+  //       );
+  //       productsinArticle.push(filterResultSlider);
+  //     }
+  //   }
+  // });
 
   return (
     <>
@@ -121,40 +126,27 @@ const Article = ({ data }) => {
 };
 
 export async function getStaticPaths() {
-  const article = await getAllArticle();
+  const articles = await getAllArticles();
+  const paths = articles.data.allArticles.map((article) => {
+    return {
+      params: {
+        article: article.handle
+      }
+    }
+  });
   return {
-    props: { article },
-    paths: ["", { params: { slug: "second-post" } }],
+    paths,
     fallback: true,
   };
 }
 
-// Generating the paths for each post
-// export async function getStaticPaths() {
-//   // Get list of all files from our posts directory
-//   const files = fs.readdirSync("posts");
-//   // Generate a path for each one
-//   const paths = files.map((fileName) => ({
-//     params: {
-//       slug: fileName.replace(".md", ""),
-//     },
-//   }));
-//   // return list of paths
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
-// // Generate the static props for the page
-// export async function getStaticProps({ params: { slug } }) {
-//     const fileName = fs.readFileSync(`posts/${slug}.md`, 'utf-8');
-//     const { data: frontmatter, content } = matter(fileName);
-//     return {
-//       props: {
-//         frontmatter,
-//         content,
-//       },
-//     };
+export async function getStaticProps(context) {
+  const handle = context.params.article;
+  console.log(handle, 'CAZZO')
+  const article = await getArticle(handle);
+  return {
+    props: { article },
+  };
+}
 
 export default Article;

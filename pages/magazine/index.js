@@ -1,15 +1,15 @@
 //REACT
 import React, { useState, useEffect, useRef } from "react";
 //HOOKS
-import useMediaQuery from "../hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 //COMPONENTS
-import AnimatedPage from "../components/animated-page";
-import Breadcrumbs from "../components/breadcrumbs";
+import AnimatedPage from "../../components/animated-page";
+import Breadcrumbs from "../../components/breadcrumbs";
 import Link from "next/link";
-import Layout from "../components/layout";
-import getAllArticles from "../api/articles";
+import Layout from "../../components/layout";
+import getAllArticles from "../../api/articles";
 
-const Magazine = ({ articles }) => {
+const Index = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
 
   // Array of all news articles
@@ -71,13 +71,16 @@ const Magazine = ({ articles }) => {
     <>
       <Layout>
         <AnimatedPage margins={true}>
-          {isDesktop && <Breadcrumbs title="Magazine" />}
+          {isDesktop && <Breadcrumbs title="Index" />}
           <div className="container-articles">
             {list.map(item => (
               <Link
                 exit={{ length: 0.15 }}
                 entry={{ delay: 0.15, length: 0.3 }}
-                href={`/magazine/${item.handle}`}
+                href={{
+                  pathname: '/magazine/[article]',
+                  query: { article: item.handle },
+                }}
                 key={item.id}
               >
                 <div className="article">
@@ -94,7 +97,7 @@ const Magazine = ({ articles }) => {
             ))}
             <div ref={loadRef}></div>
           </div>
-          {!isDesktop && <Breadcrumbs title="Magazine" />}
+          {!isDesktop && <Breadcrumbs title="Index" />}
         </AnimatedPage>
       </Layout>
       <style jsx="true">
@@ -158,4 +161,4 @@ export async function getStaticProps() {
     props: { articles },
   };
 }
-export default Magazine;
+export default Index;
