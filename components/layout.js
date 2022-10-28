@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
 
   //USE-EFFECT
   useEffect(() => {
-    dispatch(setClient());
+    dispatch(setClient(language));
   }, [language]);
 
   return (
