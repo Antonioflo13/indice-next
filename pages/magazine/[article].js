@@ -142,7 +142,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const handle = context.params.article;
-  console.log(handle, 'CAZZO')
   const article = await getArticle(handle);
   return {
     props: { article },
