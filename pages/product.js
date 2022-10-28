@@ -1,35 +1,40 @@
-import React, { useContext, useEffect } from "react";
+//REACT
+import React from "react";
+//API
 import getProduct from "../api/product";
 import { getProductsById } from "../api/collections";
-import SharedStateContext from "../components/shared-state-context";
+//STORE
+import { setShopifyCheckout } from "../store/modules/shopify";
+import { setDialogContactShow } from "../store/modules/dialogContact";
+import { setCart } from "../store/modules/cart";
+import { useDispatch, useSelector } from "react-redux";
+//HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
+//UTILS
 import { getCookie, setCookie } from "../utils/cookie";
+//COMPONENTS
 import GalleryProducts from "../components/gallery-products";
-import { useIntl } from "react-intl";
 import AnimatedPage from "../components/animated-page";
 import PageTitle from "../components/page-title";
 import DesktopProduct from "../templates/desktop-product";
 import MobileProduct from "../templates/mobile-product";
 import Layout from "../components/layout";
-import { useDispatch, useSelector } from "react-redux";
-import { setShopifyCheckout } from "../store/modules/shopify";
 
 const Product = ({ resProduct, CollectionProducts }) => {
   const product = resProduct.data.product;
+
   //STORE
   const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
   const dispatch = useDispatch();
-  const { setCurrentSidebarTitle, setContactShown, setCart } =
-    useContext(SharedStateContext);
+
+  //HOOKS
+  const isDesktop = useMediaQuery(768);
+
+  //STATE
   const [accordion, setAccordion] = React.useState({
     size: false,
     shipping: false,
   });
-  // useEffect(() => {
-  //   setCurrentSidebarTitle("");
-  // }, [setCurrentSidebarTitle]);
-  const isDesktop = useMediaQuery(768);
-
   const relatedProducts = CollectionProducts.data.collection.products.nodes;
 
   const buy = async () => {
@@ -51,11 +56,11 @@ const Product = ({ resProduct, CollectionProducts }) => {
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
     await dispatch(setShopifyCheckout(updatedCheckout));
-    setCart(cartContent);
+    dispatch(setCart(cartContent));
   };
 
   const askForPrice = () => {
-    setContactShown(true, product);
+    dispatch(setDialogContactShow(true, product));
   };
 
   const mainImage = (

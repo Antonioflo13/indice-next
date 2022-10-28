@@ -4,6 +4,7 @@ import languageReducer from "./modules/language";
 import shopifyReducer from "./modules/shopify";
 import shopifyDialogContactReducer from "./modules/dialogContact";
 import sidebarReducer from "./modules/sideBar";
+import cartReducer from "./modules/cart";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,6 @@ export const store = configureStore({
     shopify: shopifyReducer,
     dialogContact: shopifyDialogContactReducer,
     sideBar: sidebarReducer,
-    cart: sidebarReducer,
+    cart: cartReducer,
   },
 });

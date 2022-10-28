@@ -1,7 +1,6 @@
 //REACT
 import React, { useState } from "react";
 //STORE
-import SharedStateContext from "./shared-state-context";
 import { useDispatch, useSelector } from "react-redux";
 import { setShopifyCheckout } from "../store/modules/shopify";
 //UTILS
@@ -33,7 +32,7 @@ const sidebarVariants = {
   },
 };
 
-const Drawer = ({ handleClose, setCart }) => {
+const Drawer = ({ handleClose, setShowCart }) => {
   //STATE
   const [isVisible, setIsVisible] = useState(true);
   const intl = useIntl();
@@ -59,7 +58,7 @@ const Drawer = ({ handleClose, setCart }) => {
     const cartContent = { lineItems, totalPrice };
 
     await dispatch(setShopifyCheckout(updatedCheckout));
-    setCart(cartContent);
+    setShowCart(cartContent);
   };
   const handleRemoveItem = async id => {
     const checkoutId = getCookie("checkoutId");
@@ -76,7 +75,7 @@ const Drawer = ({ handleClose, setCart }) => {
     const cartContent = { lineItems, totalPrice };
 
     await dispatch(setShopifyCheckout(updatedCheckout));
-    setCart(cartContent);
+    setShowCart(cartContent);
   };
 
   const handleRemoveItems = async id => {
@@ -90,7 +89,7 @@ const Drawer = ({ handleClose, setCart }) => {
     const cartContent = { lineItems, totalPrice };
 
     await setShopifyCheckout(updatedCheckout);
-    setCart(cartContent);
+    setShowCart(cartContent);
   };
   // const goToCheckout = () => {
   //   window.open(shopifyCheckout.webUrl, "_self")
@@ -120,10 +119,10 @@ const Drawer = ({ handleClose, setCart }) => {
                   }}
                 >
                   <span>
-                    <img src={closeIcon} width={10} alt="cart-icon" />
+                    <img src={closeIcon.src} width={10} alt="cart-icon" />
                   </span>
                 </button>
-                <img className="logoDrower" src={logo} alt="" />
+                <img className="logoDrawer" src={logo.src} alt="indice-logo" />
               </div>
             </div>
             <div className="drawer-title text-indice text-l font-bold uppercase">
@@ -138,7 +137,7 @@ const Drawer = ({ handleClose, setCart }) => {
                       key={`${item.id}-${key}`}
                     >
                       <div className="drawer-product-image">
-                        <img src={item.details.image.src}></img>
+                        <img src={item.details.image.src} alt="product-image"></img>
                       </div>
                       <div className="drawer-product-description">
                         {/* <div className="text-indice-red text-xs font-bold italic mackay noToHead mt-2">
@@ -153,7 +152,7 @@ const Drawer = ({ handleClose, setCart }) => {
                         <div className="icon-change-quantity">
                           <div
                             onClick={() =>
-                              item.quantity == 1
+                              item.quantity === 1
                                 ? handleRemoveItems(item.idLineItems)
                                 : handleRemoveItem(item.id)
                             }
@@ -205,7 +204,7 @@ const Drawer = ({ handleClose, setCart }) => {
         )}
       </motion.div>
       <style jsx="true">{`
-        .logoDrower {
+        .logoDrawer {
           width: 8vh;
           cursor: pointer;
         }
@@ -321,7 +320,7 @@ const Drawer = ({ handleClose, setCart }) => {
 
         @media (min-width: 768px) {
           .drawer-container {
-            width: 30%;
+            width: 100%;
           }
           .drawer-recap {
             flex-direction: column;

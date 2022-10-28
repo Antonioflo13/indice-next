@@ -83,7 +83,7 @@ export const Navbar = () => {
             handleClose={() => {
               dispatch(setCart(null));
             }}
-            setCart={r => dispatch(setCart(r))}
+            setShowCart={r => dispatch(setCart(r))}
           />
         )}
       </div>
@@ -112,7 +112,7 @@ export const Navbar = () => {
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             className="fixed top-0 right-0 h-full w-full z-10"
             onClick={() => {
-              dispatch(setCart(false));
+              dispatch(setCart(null));
             }}
           />
         )}
@@ -122,9 +122,9 @@ export const Navbar = () => {
         {cart && (
           <Drawer
             handleClose={() => {
-              dispatch(setCart(false));
+              dispatch(setCart(null));
             }}
-            setCart={r => dispatch(setCart(r))}
+            setShowCart={r => dispatch(setCart(r))}
           />
         )}
       </AnimatePresence>

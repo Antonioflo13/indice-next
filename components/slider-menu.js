@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import LinkMenu from "../components/linkMenu";
@@ -18,7 +18,7 @@ const SliderMenu = () => {
               <LinkMenu to="/collections">
                 <FormattedMessage id="sidebar.designers" />
               </LinkMenu>
-              <LinkMenu to="/botiques">
+              <LinkMenu to="/boutiques">
                 <FormattedMessage id="sidebar.botiques" />
               </LinkMenu>
               <LinkMenu to="/magazine">
