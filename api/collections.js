@@ -43,10 +43,10 @@ async function getAllCollections() {
   return await request("shopify", QUERY);
 }
 
-async function getProductsById() {
+async function getProductsById(collection) {
   const indice = `
 {
-  collection(id: "gid://shopify/Collection/291807199329") {
+  collection(handle: "${collection}") {
     products(first: 250) {
         nodes {
           id

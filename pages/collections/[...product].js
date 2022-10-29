@@ -1,20 +1,19 @@
-import React, { useContext, useEffect } from "react";
-import getProduct from "../api/product";
-import { getProductsById } from "../api/collections";
-import SharedStateContext from "../components/shared-state-context";
-import useMediaQuery from "../hooks/useMediaQuery";
-import { getCookie, setCookie } from "../utils/cookie";
-import GalleryProducts from "../components/gallery-products";
-import { useIntl } from "react-intl";
-import AnimatedPage from "../components/animated-page";
-import PageTitle from "../components/page-title";
-import DesktopProduct from "../templates/desktop-product";
-import MobileProduct from "../templates/mobile-product";
-import Layout from "../components/layout";
+import React, { useContext } from "react";
+import getProduct from "../../api/product";
+import { getProductsById } from "../../api/collections";
+import SharedStateContext from "../../components/shared-state-context";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { getCookie, setCookie } from "../../utils/cookie";
+import GalleryProducts from "../../components/gallery-products";
+import AnimatedPage from "../../components/animated-page";
+import PageTitle from "../../components/page-title";
+import DesktopProduct from "../../templates/desktop-product";
+import MobileProduct from "../../templates/mobile-product";
+import Layout from "../../components/layout";
 
-const Product = ({ resProduct, CollectionProducts }) => {
+const Product = ({ resProduct, CollectionProducts, collectionHandle, productHandle }) => {
   const product = resProduct.data.product;
-  const { setCurrentSidebarTitle, setContactShown, setCart } =
+  const { setContactShown, setCart } =
     useContext(SharedStateContext);
   const [accordion, setAccordion] = React.useState({
     size: false,
@@ -79,11 +78,11 @@ const Product = ({ resProduct, CollectionProducts }) => {
 
                   {
                     title: product.vendor,
-                    // link: "/collections/" + collectionHandle,
+                    link: "/collections/" + collectionHandle,
                   },
                   {
                     title: product.title,
-                    // link: "/collections/" + productHandle,
+                    link: "/collections/" + productHandle,
                   },
                 ]}
                 title=" "
@@ -98,7 +97,7 @@ const Product = ({ resProduct, CollectionProducts }) => {
             askForPrice={askForPrice}
             mainImage={mainImage}
             relatedProducts={relatedProducts}
-            // collectionHandle={collectionHandle}
+            collectionHandle={collectionHandle}
             accordion={accordion}
             setAccordion={setAccordion}
           />
@@ -110,7 +109,7 @@ const Product = ({ resProduct, CollectionProducts }) => {
             askForPrice={askForPrice}
             mainImage={mainImage}
             relatedProducts={relatedProducts}
-            // collectionHandle={collectionHandle}
+            collectionHandle={collectionHandle}
             accordion={accordion}
             setAccordion={setAccordion}
           />
@@ -121,12 +120,14 @@ const Product = ({ resProduct, CollectionProducts }) => {
   );
 };
 
-export async function getStaticProps() {
-  const resProduct = await getProduct();
-  const CollectionProducts = await getProductsById();
-  return {
-    props: { resProduct, CollectionProducts },
-  };
+export async function getServerSideProps({params}) {
+    const collectionHandle = params.product[0];
+    const productHandle = params.product[1];
+    const resProduct = await getProduct(productHandle);
+    const CollectionProducts = await getProductsById(collectionHandle);
+    return {
+        props: { resProduct, CollectionProducts, collectionHandle, productHandle },
+    };
 }
 
 export default Product;

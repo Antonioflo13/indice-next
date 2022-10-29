@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const SliderHomeCollection = () => {
   const products = data.shopifyCollection.products;
-  const handleCollection = data.shopifyCollection.handle;
 
   return (
     <>
@@ -31,7 +30,12 @@ const SliderHomeCollection = () => {
         >
           {products?.map(item => (
             <SwiperSlide key={item.id}>
-              <Link href="/product">
+                <Link
+                    href={{
+                        pathname: `/collections/[collection]/[product]`,
+                        query: { collection: item.vendor, product: item.handle },
+                    }}
+                >
                 <div className="container-slider">
                   <img
                     className="img-product"

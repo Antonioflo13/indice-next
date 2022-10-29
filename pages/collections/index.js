@@ -1,19 +1,16 @@
-import React, { useContext } from "react";
-import AnimatedPage from "../components/animated-page";
-import useMediaQuery from "../hooks/useMediaQuery";
+import React from "react";
+import AnimatedPage from "../../components/animated-page";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import SharedStateContext from "../components/shared-state-context";
-import { useIntl } from "react-intl";
-import Breadcrumbs from "../components/breadcrumbs";
-import { getAllCollections } from "../api/collections";
-import Layout from "../components/layout";
+import Breadcrumbs from "../../components/breadcrumbs";
+import { getAllCollections } from "../../api/collections";
+import Layout from "../../components/layout";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
   console.log(collections);
   const isDesktop = useMediaQuery("768");
-  const { setCurrentSidebarTitle } = useContext(SharedStateContext);
   let collectionsListByAlphabet = [];
   let alphabeticList = [];
   for (const product of collections) {
@@ -110,7 +107,7 @@ const CollectionsPage = ({ collections }) => {
             .containerDesigner {
               grid-template-columns: repeat(1, 1fr);
               row-gap: 1em;
-              margin-bottom: 0px;
+              margin-bottom: 0;
               margin-top: 50px;
             }
           }
