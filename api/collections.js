@@ -16,27 +16,10 @@ async function getAllCollections() {
  }
 `;
 
-  const luxuryEyewear = `
-{
-    collections(
-      sortKey: TITLE, first: 250
-    ) {
-      nodes {
-        id
-        handle
-        title
-        description
-      }
-    }
- }
-`;
   let QUERY = null;
   switch (process.env.NEXT_QUERY) {
     case "indice":
       QUERY = indice;
-      break;
-    case "luxuryeyewear":
-      QUERY = luxuryEyewear;
       break;
   }
 

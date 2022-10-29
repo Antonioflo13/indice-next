@@ -1,4 +1,4 @@
-import Link from "./LanguagesLink";
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { motion } from "framer-motion";
@@ -15,7 +15,7 @@ const PageTitle = ({
   <div>
     {breadcrumbs && Array.isArray(breadcrumbs) && (
       <div className="mb-4 flex items-center">
-        <Link to="/">
+        <Link href="/">
           <motion.div
             whileHover={{ scale: 1.1 }}
             className="flex items-center justify-center rounded-full text-2xs text-white"
@@ -37,7 +37,7 @@ const PageTitle = ({
                 }`}
               >
                 {b.link ? (
-                  <Link to={b.link}>
+                  <Link href={b.link}>
                     <motion.div whileHover={{ scale: 1.1 }}>
                       <FormattedMessage id={b.title} />
                     </motion.div>

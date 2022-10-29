@@ -6,12 +6,14 @@ import getArticle from "../../api/article";
 //HOOKS
 import useMediaQuery from "../../hooks/useMediaQuery";
 //COMPONENTS
+import Layout from "../../components/layout";
 import AnimatedPage from "../../components/animated-page";
 import PageTitle from "../../components/page-title";
-// import SliderArticleCollection from "../templates/slider-article-collection";
+import { getProductsById } from "../../api/collections";
+import SliderArticleCollection from "../../templates/slider-article-collection";
 // import SliderArticleProducts from "../templates/slider-article-products";
 
-const Article = ({ article }) => {
+const Article = ({ article, collectionProducts }) => {
   const isDesktop = useMediaQuery(768);
   const productsInArticle = [];
   article = article.data.article;
@@ -29,7 +31,7 @@ const Article = ({ article }) => {
   // });
 
   return (
-    <>
+    <Layout>
       <AnimatedPage margins={true}>
         <div className="flex flex-col justify-center w-full">
           <div className="w-full md:w-1/2 mt-8">
@@ -84,8 +86,8 @@ const Article = ({ article }) => {
             </div>
           </div>
         </div>
-        {/* <SliderArticleCollection shopifyCollection={data.shopifyCollection} />
-        <SliderArticleProducts productsinArticle={productsinArticle} /> */}
+        <SliderArticleCollection collectionProducts={collectionProducts} />
+        {/*<SliderArticleProducts productsinArticle={productsinArticle} />*/}
         {!isDesktop && (
           <div className="mt-10">
             <PageTitle
@@ -123,7 +125,7 @@ const Article = ({ article }) => {
           }
         `}
       </style>
-    </>
+    </Layout>
   );
 };
 
@@ -145,8 +147,10 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const handle = context.params.article;
   const article = await getArticle(handle);
+  const shopifyCollection = article.data.article.shopifyCollection;
+  const collectionProducts = await getProductsById(shopifyCollection);
   return {
-    props: { article },
+    props: { article, collectionProducts },
   };
 }
 
