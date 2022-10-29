@@ -13,7 +13,7 @@ import PageTitle from "../../components/page-title";
 
 const Article = ({ article }) => {
   const isDesktop = useMediaQuery(768);
-  const productsinArticle = [];
+  const productsInArticle = [];
   article = article.data.article;
 
   // Object.entries(article).forEach(item => {
@@ -23,7 +23,7 @@ const Article = ({ article }) => {
   //       const filterResultSlider = data.allShopifyProduct.edges.find(
   //         item => item.node.title === titleItem
   //       );
-  //       productsinArticle.push(filterResultSlider);
+  //       productsInArticle.push(filterResultSlider);
   //     }
   //   }
   // });
@@ -54,11 +54,13 @@ const Article = ({ article }) => {
               <img
                 className="img-headerCollection"
                 src={article.imageheader.url}
+                alt={article.imageheader.url}
               />
             ) : (
               <img
                 className="img-headerCollection"
                 src={article.imageheadermobile.url}
+                alt={article.imageheader.url}
               />
             )}
 
@@ -127,12 +129,12 @@ const Article = ({ article }) => {
 
 export async function getStaticPaths() {
   const articles = await getAllArticles();
-  const paths = articles.data.allArticles.map((article) => {
+  const paths = articles.data.allArticles.map(article => {
     return {
       params: {
-        article: article.handle
-      }
-    }
+        article: article.handle,
+      },
+    };
   });
   return {
     paths,

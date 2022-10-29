@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
-import Link from "./LanguagesLink";
+import Link from "next/link";
 import mainClasses from "./css/main.module.scss";
 import Image from "next/legacy/image";
 
@@ -31,7 +31,10 @@ const SliderArticles = ({ articles }) => {
                   style={{ cursor: "pointer" }}
                 >
                   <Link
-                    to={`/magazine/${article.handle}`}
+                    href={{
+                      pathname: "/magazine/[article]",
+                      query: { article: article.handle },
+                    }}
                     key={article.id}
                     className={mainClasses.linkSliderHomeArticle}
                   >
