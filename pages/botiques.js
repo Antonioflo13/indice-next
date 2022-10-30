@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AnimatedPage from "../components/animated-page";
 import { useIntl } from "react-intl";
 import Breadcrumbs from "../components/breadcrumbs";
 import { stores } from "../data/stores";
-import { useMediaQuery } from "react-responsive";
 import Layout from "../components/layout";
 import Image from "next/legacy/image";
 
