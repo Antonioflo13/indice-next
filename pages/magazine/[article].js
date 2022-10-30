@@ -87,9 +87,9 @@ const Article = ({ article, collectionProducts }) => {
             </div>
           </div>
         </div>
-        {collectionProducts !== null && (
-          <SliderArticleCollection collectionProducts={collectionProducts} />
-        )}
+        {/*{collectionProducts !== null && (*/}
+        {/*  <SliderArticleCollection collectionProducts={collectionProducts} />*/}
+        {/*)}*/}
         {/*<SliderArticleProducts productsinArticle={productsinArticle} />*/}
         {!isDesktop && (
           <div className="mt-10">
