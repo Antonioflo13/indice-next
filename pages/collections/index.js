@@ -57,12 +57,14 @@ const CollectionsPage = ({ collections }) => {
                     } mb-6`}
                   >
                     <Link
-                      href={
-                        collection.products?.edges?.length > 0 &&
-                        collection.handle === "indice-capsule-collection"
-                          ? `/${collection.handle}`
-                          : `/collections/${collection.handle}`
-                      }
+                      href={{
+                        pathname:
+                          collection.products?.edges?.length > 0 &&
+                          collection.handle === "indice-capsule-collection"
+                            ? "/collections/[collection]"
+                            : "/collections/[collection]",
+                        query: { collection: collection.handle },
+                      }}
                     >
                       <span>
                         <motion.h2 className=" text-indice text-xl font-bold uppercase">

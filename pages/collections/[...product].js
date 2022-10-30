@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import getProduct from "../../api/product";
-import { getProductsById } from "../../api/collections";
+import { getCollection } from "../../api/collections";
 import SharedStateContext from "../../components/shared-state-context";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { getCookie, setCookie } from "../../utils/cookie";
@@ -11,10 +11,14 @@ import DesktopProduct from "../../templates/desktop-product";
 import MobileProduct from "../../templates/mobile-product";
 import Layout from "../../components/layout";
 
-const Product = ({ resProduct, CollectionProducts, collectionHandle, productHandle }) => {
+const Product = ({
+  resProduct,
+  CollectionProducts,
+  collectionHandle,
+  productHandle,
+}) => {
   const product = resProduct.data.product;
-  const { setContactShown, setCart } =
-    useContext(SharedStateContext);
+  const { setContactShown, setCart } = useContext(SharedStateContext);
   const [accordion, setAccordion] = React.useState({
     size: false,
     shipping: false,
@@ -120,14 +124,14 @@ const Product = ({ resProduct, CollectionProducts, collectionHandle, productHand
   );
 };
 
-export async function getServerSideProps({params}) {
-    const collectionHandle = params.product[0];
-    const productHandle = params.product[1];
-    const resProduct = await getProduct(productHandle);
-    const CollectionProducts = await getProductsById(collectionHandle);
-    return {
-        props: { resProduct, CollectionProducts, collectionHandle, productHandle },
-    };
+export async function getServerSideProps({ params }) {
+  const collectionHandle = params.product[0];
+  const productHandle = params.product[1];
+  const resProduct = await getProduct(productHandle);
+  const CollectionProducts = await getCollection(collectionHandle);
+  return {
+    props: { resProduct, CollectionProducts, collectionHandle, productHandle },
+  };
 }
 
 export default Product;
