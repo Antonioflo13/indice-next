@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <title>Indice</title>
       </Head>
+      <meta name="description" content="Indice" />
       <body>
         <Main />
         <NextScript />
