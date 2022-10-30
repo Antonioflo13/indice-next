@@ -39,7 +39,7 @@ const LinkMenu = ({ children, to, sidebar }) => {
         <Link href={to}>
           <motion.button>
             <div className="containerItemMenu">
-              <img className="imageMenu" src={imageMenu.src} />
+              <img className="imageMenu" src={imageMenu.src} alt="imageMenu" />
               <div className="textMenu">{children}</div>
             </div>
           </motion.button>

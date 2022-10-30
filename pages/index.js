@@ -21,6 +21,7 @@ const IndexPage = ({ articles }) => {
     <>
       <Head>
         <title>Indice</title>
+
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <Script
           type="text/javascript"
