@@ -2,7 +2,7 @@ import React from "react";
 //SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
-import Link from "./LanguagesLink";
+import Link from "next/link";
 
 const sliderRelatedProducts = props => {
   const { relatedProducts, collectionHandle } = props;
@@ -28,30 +28,37 @@ const sliderRelatedProducts = props => {
               },
             }}
           >
-            {relatedProducts.map(item => (
-              <SwiperSlide key={item.id}>
-                <Link
-                  to={`/collections/${collectionHandle}/products/${item.handle}`}
-                >
-                  <div className="container-slider">
-                    <img
-                      className="img-product"
-                      src={
-                        item.variants.edges[0].node.product.images.nodes[0]
-                          .originalSrc
-                      }
-                      alt="product"
-                    />
-                    <div className="text-indice-red text-xs font-bold italic mackay noToHead">
-                      {item.vendor}
-                    </div>
-                    <div className="text-xs uppercase font-bold">
-                      {item.title}
-                    </div>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
+            <div></div>
+            {/*{relatedProducts?.map(item => (*/}
+            {/*  <SwiperSlide key={item.id}>*/}
+            {/*    <Link*/}
+            {/*      href={{*/}
+            {/*        pathname: `/collections/[collection]/[product]`,*/}
+            {/*        query: {*/}
+            {/*          collection: collectionHandle,*/}
+            {/*          product: item.handle,*/}
+            {/*        },*/}
+            {/*      }}*/}
+            {/*    >*/}
+            {/*      <div className="container-slider">*/}
+            {/*        <img*/}
+            {/*          className="img-product"*/}
+            {/*          src={*/}
+            {/*            item.variants.edges[0].node.product.images.nodes[0]*/}
+            {/*              .originalSrc*/}
+            {/*          }*/}
+            {/*          alt="product"*/}
+            {/*        />*/}
+            {/*        <div className="text-indice-red text-xs font-bold italic mackay noToHead">*/}
+            {/*          {item.vendor}*/}
+            {/*        </div>*/}
+            {/*        <div className="text-xs uppercase font-bold">*/}
+            {/*          {item.title}*/}
+            {/*        </div>*/}
+            {/*      </div>*/}
+            {/*    </Link>*/}
+            {/*  </SwiperSlide>*/}
+            {/*))}*/}
           </Swiper>
         </div>
       </div>

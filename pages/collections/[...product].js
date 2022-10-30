@@ -131,7 +131,6 @@ const Product = ({
           />
         )}
       </AnimatedPage>
-      <style jsx="true">{``}</style>
     </Layout>
   );
 };
