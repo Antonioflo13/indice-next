@@ -16,7 +16,7 @@ import SliderArticleCollection from "../../templates/slider-article-collection";
 const Article = ({ article, collectionProducts }) => {
   const isDesktop = useMediaQuery(768);
   const productsInArticle = [];
-  article = article.data.article;
+  article = article?.data?.article;
   collectionProducts = collectionProducts?.data?.collection;
 
   // Object.entries(article).forEach(item => {
@@ -150,7 +150,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const handle = context.params.article;
   const article = await getArticle(handle);
-  const shopifyCollection = article.data.article.shopifyCollection;
+  const shopifyCollection = article?.data?.article?.shopifyCollection;
   const collectionProducts = await getCollection(shopifyCollection);
   return {
     props: { article, collectionProducts },
