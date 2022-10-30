@@ -77,7 +77,7 @@ const Index = ({ articles }) => {
           <meta name="description" content="Magazine" />
         </Head>
         <AnimatedPage margins={true}>
-          {isDesktop && <Breadcrumbs title="Index" />}
+          {isDesktop && <Breadcrumbs title="MAGAZINE" />}
           <div className="container-articles">
             {list.map(item => (
               <Link

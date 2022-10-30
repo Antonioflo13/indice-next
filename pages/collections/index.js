@@ -43,10 +43,10 @@ const CollectionsPage = ({ collections }) => {
     <Layout>
       <Head>
         <title>Indice - Collections</title>
-        <meta name="description" content="Collections" />
+        <meta name="description" content="Designers" />
       </Head>
       <AnimatedPage margins={true}>
-        {isDesktop && <Breadcrumbs title="Boutiques" />}
+        {isDesktop && <Breadcrumbs title="Designers" />}
         <ul className="containerDesigner">
           {collectionsListByAlphabet.map((letter, index) => (
             <React.Fragment key={index}>
