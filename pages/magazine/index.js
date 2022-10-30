@@ -9,6 +9,7 @@ import Link from "next/link";
 import Layout from "../../components/layout";
 import getAllArticles from "../../api/articles";
 import Head from "next/head";
+import Image from "next/image";
 
 const Index = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
@@ -89,11 +90,14 @@ const Index = ({ articles }) => {
                 key={item.id}
               >
                 <div className="article">
-                  <img
-                    className="article-image"
-                    src={item.imageheader.url}
-                    alt="image header"
-                  />
+                  <div className="image-container">
+                    <Image
+                      fill="true"
+                      sizes="100%"
+                      src={item.imageheader.url}
+                      alt="image-header"
+                    />
+                  </div>
                   <h1 className="article-title text-xl font-bold p-4">
                     {item.titlemagazine}
                   </h1>
@@ -115,7 +119,7 @@ const Index = ({ articles }) => {
           }
 
           .article {
-            width: 100%;
+            min-height: 100%;
             display: flex;
             flex-direction: column;
             align-content: center;
@@ -133,12 +137,14 @@ const Index = ({ articles }) => {
             font-size: 18px;
           }
 
-          .article-image {
+          .image-container {
+            position: relative;
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
+            overflow: hidden;
           }
 
           .article-description {
