@@ -1,19 +1,29 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useContext, useState } from "react";
+//REACT
+import React, { useState } from "react";
+//STATE
+import { useSelector } from "react-redux";
+//INTL
 import { FormattedMessage } from "react-intl";
-import Label from "./label";
+//MOTION
+import { AnimatePresence, motion } from "framer-motion";
+//COMPONENTS
 import Modal from "./modal";
 import PageTitle from "./page-title";
-import SharedStateContext from "./shared-state-context";
 import { stores } from "../data/stores";
+//ICONS
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import closeIcon from "../assets/images/cross.svg";
 
 const Contact = ({ setShown }) => {
-  const { contactProduct } = useContext(SharedStateContext);
+  //STATE
+  const showDialogContact = useSelector(state => state.dialogContact.value);
+
   const [sendingForm, setSendingForm] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [successShown, setSuccessShown] = useState(false);
+  const [errorShown, setErrorShown] = useState(false);
   const initialValues = {
     store: "",
     name: "",
@@ -21,9 +31,11 @@ const Contact = ({ setShown }) => {
     phone: "",
     message: "",
   };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [successShown, setSuccessShown] = useState(false);
-  const [errorShown, setErrorShown] = useState(false);
+  const Brescia = stores[0].name;
+  const Forte = stores[1].name;
+  const Roma = stores[2].name;
+
+  //FUNCTIONS
   const handleChange = e => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
 
@@ -61,10 +73,6 @@ const Contact = ({ setShown }) => {
       });
     e.preventDefault();
   };
-
-  const Brescia = stores[0].name;
-  const Forte = stores[1].name;
-  const Roma = stores[2].name;
 
   return (
     <>

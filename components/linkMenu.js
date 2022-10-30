@@ -1,16 +1,23 @@
-import { motion } from "framer-motion";
-import React, { useContext } from "react";
-import SharedStateContext from "./shared-state-context";
-import imageMenu from "../assets/images/menu.jpg";
+//REACT
+import React from "react";
+//NEXT
 import Link from "next/link";
+//STORE
+import { useDispatch } from "react-redux";
+import { setSideBarShow } from "../store/modules/sideBar";
+//COMPONENTS
+import { motion } from "framer-motion";
+//ICONS
+import imageMenu from "../assets/images/menu.jpg";
 
 const LinkMenu = ({ children, to, sidebar }) => {
+  //STORE
+  const dispatch = useDispatch();
+
   const menuItemVariants = {
     hidden: { opacity: 0, y: 10, transition: { type: "tween " } },
     shown: { opacity: 1, y: 0, transition: { type: "tween " } },
   };
-
-  const { setSidebarShown, lang } = useContext(SharedStateContext);
 
   if (sidebar) {
     return (
@@ -18,7 +25,7 @@ const LinkMenu = ({ children, to, sidebar }) => {
         variants={menuItemVariants}
         whileHover={{ color: "#800000" }}
         onClick={() => {
-          setSidebarShown(false);
+          dispatch(setSideBarShow(false));
         }}
       >
         <Link href={to}>

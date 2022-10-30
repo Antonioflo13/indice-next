@@ -1,16 +1,22 @@
+//REACT
 import React from "react";
-import AnimatedPage from "../../components/animated-page";
-import useMediaQuery from "../../hooks/useMediaQuery";
+//NEXT
 import Link from "next/link";
+//HOOKS
+import useMediaQuery from "../hooks/useMediaQuery";
+//COMPONENTS
+import AnimatedPage from "../components/animated-page";
+import Breadcrumbs from "../components/breadcrumbs";
 import { motion } from "framer-motion";
-import Breadcrumbs from "../../components/breadcrumbs";
-import { getAllCollections } from "../../api/collections";
-import Layout from "../../components/layout";
+import Layout from "../components/layout";
+//API
+import { getAllCollections } from "../api/collections";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
-  console.log(collections);
+  //HOOKS
   const isDesktop = useMediaQuery("768");
+  //generates alphabetical order products
   let collectionsListByAlphabet = [];
   let alphabeticList = [];
   for (const product of collections) {
@@ -27,8 +33,6 @@ const CollectionsPage = ({ collections }) => {
       }
     }
   }
-
-  console.log(collectionsListByAlphabet);
 
   collectionsListByAlphabet.map(
     collectionsList => (collectionsList.collectionsList[0].viewLetter = true)
