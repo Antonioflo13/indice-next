@@ -17,6 +17,7 @@ const Article = ({ article, collectionProducts }) => {
   const isDesktop = useMediaQuery(768);
   const productsInArticle = [];
   article = article.data.article;
+  collectionProducts = collectionProducts.data.collection;
 
   // Object.entries(article).forEach(item => {
   //   if (item[0].includes("product")) {
@@ -86,7 +87,9 @@ const Article = ({ article, collectionProducts }) => {
             </div>
           </div>
         </div>
-        <SliderArticleCollection collectionProducts={collectionProducts} />
+        {collectionProducts !== null && (
+          <SliderArticleCollection collectionProducts={collectionProducts} />
+        )}
         {/*<SliderArticleProducts productsinArticle={productsinArticle} />*/}
         {!isDesktop && (
           <div className="mt-10">

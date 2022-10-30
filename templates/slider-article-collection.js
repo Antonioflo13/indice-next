@@ -4,7 +4,7 @@ import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
 import Link from "next/link";
 
 const SliderArticleCollection = ({ collectionProducts }) => {
-  const products = collectionProducts.data.collection.products.nodes;
+  const products = collectionProducts.products.nodes;
 
   return (
     <>
