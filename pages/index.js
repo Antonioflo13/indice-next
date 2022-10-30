@@ -9,10 +9,8 @@ import SliderHomeCollection from "../templates/slider-home-collection";
 import SliderArticles from "../components/slider-articles";
 import AnimatedPage from "../components/animated-page";
 import Layout from "../components/layout";
-import {getAllProducts} from "../api/products";
 
-const IndexPage = ({ articles, allProducts }) => {
-  console.log(allProducts);
+const IndexPage = ({ articles }) => {
   const [show, setShown] = useState(false);
   articles = articles.data.allArticles;
   let selectSingleIcon;
@@ -36,9 +34,8 @@ const IndexPage = ({ articles, allProducts }) => {
 
 export async function getStaticProps() {
   const articles = await getAllArticles();
-  const allProducts = await getAllProducts();
   return {
-    props: { articles, allProducts },
+    props: { articles },
   };
 }
 

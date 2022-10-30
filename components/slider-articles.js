@@ -5,7 +5,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import mainClasses from "./scss/main.module.scss";
 
 const SliderArticles = ({ articles }) => {
@@ -41,7 +41,8 @@ const SliderArticles = ({ articles }) => {
                     <div className="swiper-carousel-animate-opacity">
                       <Image
                         className="object-cover rounded-md"
-                        fill={true}
+                        fill="true"
+                        sizes="100%"
                         priority={true}
                         src={
                           isDesktop

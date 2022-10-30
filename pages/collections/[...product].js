@@ -1,24 +1,24 @@
 //REACT
 import React from "react";
 //API
-import getProduct from "../api/product";
-import { getProductsById } from "../api/collections";
+import getProduct from "../../api/product";
+import { getCollection } from "../../api/collections";
 //STORE
-import { setShopifyCheckout } from "../store/modules/shopify";
-import { setDialogContactShow } from "../store/modules/dialogContact";
-import { setCart } from "../store/modules/cart";
+import { setShopifyCheckout } from "../../store/modules/shopify";
+import { setDialogContactShow } from "../../store/modules/dialogContact";
+import { setCart } from "../../store/modules/cart";
 import { useDispatch, useSelector } from "react-redux";
 //HOOKS
-import useMediaQuery from "../hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 //UTILS
-import { getCookie, setCookie } from "../utils/cookie";
+import { getCookie, setCookie } from "../../utils/cookie";
 //COMPONENTS
-import GalleryProducts from "../components/gallery-products";
-import AnimatedPage from "../components/animated-page";
-import PageTitle from "../components/page-title";
-import DesktopProduct from "../templates/desktop-product";
-import MobileProduct from "../templates/mobile-product";
-import Layout from "../components/layout";
+import GalleryProducts from "../../components/gallery-products";
+import AnimatedPage from "../../components/animated-page";
+import PageTitle from "../../components/page-title";
+import DesktopProduct from "../../templates/desktop-product";
+import MobileProduct from "../../templates/mobile-product";
+import Layout from "../../components/layout";
 
 const Product = ({
   resProduct,

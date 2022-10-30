@@ -3,14 +3,14 @@ import React from "react";
 //NEXT
 import Link from "next/link";
 //HOOKS
-import useMediaQuery from "../hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 //COMPONENTS
-import AnimatedPage from "../components/animated-page";
-import Breadcrumbs from "../components/breadcrumbs";
+import AnimatedPage from "../../components/animated-page";
+import Breadcrumbs from "../../components/breadcrumbs";
 import { motion } from "framer-motion";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 //API
-import { getAllCollections } from "../api/collections";
+import { getAllCollections } from "../../api/collections";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;

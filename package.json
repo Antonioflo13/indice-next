@@ -28,14 +28,12 @@
     "react-dom": "^18.2.0",
     "react-intl": "^6.1.1",
     "react-redux": "^8.0.4",
-    "react-responsive": "^9.0.0",
     "react-spring": "^8.0.25",
     "react-spring-bottom-sheet": "^3.4.1",
     "react-use-gesture": "^5.1.2",
     "sass": "^1.55.0",
     "shopify-buy": "^2.11.0",
-    "swiper": "^8.4.2",
-    "yarn": "^1.22.19"
+    "swiper": "^8.4.2"
   },
   "devDependencies": {
     "@types/node": "17.0.35",

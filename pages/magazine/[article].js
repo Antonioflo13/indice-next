@@ -9,7 +9,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import Layout from "../../components/layout";
 import AnimatedPage from "../../components/animated-page";
 import PageTitle from "../../components/page-title";
-import { getProductsById } from "../../api/collections";
+import { getCollection } from "../../api/collections";
 import SliderArticleCollection from "../../templates/slider-article-collection";
 // import SliderArticleProducts from "../templates/slider-article-products";
 
@@ -148,7 +148,7 @@ export async function getStaticProps(context) {
   const handle = context.params.article;
   const article = await getArticle(handle);
   const shopifyCollection = article.data.article.shopifyCollection;
-  const collectionProducts = await getProductsById(shopifyCollection);
+  const collectionProducts = await getCollection(shopifyCollection);
   return {
     props: { article, collectionProducts },
   };

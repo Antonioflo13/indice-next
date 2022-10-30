@@ -189,12 +189,14 @@ const Product = ({ product, collection }) => {
         </div>
         {product.availableForSale &&
           !product.tags.includes("nfs") &&
-          product.variants[0].quantityAvailable > 0 && (
+          product.variants.edges[0].node.product.quantityAvailable > 0 && (
             <p className="text-2xs">
               <FormattedNumber
                 style="currency"
-                value={product.variants[0].priceV2.amount}
-                currency={product.variants[0].priceV2.currencyCode}
+                value={product.variants.edges[0].node.product.priceV2.amount}
+                currency={
+                  product.variants.edges[0].node.product.priceV2.currencyCode
+                }
                 minimumFractionDigits={2}
               />
             </p>
