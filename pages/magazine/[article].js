@@ -42,7 +42,7 @@ const Article = ({ article, collectionProducts }) => {
                   ...[
                     { title: "breadcrumbs.magazine", link: "/magazine" },
                     {
-                      title: article.handle,
+                      title: article?.handle,
                     },
                   ],
                 ]}
