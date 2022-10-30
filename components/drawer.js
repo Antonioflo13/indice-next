@@ -1,10 +1,16 @@
-import React, { useContext, useState } from "react";
-import { numberWithCommas, parserLineItems } from "../utils/parser";
-import SharedStateContext from "./shared-state-context";
+//REACT
+import React, { useState } from "react";
+//STORE
+import { useDispatch, useSelector } from "react-redux";
+import { setShopifyCheckout } from "../store/modules/shopify";
+//UTILS
+import { numberWithCommas, parserLineItems } from "../utils/parser"; //INTL
 import { useIntl } from "react-intl";
-import closeIcon from "../assets/images/cross.svg";
-import { motion } from "framer-motion";
 import { getCookie } from "../utils/cookie";
+//COMPONENTS
+import { motion } from "framer-motion";
+//ICONS
+import closeIcon from "../assets/images/cross.svg";
 import paypal from "../assets/images/1.svg";
 import mastercard from "../assets/images/2.svg";
 import visa from "../assets/images/3.svg";
@@ -26,11 +32,17 @@ const sidebarVariants = {
   },
 };
 
-const Drawer = ({ handleClose, setCart }) => {
+const Drawer = ({ handleClose, setShowCart }) => {
+  //STATE
   const [isVisible, setIsVisible] = useState(true);
   const intl = useIntl();
-  const { shopifyClient, setShopifyCheckout } = useContext(SharedStateContext);
 
+  //STORE
+  const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
+  const cart = useSelector(state => state.cart.value);
+  const dispatch = useDispatch();
+
+  //FUNCTIONS
   const handleAddItem = async id => {
     const checkoutId = getCookie("checkoutId");
     const updatedCheckout = await shopifyClient.checkout.addLineItems(
@@ -45,8 +57,8 @@ const Drawer = ({ handleClose, setCart }) => {
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout);
-    setCart(cartContent);
+    await dispatch(setShopifyCheckout(updatedCheckout));
+    setShowCart(cartContent);
   };
   const handleRemoveItem = async id => {
     const checkoutId = getCookie("checkoutId");
@@ -62,9 +74,10 @@ const Drawer = ({ handleClose, setCart }) => {
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout);
-    setCart(cartContent);
+    await dispatch(setShopifyCheckout(updatedCheckout));
+    setShowCart(cartContent);
   };
+
   const handleRemoveItems = async id => {
     const checkoutId = getCookie("checkoutId");
     const lineItemIdsToRemove = [id];
@@ -76,13 +89,11 @@ const Drawer = ({ handleClose, setCart }) => {
     const cartContent = { lineItems, totalPrice };
 
     await setShopifyCheckout(updatedCheckout);
-    setCart(cartContent);
+    setShowCart(cartContent);
   };
-  const { shopifyCheckout } = useContext(SharedStateContext);
   // const goToCheckout = () => {
   //   window.open(shopifyCheckout.webUrl, "_self")
   //}
-  const { cart } = useContext(SharedStateContext);
 
   const items = parserLineItems(getItems(cart));
 
@@ -108,10 +119,10 @@ const Drawer = ({ handleClose, setCart }) => {
                   }}
                 >
                   <span>
-                    <img src={closeIcon} width={10} alt="cart-icon" />
+                    <img src={closeIcon.src} width={10} alt="cart-icon" />
                   </span>
                 </button>
-                <img className="logoDrower" src={logo} alt="" />
+                <img className="logoDrawer" src={logo.src} alt="indice-logo" />
               </div>
             </div>
             <div className="drawer-title text-indice text-l font-bold uppercase">
@@ -126,7 +137,7 @@ const Drawer = ({ handleClose, setCart }) => {
                       key={`${item.id}-${key}`}
                     >
                       <div className="drawer-product-image">
-                        <img src={item.details.image.src}></img>
+                        <img src={item.details.image.src} alt="product-image"></img>
                       </div>
                       <div className="drawer-product-description">
                         {/* <div className="text-indice-red text-xs font-bold italic mackay noToHead mt-2">
@@ -141,7 +152,7 @@ const Drawer = ({ handleClose, setCart }) => {
                         <div className="icon-change-quantity">
                           <div
                             onClick={() =>
-                              item.quantity == 1
+                              item.quantity === 1
                                 ? handleRemoveItems(item.idLineItems)
                                 : handleRemoveItem(item.id)
                             }
@@ -177,7 +188,7 @@ const Drawer = ({ handleClose, setCart }) => {
                   className="w-full rounded-full bg-indice-red pt-1 pb-px px-4 leading-5 text-white font-bold text-xs uppercase"
                   style={{ height: "45px" }}
                 >
-                  <div className="font-bold" onClick={goToCheckout}>
+                  <div className="font-bold">
                     {intl.formatMessage({ id: "drawer.label_button" })}
                   </div>
                 </motion.button>
@@ -193,7 +204,7 @@ const Drawer = ({ handleClose, setCart }) => {
         )}
       </motion.div>
       <style jsx="true">{`
-        .logoDrower {
+        .logoDrawer {
           width: 8vh;
           cursor: pointer;
         }
@@ -309,7 +320,7 @@ const Drawer = ({ handleClose, setCart }) => {
 
         @media (min-width: 768px) {
           .drawer-container {
-            width: 30%%;
+            width: 100%;
           }
           .drawer-recap {
             flex-direction: column;

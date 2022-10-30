@@ -1,5 +1,10 @@
 //REACT
-import React, { useContext, useMemo, useState } from "react";
+import React from "react";
+//STORE
+import { useDispatch, useSelector } from "react-redux";
+import { setDialogContactShow } from "../store/modules/dialogContact";
+import { setSideBarShow } from "../store/modules/sideBar";
+import { setCart } from "../store/modules/cart";
 //HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
 //FRAMER-MOTION
@@ -8,7 +13,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "../components/sidebar";
 import Contact from "../components/contact";
 import Drawer from "../components/drawer";
-import SharedStateContext from "../components/shared-state-context";
 //IMAGES
 import logoIta from "../assets/images/logoIta.png";
 import logoEng from "../assets/images/logoEng.png";
@@ -17,57 +21,30 @@ import cartIcon from "../assets/images/shopping-bag.svg";
 import Link from "next/link";
 
 export const Navbar = () => {
-  const [contactShown, _setContactShown] = useState(false);
-  const [contactProduct, setContactProduct] = useState(null);
-  const [cart, setCart] = useState(null);
-  const [sidebarShown, _setSidebarShown] = useState(false);
-  const isDesktop = useMediaQuery(768);
-  const { shopifyCheckout, language, setLanguage } =
-    useContext(SharedStateContext);
+  //STORE
+  const showDialogContact = useSelector(state => state.dialogContact.value);
+  const showSideBar = useSelector(state => state.sideBar.value);
+  const language = useSelector(state => state.language.value);
+  const shopifyCheckout = useSelector(state =>
+    JSON.parse(state.shopify.checkout)
+  );
+  const cart = useSelector(state => state.cart.value);
+  const dispatch = useDispatch();
 
+  //HOOKS
+  const isDesktop = useMediaQuery(768);
+
+  //FUNCTIONS
   const totalQuantity = shopifyCheckout?.lineItems
     .map(item => item.quantity)
     .reduce((prev, curr) => prev + curr, 0);
 
-  //USE-MEMO
-  const setSidebarShown = useMemo(
-    () => sidebarShown => {
-      // Prevents scrolling of contents behind the sidebar
-      document.body.style.overflow = sidebarShown ? "hidden" : "visible";
-      _setSidebarShown(sidebarShown);
-    },
-    [_setSidebarShown]
-  );
-
-  const setContactShown = useMemo(
-    () =>
-      (contactShown, contactProduct = null) => {
-        // Prevents scrolling of contents behind the sidebar
-        document.body.style.overflow = contactShown ? "hidden" : "visible";
-        _setContactShown(contactShown);
-        setContactProduct(contactProduct);
-      },
-    [_setContactShown, setContactProduct]
-  );
-
   return (
-    <SharedStateContext.Provider
-      value={{
-        sidebarShown,
-        setSidebarShown,
-        contactShown,
-        contactProduct,
-        setContactShown,
-        cart,
-        setCart,
-        language,
-        setLanguage,
-      }}
-    >
+    <>
       <div className="px-5 md:px-5 left-0 top-0 w-full h-20 bg-white flex items-center justify-between z-30 customWidthHeader">
         <button
           className="text-black font-semibold text-xs md:text-sm"
-          onClick={() => setSidebarShown(!sidebarShown)}
+          onClick={() => dispatch(setSideBarShow(!showSideBar))}
         >
           {isDesktop ? (
             <div style={{ fontSize: "10px" }}>MENU</div>
@@ -90,7 +67,7 @@ export const Navbar = () => {
         <button
           className="text-black font-semibold text-xs md:text-sm"
           style={{ fontSize: "10px" }}
-          onClick={() => setCart(shopifyCheckout)}
+          onClick={() => dispatch(setCart(shopifyCheckout))}
         >
           {isDesktop ? (
             <div>CART ({totalQuantity ? totalQuantity : 0})</div>
@@ -104,14 +81,14 @@ export const Navbar = () => {
         {cart && (
           <Drawer
             handleClose={() => {
-              setCart(null);
+              dispatch(setCart(null));
             }}
-            setCart={r => setCart(r)}
+            setShowCart={r => dispatch(setCart(r))}
           />
         )}
       </div>
       <AnimatePresence>
-        {sidebarShown && (
+        {showSideBar && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -120,7 +97,7 @@ export const Navbar = () => {
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             className="fixed top-0 right-0 h-full w-full z-10"
             onClick={() => {
-              setSidebarShown(false);
+              dispatch(setSideBarShow(false));
             }}
           />
         )}
@@ -134,26 +111,27 @@ export const Navbar = () => {
             transition={{ type: "tween" }}
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             className="fixed top-0 right-0 h-full w-full z-10"
-            c
             onClick={() => {
-              setCart(false);
+              dispatch(setCart(null));
             }}
           />
         )}
       </AnimatePresence>
-      <AnimatePresence>{sidebarShown && <Sidebar />}</AnimatePresence>
+      <AnimatePresence>{showSideBar && <Sidebar />}</AnimatePresence>
       <AnimatePresence>
         {cart && (
           <Drawer
             handleClose={() => {
-              setCart(null);
+              dispatch(setCart(null));
             }}
-            setCart={r => setCart(r)}
+            setShowCart={r => dispatch(setCart(r))}
           />
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {contactShown && <Contact setShown={setContactShown} />}
+        {showDialogContact && (
+          <Contact setShown={dispatch(setDialogContactShow(true))} />
+        )}
       </AnimatePresence>
       <style jsx="true">{`
         .logo {
@@ -179,6 +157,6 @@ export const Navbar = () => {
           }
         }
       `}</style>
-    </SharedStateContext.Provider>
+    </>
   );
 };

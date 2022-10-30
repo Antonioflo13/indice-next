@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
-import AnimatedPage from "../components/animated-page";
-import useMediaQuery from "../hooks/useMediaQuery";
+//REACT
+import React from "react";
+//NEXT
 import Link from "next/link";
+//HOOKS
+import useMediaQuery from "../../hooks/useMediaQuery";
+//COMPONENTS
+import AnimatedPage from "../../components/animated-page";
+import Breadcrumbs from "../../components/breadcrumbs";
 import { motion } from "framer-motion";
-import SharedStateContext from "../components/shared-state-context";
-import { useIntl } from "react-intl";
-import Breadcrumbs from "../components/breadcrumbs";
-import { getAllCollections } from "../api/collections";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
+//API
+import { getAllCollections } from "../../api/collections";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
-  console.log(collections);
+  //HOOKS
   const isDesktop = useMediaQuery("768");
-  const { setCurrentSidebarTitle } = useContext(SharedStateContext);
+  //generates alphabetical order products
   let collectionsListByAlphabet = [];
   let alphabeticList = [];
   for (const product of collections) {
@@ -30,8 +33,6 @@ const CollectionsPage = ({ collections }) => {
       }
     }
   }
-
-  console.log(collectionsListByAlphabet);
 
   collectionsListByAlphabet.map(
     collectionsList => (collectionsList.collectionsList[0].viewLetter = true)
@@ -60,12 +61,14 @@ const CollectionsPage = ({ collections }) => {
                     } mb-6`}
                   >
                     <Link
-                      href={
-                        collection.products?.edges?.length > 0 &&
-                        collection.handle === "indice-capsule-collection"
-                          ? `/${collection.handle}`
-                          : `/collections/${collection.handle}`
-                      }
+                      href={{
+                        pathname:
+                          collection.products?.edges?.length > 0 &&
+                          collection.handle === "indice-capsule-collection"
+                            ? "/collections/[collection]"
+                            : "/collections/[collection]",
+                        query: { collection: collection.handle },
+                      }}
                     >
                       <span>
                         <motion.h2 className=" text-indice text-xl font-bold uppercase">
@@ -110,7 +113,7 @@ const CollectionsPage = ({ collections }) => {
             .containerDesigner {
               grid-template-columns: repeat(1, 1fr);
               row-gap: 1em;
-              margin-bottom: 0px;
+              margin-bottom: 0;
               margin-top: 50px;
             }
           }

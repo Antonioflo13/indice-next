@@ -1,9 +1,9 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
-import Link from "../components/LanguagesLink";
+import Link from "next/link";
 
 const SliderArticleProducts = ({ productsinArticle }) => {
   return (
@@ -23,8 +23,12 @@ const SliderArticleProducts = ({ productsinArticle }) => {
         >
           {productsinArticle.map(item => (
             <SwiperSlide key={item.id}>
+                {item.node.handle}
               <Link
-                to={`/collections/${item.node.handle}/products/${item.node.handle}`}
+                  href={{
+                      pathname: '/collections/[product]',
+                      query: { product: item.node.handle },
+                  }}
               >
                 <div style={{ cursor: "pointer" }}>
                   <img

@@ -7,7 +7,6 @@ import { FormattedNumber } from "react-intl";
 //FORMAT MESSAGE
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
 import BottomSheet from "./bottom-sheet";
-import "react-spring-bottom-sheet/dist/style.css";
 //ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";

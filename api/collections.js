@@ -16,37 +16,28 @@ async function getAllCollections() {
  }
 `;
 
-  const luxuryEyewear = `
-{
-    collections(
-      sortKey: TITLE, first: 250
-    ) {
-      nodes {
-        id
-        handle
-        title
-        description
-      }
-    }
- }
-`;
   let QUERY = null;
   switch (process.env.NEXT_QUERY) {
     case "indice":
       QUERY = indice;
-      break;
-    case "luxuryeyewear":
-      QUERY = luxuryEyewear;
       break;
   }
 
   return await request("shopify", QUERY);
 }
 
-async function getProductsById() {
+async function getCollection(collection) {
   const indice = `
 {
-  collection(id: "gid://shopify/Collection/291807199329") {
+  collection(handle: "${collection}") {
+    id
+    handle
+    title
+    description
+    descriptionHtml
+    image {
+        src
+    }
     products(first: 250) {
         nodes {
           id
@@ -88,31 +79,14 @@ async function getProductsById() {
 }
 `;
 
-  const luxuryEyewear = `
-{
-    collections(
-      sortKey: TITLE, first: 250
-    ) {
-      nodes {
-        id
-        handle
-        title
-        description
-      }
-    }
- }
-`;
   let QUERY = null;
   switch (process.env.NEXT_QUERY) {
     case "indice":
       QUERY = indice;
-      break;
-    case "luxuryeyewear":
-      QUERY = luxuryEyewear;
       break;
   }
 
   return await request("shopify", QUERY);
 }
 
-export { getAllCollections, getProductsById };
+export { getAllCollections, getCollection };

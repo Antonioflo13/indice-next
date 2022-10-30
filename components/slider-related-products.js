@@ -6,7 +6,6 @@ import Link from "./LanguagesLink";
 
 const sliderRelatedProducts = props => {
   const { relatedProducts, collectionHandle } = props;
-  console.log(relatedProducts);
   return (
     <>
       <div>

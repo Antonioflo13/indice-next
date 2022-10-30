@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import EffectCarousel from "../utils/effect-carousel.esm";
 import { Autoplay } from "swiper";
-import Link from "./LanguagesLink";
-import mainClasses from "./css/main.module.scss";
+import Link from "next/link";
 import Image from "next/image";
+import mainClasses from "./scss/main.module.scss";
 
 const SliderArticles = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
@@ -31,14 +31,18 @@ const SliderArticles = ({ articles }) => {
                   style={{ cursor: "pointer" }}
                 >
                   <Link
-                    to={`/magazine/${article.handle}`}
+                    href={{
+                      pathname: "/magazine/[article]",
+                      query: { article: article.handle },
+                    }}
                     key={article.id}
                     className={mainClasses.linkSliderHomeArticle}
                   >
                     <div className="swiper-carousel-animate-opacity">
                       <Image
                         className="object-cover rounded-md"
-                        layout={"fill"}
+                        fill="true"
+                        sizes="100%"
                         priority={true}
                         src={
                           isDesktop

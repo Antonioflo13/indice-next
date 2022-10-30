@@ -1,13 +1,10 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { FormattedMessage as OriginalFormattedMessage } from "react-intl";
-import Link from "../components/link";
+import Link from "next/link";
 
-const SliderArticleCollection = ({ shopifyCollection }) => {
-  const products = shopifyCollection?.products;
-  const handleCollection = shopifyCollection?.handle;
+const SliderArticleCollection = ({ collectionProducts }) => {
+  const products = collectionProducts.products.nodes;
 
   return (
     <>
@@ -27,12 +24,18 @@ const SliderArticleCollection = ({ shopifyCollection }) => {
           {products?.map(item => (
             <SwiperSlide key={item.id}>
               <Link
-                to={`/collections/${handleCollection}/products/${item.handle}`}
+                href={{
+                  pathname: `/collections/[collection]/[product]`,
+                  query: { collection: item.vendor, product: item.handle },
+                }}
               >
                 <div style={{ cursor: "pointer" }}>
                   <img
                     className="img-product"
-                    src={item.images[0].originalSrc}
+                    src={
+                      item.variants.edges[0].node.product.images.nodes[0]
+                        .originalSrc
+                    }
                     alt="product"
                   />
                   <div className="text-indice-red text-xs font-bold italic mackay noToHead mt-2">

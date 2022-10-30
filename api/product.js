@@ -1,9 +1,9 @@
 import request from "./request";
 
-async function getProduct() {
+async function getProduct(product) {
   const indice = `
 {
-  product(handle: "CARRARA"){
+  product(handle: "${product}"){
     id
     handle
     title

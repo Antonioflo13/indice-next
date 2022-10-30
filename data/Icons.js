@@ -2,30 +2,30 @@ import mex from "../assets/images/mex.svg";
 import map from "../assets/images/map.svg";
 import call from "../assets/images/call.svg";
 
-const Incons = intl => {
+const Icons = intl => {
   return [
     {
       id: 0,
-      name: "chiamata",
+      name: "call",
       text: intl.formatMessage({ id: "modal.call" }),
       iconSrc: call,
-      alt: "icona chiamata",
+      alt: "call-icon",
     },
     {
       id: 1,
-      name: "indcazioni",
+      name: "indications",
       text: intl.formatMessage({ id: "modal.maps" }),
       iconSrc: map,
-      alt: "icona mapp",
+      alt: "map-icon",
     },
     {
       id: 2,
-      name: "whatapp",
-      text: intl.formatMessage({ id: "modal.whatapp" }),
+      name: "whatsapp",
+      text: intl.formatMessage({ id: "modal.whatsapp" }),
       iconSrc: mex,
-      alt: "icona whatapp",
+      alt: "whatsapp-icon",
     },
   ];
 };
 
-export default Incons;
+export default Icons;

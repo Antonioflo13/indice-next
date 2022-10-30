@@ -1,56 +1,28 @@
-import React, { useContext, useEffect } from "react";
-import { graphql } from "gatsby";
-import AnimatedPage from "../components/animated-page";
-import { FormattedMessage, FormattedNumber, useIntl } from "react-intl";
-import Link from "../components/link";
-import SharedStateContext from "../components/shared-state-context";
-import PageTitle, { Bold } from "../components/page-title";
-import { Helmet } from "react-helmet";
-import { useMediaQuery } from "react-responsive";
+//REACT
+import React from "react";
+//NEXT
+import Link from "next/link";
+//HOOKS
+import useMediaQuery from "../../hooks/useMediaQuery";
+//API
+import { getCollection } from "../../api/collections";
+//INTL
+import { FormattedMessage, FormattedNumber } from "react-intl";
+//COMPONENTS
+import AnimatedPage from "../../components/animated-page";
+import PageTitle from "../../components/page-title";
+import Layout from "../../components/layout";
 
-const CollectionTemplate = ({ data: { shopifyCollection } }) => {
-  const intl = useIntl();
-  const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
-  const { setCurrentSidebarTitle } = useContext(SharedStateContext);
-  useEffect(() => {
-    setCurrentSidebarTitle("");
-  }, [setCurrentSidebarTitle]);
+const CollectionTemplate = ({ collection }) => {
+  collection = collection.data.collection;
+  const isDesktop = useMediaQuery(768);
 
   const isBrand =
-    shopifyCollection.handle !== "optical" &&
-    shopifyCollection.handle !== "sunglasses";
+    collection.handle !== "optical" && collection.handle !== "sunglasses";
 
   return (
-    <>
+    <Layout>
       <AnimatedPage margins={true} grey={true}>
-        <Helmet>
-          <title>
-            {isBrand
-              ? intl.formatMessage(
-                  {
-                    id: "collection.title",
-                  },
-                  { collection: shopifyCollection.title }
-                )
-              : intl.formatMessage({
-                  id: "collection." + shopifyCollection.handle,
-                })}
-          </title>
-          <meta
-            name="description"
-            content={
-              isBrand
-                ? intl.formatMessage(
-                    {
-                      id: "collection.description",
-                    },
-                    { collection: shopifyCollection.description }
-                  )
-                : null
-            }
-          />
-        </Helmet>
-
         <div className="flex flex-col justify-center w-full">
           <div className="w-full md:w-1/2 customMarginTop">
             {isDesktop && (
@@ -63,12 +35,12 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
                           link: "/collections",
                         },
                         {
-                          title: shopifyCollection.title,
+                          title: collection.title,
                         },
                       ]
                     : [
                         {
-                          title: `collection.${shopifyCollection.handle}_breadcrumbs`,
+                          title: `collection.${collection.handle}_breadcrumbs`,
                         },
                       ]),
                 ]}
@@ -81,24 +53,25 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
           <div className="flex container-collection">
             <img
               className="img-headerCollection"
-              src={shopifyCollection.image.src}
+              src={collection.image.src}
+              alt="headerCollection"
             />
             <div>
               <h1 className="text-center">
                 {isBrand ? (
                   <div className="mt-10 text-indice text-xl font-bold uppercase">
-                    {shopifyCollection.title}
+                    {collection.title}
                   </div>
                 ) : (
                   <FormattedMessage
-                    id={`collection.${shopifyCollection.handle}_title`}
+                    id={`collection.${collection.handle}_title`}
                     values={{
                       b: chunk => {
                         chunk;
                       },
                       title: (
                         <div className="mt-10 text-indice text-xl font-bold uppercase">
-                          shopifyCollection.title
+                          collection.title
                         </div>
                       ),
                     }}
@@ -106,9 +79,7 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
                 )}
               </h1>
               <p className="mt-10">
-                {shopifyCollection.description.length > 0
-                  ? shopifyCollection.description
-                  : null}
+                {collection.description ? collection.description : null}
               </p>
             </div>
           </div>
@@ -116,11 +87,11 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
         {/* Products */}
         <div className="mt-8 w-full">
           <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-8 gap-y-8 md:gap-y-12">
-            {shopifyCollection.products.map(product => (
+            {collection.products.nodes.map(product => (
               <Product
                 key={product.id}
                 product={product}
-                collection={shopifyCollection}
+                collection={collection}
               />
             ))}
           </div>
@@ -136,12 +107,12 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
                         link: "/collections",
                       },
                       {
-                        title: shopifyCollection.title,
+                        title: collection.title,
                       },
                     ]
                   : [
                       {
-                        title: `collection.${shopifyCollection.handle}_breadcrumbs`,
+                        title: `collection.${collection.handle}_breadcrumbs`,
                       },
                     ]),
               ]}
@@ -172,57 +143,39 @@ const CollectionTemplate = ({ data: { shopifyCollection } }) => {
           }
         `}
       </style>
-    </>
+    </Layout>
   );
 };
 
-export const query = graphql`
-  query CollectionQuery($id: String!) {
-    shopifyCollection(id: { eq: $id }) {
-      id
-      handle
-      title
-      description
-      descriptionHtml
-      image {
-        src
-      }
-      products {
-        id
-        title
-        handle
-        tags
-        availableForSale
-        vendor
-        variants {
-          id
-          quantityAvailable
-          priceV2 {
-            amount
-            currencyCode
-          }
-        }
-        images {
-          id
-          originalSrc
-        }
-      }
-    }
-  }
-`;
-
 export default CollectionTemplate;
+
+export async function getServerSideProps({ params }) {
+  const collectionHandle = params.collection;
+  const collection = await getCollection(collectionHandle);
+  return {
+    props: { collection },
+  };
+}
 
 const Product = ({ product, collection }) => {
   return (
-    <Link to={`/collections/${collection.handle}/products/${product.handle}`}>
+    <Link
+      href={{
+        pathname: "/collections/[collection]/[product]",
+        query: { collection: collection.handle, product: product.handle },
+      }}
+    >
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full" style={{ paddingTop: "66.6%" }}>
           <div className="absolute top-0 w-full h-full">
-            {product.images.length > 0 && (
+            {product.variants.edges[0].node.product.images.nodes.length > 0 && (
               <img
                 className="w-full h-full"
-                src={product.images[0].originalSrc}
+                src={
+                  product.variants.edges[0].node.product.images.nodes[0]
+                    .originalSrc
+                }
+                alt="product-image"
                 style={{ objectFit: "cover" }}
               />
             )}
@@ -236,12 +189,14 @@ const Product = ({ product, collection }) => {
         </div>
         {product.availableForSale &&
           !product.tags.includes("nfs") &&
-          product.variants[0].quantityAvailable > 0 && (
+          product.variants.edges[0].node.product.quantityAvailable > 0 && (
             <p className="text-2xs">
               <FormattedNumber
                 style="currency"
-                value={product.variants[0].priceV2.amount}
-                currency={product.variants[0].priceV2.currencyCode}
+                value={product.variants.edges[0].node.product.priceV2.amount}
+                currency={
+                  product.variants.edges[0].node.product.priceV2.currencyCode
+                }
                 minimumFractionDigits={2}
               />
             </p>
