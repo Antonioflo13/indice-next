@@ -94,6 +94,7 @@ const Index = ({ articles }) => {
                     <Image
                       fill="true"
                       sizes="100%"
+                      object-fit="contain"
                       src={item.imageheader.url}
                       alt="image-header"
                     />
@@ -141,7 +142,6 @@ const Index = ({ articles }) => {
             position: relative;
             width: 100%;
             height: 200px;
-            object-fit: cover;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
             overflow: hidden;
