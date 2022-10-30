@@ -9,12 +9,17 @@ import Breadcrumbs from "../components/breadcrumbs";
 import AnimatedPage from "../components/animated-page";
 import PageTitle from "../components/page-title";
 import Layout from "../components/layout";
+import Head from "next/head";
 
 const FaqPage = () => {
   const isDesktop = useMediaQuery(768);
 
   return (
     <Layout>
+      <Head>
+        <title>Indice - FAQ</title>
+        <meta name="description" content="FAQ" />
+      </Head>
       <AnimatedPage margins={true} grey>
         {isDesktop && <Breadcrumbs title="faq" />}
         <div className="flex flex-col w-full mt-10">

@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import Layout from "../../components/layout";
 //API
 import { getAllCollections } from "../../api/collections";
+import Head from "next/head";
 
 const CollectionsPage = ({ collections }) => {
   collections = collections.data.collections.nodes;
@@ -40,6 +41,10 @@ const CollectionsPage = ({ collections }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Indice - Collections</title>
+        <meta name="description" content="Collections" />
+      </Head>
       <AnimatedPage margins={true}>
         {isDesktop && <Breadcrumbs title="Boutiques" />}
         <ul className="containerDesigner">

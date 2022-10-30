@@ -8,6 +8,7 @@ import Layout from "../components/layout";
 import { stores } from "../data/stores";
 //HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
+import Head from "next/head";
 
 const Boutiques = () => {
   const isDesktop = useMediaQuery(768);
@@ -15,6 +16,10 @@ const Boutiques = () => {
   return (
     <>
       <Layout>
+        <Head>
+          <title>Indice - Boutiques</title>
+          <meta name="description" content="Boutiques" />
+        </Head>
         <AnimatedPage margins={true}>
           {isDesktop && <Breadcrumbs title="Boutiques" />}
           <div className="container-boutiques">

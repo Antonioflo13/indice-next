@@ -2,6 +2,7 @@
 import React from "react";
 //NEXT
 import Link from "next/link";
+import Head from "next/head";
 //HOOKS
 import useMediaQuery from "../../hooks/useMediaQuery";
 //API
@@ -15,13 +16,20 @@ import Layout from "../../components/layout";
 
 const CollectionTemplate = ({ collection }) => {
   collection = collection.data.collection;
+  //HOOKS
   const isDesktop = useMediaQuery(768);
-
   const isBrand =
     collection.handle !== "optical" && collection.handle !== "sunglasses";
 
   return (
     <Layout>
+      <Head>
+        <title>Indice - {isBrand ? collection.title : collection.handle}</title>
+        <meta
+          name="description"
+          content={isBrand ? collection.description : null}
+        />
+      </Head>
       <AnimatedPage margins={true} grey={true}>
         <div className="flex flex-col justify-center w-full">
           <div className="w-full md:w-1/2 customMarginTop">

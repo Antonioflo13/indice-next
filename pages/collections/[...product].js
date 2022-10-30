@@ -19,6 +19,7 @@ import PageTitle from "../../components/page-title";
 import DesktopProduct from "../../templates/desktop-product";
 import MobileProduct from "../../templates/mobile-product";
 import Layout from "../../components/layout";
+import Head from "next/head";
 
 const Product = ({
   resProduct,
@@ -76,6 +77,10 @@ const Product = ({
 
   return (
     <Layout>
+      <Head>
+        <title>Indice - {productHandle}</title>
+        <meta name="description" content={productHandle} />
+      </Head>
       <AnimatedPage margins={true} noAnimate={true} fullHeight={true}>
         {isDesktop && (
           <div className="flex">

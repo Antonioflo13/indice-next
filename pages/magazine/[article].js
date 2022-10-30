@@ -11,6 +11,7 @@ import AnimatedPage from "../../components/animated-page";
 import PageTitle from "../../components/page-title";
 import { getCollection } from "../../api/collections";
 import SliderArticleCollection from "../../templates/slider-article-collection";
+import Head from "next/head";
 // import SliderArticleProducts from "../templates/slider-article-products";
 
 const Article = ({ article, collectionProducts }) => {
@@ -35,6 +36,10 @@ const Article = ({ article, collectionProducts }) => {
     <>
       {article && (
         <Layout>
+          <Head>
+            <title>Indice - {article?.handle}</title>
+            <meta name="description" content={article?.handle} />
+          </Head>
           <AnimatedPage margins={true}>
             <div className="flex flex-col justify-center w-full">
               <div className="w-full md:w-1/2 mt-8">

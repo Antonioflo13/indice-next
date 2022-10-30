@@ -8,6 +8,7 @@ import Breadcrumbs from "../../components/breadcrumbs";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import getAllArticles from "../../api/articles";
+import Head from "next/head";
 
 const Index = ({ articles }) => {
   const isDesktop = useMediaQuery(768);
@@ -70,6 +71,10 @@ const Index = ({ articles }) => {
   return (
     <>
       <Layout>
+        <Head>
+          <title>Indice - Magazine</title>
+          <meta name="description" content="Magazine" />
+        </Head>
         <AnimatedPage margins={true}>
           {isDesktop && <Breadcrumbs title="Index" />}
           <div className="container-articles">
@@ -78,7 +83,7 @@ const Index = ({ articles }) => {
                 exit={{ length: 0.15 }}
                 entry={{ delay: 0.15, length: 0.3 }}
                 href={{
-                  pathname: '/magazine/[article]',
+                  pathname: "/magazine/[article]",
                   query: { article: item.handle },
                 }}
                 key={item.id}
