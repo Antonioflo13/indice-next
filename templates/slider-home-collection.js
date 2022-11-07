@@ -30,12 +30,7 @@ const SliderHomeCollection = () => {
         >
           {products?.map(item => (
             <SwiperSlide key={item.id}>
-                <Link
-                    href={{
-                        pathname: `/collections/[collection]/[product]`,
-                        query: { collection: item.vendor, product: item.handle },
-                    }}
-                >
+              <Link href={`/collections/${item.vendor}/${item.handle}`}>
                 <div className="container-slider">
                   <img
                     className="img-product"

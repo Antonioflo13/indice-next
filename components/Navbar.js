@@ -1,10 +1,10 @@
 //REACT
-import React from "react";
+import React, { useEffect } from "react";
 //STORE
 import { useDispatch, useSelector } from "react-redux";
 import { setDialogContactShow } from "../store/modules/dialogContact";
 import { setSideBarShow } from "../store/modules/sideBar";
-import { setCart } from "../store/modules/cart";
+import { setCartContent, setShowCart } from "../store/modules/cart";
 //HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
 //FRAMER-MOTION
@@ -19,25 +19,33 @@ import logoEng from "../assets/images/logoEng.png";
 import menuBurgher from "../assets/images/menu-burger.svg";
 import cartIcon from "../assets/images/shopping-bag.svg";
 import Link from "next/link";
+import { getCookie } from "../utils/cookie";
 
 export const Navbar = () => {
   //STORE
   const showDialogContact = useSelector(state => state.dialogContact.value);
   const showSideBar = useSelector(state => state.sideBar.value);
   const language = useSelector(state => state.language.value);
-  const shopifyCheckout = useSelector(state =>
-    JSON.parse(state.shopify.checkout)
-  );
-  const cart = useSelector(state => state.cart.value);
+
+  const cart = useSelector(state => JSON.parse(state.cart.value));
+  const showCart = useSelector(state => state.cart.show);
   const dispatch = useDispatch();
 
   //HOOKS
   const isDesktop = useMediaQuery(768);
 
-  //FUNCTIONS
-  const totalQuantity = shopifyCheckout?.lineItems
+  // FUNCTIONS
+  const totalQuantity = cart?.lineItems
     .map(item => item.quantity)
     .reduce((prev, curr) => prev + curr, 0);
+
+  // USEEFFECT
+  useEffect(() => {
+    let cartContent = getCookie("cart");
+    if (cartContent) {
+      dispatch(setCartContent(cartContent));
+    }
+  }, []);
 
   return (
     <>
@@ -67,7 +75,7 @@ export const Navbar = () => {
         <button
           className="text-black font-semibold text-xs md:text-sm"
           style={{ fontSize: "10px" }}
-          onClick={() => dispatch(setCart(shopifyCheckout))}
+          onClick={() => dispatch(setShowCart(true))}
         >
           {isDesktop ? (
             <div>CART ({totalQuantity ? totalQuantity : 0})</div>
@@ -78,10 +86,10 @@ export const Navbar = () => {
             </>
           )}
         </button>
-        {cart && (
+        {showCart && (
           <Drawer
             handleClose={() => {
-              dispatch(setCart(null));
+              dispatch(setShowCart(false));
             }}
             setShowCart={r => dispatch(setCart(r))}
           />
@@ -103,7 +111,7 @@ export const Navbar = () => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {cart && (
+        {showCart && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -112,19 +120,19 @@ export const Navbar = () => {
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             className="fixed top-0 right-0 h-full w-full z-10"
             onClick={() => {
-              dispatch(setCart(null));
+              dispatch(setShowCart(false));
             }}
           />
         )}
       </AnimatePresence>
       <AnimatePresence>{showSideBar && <Sidebar />}</AnimatePresence>
       <AnimatePresence>
-        {cart && (
+        {showCart && (
           <Drawer
             handleClose={() => {
-              dispatch(setCart(null));
+              dispatch(setShowCart(false));
             }}
-            setShowCart={r => dispatch(setCart(r))}
+            setShowCart={r => dispatch(setShowCart(r))}
           />
         )}
       </AnimatePresence>

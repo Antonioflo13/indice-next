@@ -60,15 +60,19 @@ const CollectionsPage = ({ collections }) => {
 
                   <div
                     className={`${
-                      collection.products?.edges?.length > 0
+                      collection.products?.nodes?.length > 0
                         ? "available"
                         : "unavailable"
                     } mb-6`}
                   >
                     <Link
+                      style={{
+                        pointerEvents:
+                          !collection.products?.nodes?.length && "none",
+                        touchAction: !collection.products?.nodes?.length && "none",
+                      }}
                       href={{
                         pathname:
-                          collection.products?.edges?.length > 0 &&
                           collection.handle === "indice-capsule-collection"
                             ? "/collections/[collection]"
                             : "/collections/[collection]",

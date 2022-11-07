@@ -94,7 +94,10 @@ const Index = ({ articles }) => {
                     <Image
                       fill="true"
                       sizes="100%"
-                      object-fit="contain"
+                      priority={true}
+                      placeholder="blur"
+                      blurDataURL={item.imageheader.url}
+                      style={{ objectFit: "cover" }}
                       src={item.imageheader.url}
                       alt="image-header"
                     />

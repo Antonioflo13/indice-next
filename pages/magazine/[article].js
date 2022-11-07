@@ -12,6 +12,7 @@ import PageTitle from "../../components/page-title";
 import { getCollection } from "../../api/collections";
 import SliderArticleCollection from "../../templates/slider-article-collection";
 import Head from "next/head";
+import Image from "next/image";
 // import SliderArticleProducts from "../templates/slider-article-products";
 
 const Article = ({ article, collectionProducts }) => {
@@ -19,6 +20,7 @@ const Article = ({ article, collectionProducts }) => {
   const productsInArticle = [];
   article = article?.data?.article;
   collectionProducts = collectionProducts?.data?.collection;
+  const title = `Indice - ${article?.handle}`;
 
   // Object.entries(article).forEach(item => {
   //   if (item[0].includes("product")) {
@@ -37,7 +39,7 @@ const Article = ({ article, collectionProducts }) => {
       {article && (
         <Layout>
           <Head>
-            <title>Indice - {article?.handle}</title>
+            <title>{title}</title>
             <meta name="description" content={article?.handle} />
           </Head>
           <AnimatedPage margins={true}>
@@ -61,17 +63,31 @@ const Article = ({ article, collectionProducts }) => {
               {/* Info */}
               <div className="flex container-collection mt-4">
                 {isDesktop ? (
-                  <img
-                    className="img-headerCollection"
-                    src={article.imageheader.url}
-                    alt={article.imageheader.url}
-                  />
+                  <div className="img-header-container">
+                    <Image
+                      fill="true"
+                      priority={true}
+                      style={{ objectFit: "cover" }}
+                      sizes="100%"
+                      placeholder="blur"
+                      blurDataURL={article.imageheader.url}
+                      src={article.imageheader.url}
+                      alt={article.imageheader.url}
+                    />
+                  </div>
                 ) : (
-                  <img
-                    className="img-headerCollection"
-                    src={article.imageheadermobile.url}
-                    alt={article.imageheader.url}
-                  />
+                  <div className="img-header-container">
+                    <Image
+                      fill="true"
+                      priority={true}
+                      style={{ objectFit: "cover" }}
+                      sizes="100%"
+                      placeholder="blur"
+                      blurDataURL={article.imageheader.url}
+                      src={article.imageheader.url}
+                      alt={article.imageheader.url}
+                    />
+                  </div>
                 )}
 
                 <div>
@@ -125,11 +141,11 @@ const Article = ({ article, collectionProducts }) => {
                 flex-direction: column;
               }
 
-              .img-headerCollection {
-                width: 100%;
-                height: 30vh;
+              .img-header-container {
+                position: relative;
+                height: 250px;
                 border-radius: 15px;
-                object-fit: cover;
+                overflow: hidden;
               }
 
               @media (max-width: 768px) {
@@ -147,7 +163,7 @@ const Article = ({ article, collectionProducts }) => {
 
 export async function getStaticPaths() {
   const articles = await getAllArticles();
-  const paths = articles.data.allArticles.map(article => {
+  const paths = articles.data.allArticles.splice(0,5).map(article => {
     return {
       params: {
         article: article.handle,
@@ -156,7 +172,7 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 

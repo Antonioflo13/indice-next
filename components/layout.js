@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 //STORE
 import { useDispatch, useSelector } from "react-redux";
-import { setClient } from "../store/modules/shopify";
 //HOOKS
 import useMediaQuery from "../hooks/useMediaQuery";
 //PROP-TYPES
@@ -20,7 +19,6 @@ import Footer from "./footer";
 const Layout = ({ children }) => {
   //STORE
   const language = useSelector(state => state.language.value);
-  const dispatch = useDispatch();
   //ROUTER
   const router = useRouter();
   //STATE
@@ -35,10 +33,22 @@ const Layout = ({ children }) => {
     //console.log("Error MISSING TRANSLATION]")
   };
 
-  //USE-EFFECT
-  useEffect(() => {
-    dispatch(setClient(language));
-  }, [language]);
+  // //USE-EFFECT
+  // useEffect(() => {
+  //   client().then(r => r);
+  // }, [language]);
+  //
+  // const client = async () => {
+  //   const buildClient = await Client.buildClient({
+  //     domain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN,
+  //     storefrontAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESSTOKEN,
+  //     language: language,
+  //   });
+  //   const checkout =  await buildClient.checkout.create();
+  //   const checkoutId = checkout.id;
+  //   setCookie("checkoutId", checkoutId, 90);
+  //   dispatch(setShopifyCheckout(JSON.stringify(checkout)));
+  // }
 
   return (
     <IntlProvider
@@ -48,7 +58,9 @@ const Layout = ({ children }) => {
     >
       <Navbar />
       {children}
-      {router.pathname !== "/product" && isDesktop && <Footer />}
+      {router.pathname !== "/collections/[...product]" && !isDesktop && (
+        <Footer />
+      )}
     </IntlProvider>
   );
 };

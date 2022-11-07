@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { setDialogContactShow } from "../store/modules/dialogContact";
+import { useDispatch } from "react-redux";
 
-const Modal = ({ children, setShown, customWidthModal }) => {
+const Modal = ({ children, customWidthModal }) => {
+  const dispatch = useDispatch();
   return (
     <div>
       <motion.div
@@ -34,7 +37,7 @@ const Modal = ({ children, setShown, customWidthModal }) => {
         onClick={event => {
           // Prevents dismissal from children clicks
           if (event.target === event.currentTarget) {
-            setShown(false);
+            dispatch(setDialogContactShow(false));
           }
         }}
       >
@@ -53,7 +56,8 @@ const Modal = ({ children, setShown, customWidthModal }) => {
               width: ${customWidthModal ? "100%" : "600px"};
               position: ${customWidthModal && "absolute"};
               bottom: ${customWidthModal && "-10px"};
-              border-bottom-radius: ${customWidthModal && "none"};
+              -moz-border-radius-bottomleft: ${customWidthModal && "none"};
+              -moz-border-radius-bottomright: ${customWidthModal && "none"};
             }
           }
           .containerModal {

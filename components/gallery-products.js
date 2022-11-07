@@ -13,27 +13,29 @@ const GalleryProducts = ({ images }) => {
 
   return (
     <>
-      <div>
-        <div className="containerMainImage bg-indice-grey">
-          <img className="mainImage" src={imageList[0].originalSrc} alt="" />
+      {imageList.length > 0 && (
+        <div>
+          <div className="containerMainImage bg-indice-grey">
+            <img className="mainImage" src={imageList[0].originalSrc} alt="" />
+          </div>
+          <div className="containerImageTubler">
+            {imageList.slice(1, 4).map((item, index) => (
+              <div
+                className="cursor-pointer w-7/12 flex justify-center bg-indice-grey"
+                onClick={() => chageView(item)}
+                key={index}
+              >
+                <img
+                  key={item.id}
+                  className="imageTumblr"
+                  src={item.originalSrc}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="containerImageTubler">
-          {imageList.slice(1, 4).map((item, index) => (
-            <div
-              className="cursor-pointer w-7/12 flex justify-center bg-indice-grey"
-              onClick={() => chageView(item)}
-              key={index}
-            >
-              <img
-                key={item.id}
-                className="imageTumblr"
-                src={item.originalSrc}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
       <style jsx="true">{`
         .containerMainImage {
           display: flex;

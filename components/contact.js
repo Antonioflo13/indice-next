@@ -1,7 +1,8 @@
 //REACT
 import React, { useState } from "react";
 //STATE
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setDialogContactShow } from "../store/modules/dialogContact";
 //INTL
 import { FormattedMessage } from "react-intl";
 //MOTION
@@ -16,14 +17,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import closeIcon from "../assets/images/cross.svg";
 
 const Contact = ({ setShown }) => {
-  //STATE
-  const showDialogContact = useSelector(state => state.dialogContact.value);
-
-  const [sendingForm, setSendingForm] = useState(false);
-  const [disabled, setDisabled] = useState(true);
-  const [formValues, setFormValues] = useState(initialValues);
-  const [successShown, setSuccessShown] = useState(false);
-  const [errorShown, setErrorShown] = useState(false);
+  //STORE
+  const showDialogProduct = useSelector(state => state.dialogContact.product);
+  const dispatch = useDispatch();
   const initialValues = {
     store: "",
     name: "",
@@ -31,6 +27,12 @@ const Contact = ({ setShown }) => {
     phone: "",
     message: "",
   };
+  //STATE
+  const [sendingForm, setSendingForm] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [successShown, setSuccessShown] = useState(false);
+  const [errorShown, setErrorShown] = useState(false);
   const Brescia = stores[0].name;
   const Forte = stores[1].name;
   const Roma = stores[2].name;
@@ -86,9 +88,9 @@ const Contact = ({ setShown }) => {
               />
             </div>
             <div>
-              <button className="close-menu" onClick={() => setShown(false)}>
+              <button className="close-menu" onClick={() => dispatch(setDialogContactShow(false))}>
                 <span>
-                  <img src={closeIcon} width={10} alt="cart-icon" />
+                  <img src={closeIcon.src} width={10} alt="close-icon" />
                 </span>
               </button>
             </div>
@@ -100,11 +102,11 @@ const Contact = ({ setShown }) => {
               className="w-full mt-4"
               onSubmit={handleSubmit}
             >
-              {contactProduct && (
+              {showDialogProduct && (
                 <div className="-mt-4 mb-5 text-xs">
                   <FormattedMessage id="contacts.text" />{" "}
-                  <b>{contactProduct.title}</b> di{" "}
-                  <b>{contactProduct.vendor}</b>
+                  <b>{showDialogProduct.title}</b> di{" "}
+                  <b>{showDialogProduct.vendor}</b>
                 </div>
               )}
               <AnimatePresence>
@@ -155,8 +157,8 @@ const Contact = ({ setShown }) => {
                 type="hidden"
                 name="product"
                 value={
-                  contactProduct
-                    ? `${contactProduct.title} - ${contactProduct.vendor}`
+                  showDialogProduct
+                    ? `${showDialogProduct.title} - ${showDialogProduct.vendor}`
                     : ""
                 }
               />
@@ -203,7 +205,7 @@ const Contact = ({ setShown }) => {
                     type="text"
                     id="name"
                     placeholder="Name"
-                    autocomplete="name"
+                    autoComplete="name"
                     name="name"
                     value={formValues.name}
                     onChange={handleChange}
@@ -214,7 +216,7 @@ const Contact = ({ setShown }) => {
                     type="email"
                     id="email"
                     placeholder="Email"
-                    autocomplete="email"
+                    autoComplete="email"
                     name="email"
                     value={formValues.email}
                     onChange={handleChange}
@@ -225,7 +227,7 @@ const Contact = ({ setShown }) => {
                     type="number"
                     id="phone"
                     placeholder="Phone"
-                    autocomplete="tel"
+                    autoComplete="tel"
                     name="phone"
                     value={formValues.phone}
                     onChange={handleChange}

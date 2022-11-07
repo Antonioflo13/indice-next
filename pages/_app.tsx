@@ -1,3 +1,6 @@
+//NEXT
+import { Analytics } from "@vercel/analytics/react";
+import Head from "next/head";
 //REACT
 import type { AppProps } from "next/app";
 //INTL
@@ -11,11 +14,17 @@ import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <IntlProvider locale={"it"}>
-        <Component {...pageProps} />˙
-      </IntlProvider>
-    </Provider>
+    <>
+      <Head>
+        <title>Indice</title>
+      </Head>
+      {process.env.NEXT_PUBLIC_NODE !== "development" && <Analytics />}
+      <Provider store={store}>
+        <IntlProvider locale={"it"}>
+          <Component {...pageProps} />˙
+        </IntlProvider>
+      </Provider>
+    </>
   );
 }
 

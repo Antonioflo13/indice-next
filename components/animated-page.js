@@ -10,12 +10,14 @@ const AnimatedPage = ({ children, margins, fullHeight, grey, noAnimate }) => {
   return (
     <>
       <motion.div
-        animate={{
-          opacity: 1.0,
-          transition: { duration: !noAnimate && 0.15 },
+        initial={{ opacity: 0}}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.4,
+          ease: [0, 0.71, 0.2, 1.01]
         }}
         style={{ backgroundColor: "white" }}
-        initial={false}
         className={classnames("w-full", {
           "bg-indice-grey": grey,
           "pt-10 md:pt-0": !fullHeight,
@@ -53,7 +55,7 @@ const AnimatedPage = ({ children, margins, fullHeight, grey, noAnimate }) => {
             .customStyle {
               padding-left: 1rem;
               padding-right: 1rem;
-              padding-bottom: 0rem;
+              padding-bottom: 0;
             }
           }
         `}

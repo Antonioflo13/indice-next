@@ -23,6 +23,8 @@ const DesktopProduct = props => {
     setAccordion,
   } = props;
 
+  console.log(relatedProducts);
+
   return (
     <>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-20 mt-4 customTemplate">
@@ -166,12 +168,12 @@ const DesktopProduct = props => {
       <div className="my-20 text-xs text-center px-5">
         <FormattedMessage id="home.slider_monthly.text" />
       </div>
-      {relatedProducts.length > 0 && (
-        <SliderRelatedProducts
-          relatedProducts={relatedProducts}
-          collectionHandle={collectionHandle}
-        />
-      )}
+      {/*{relatedProducts.length > 0 && (*/}
+      {/*  <SliderRelatedProducts*/}
+      {/*    relatedProducts={relatedProducts}*/}
+      {/*    collectionHandle={collectionHandle}*/}
+      {/*  />*/}
+      {/*)}*/}
       <style jsx="true">
         {`
           .button-price button {

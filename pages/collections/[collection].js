@@ -13,26 +13,28 @@ import { FormattedMessage, FormattedNumber } from "react-intl";
 import AnimatedPage from "../../components/animated-page";
 import PageTitle from "../../components/page-title";
 import Layout from "../../components/layout";
+import Image from "next/image";
 
 const CollectionTemplate = ({ collection }) => {
   collection = collection.data.collection;
   //HOOKS
   const isDesktop = useMediaQuery(768);
+
   const isBrand =
     collection.handle !== "optical" && collection.handle !== "sunglasses";
+  const title = `Indice - ${isBrand ? collection.title : collection.handle}`;
 
   return (
     <Layout>
       <Head>
-        <title>Indice - {isBrand ? collection.title : collection.handle}</title>
+        <title>{title}</title>
         <meta
           name="description"
           content={isBrand ? collection.description : null}
         />
       </Head>
       <AnimatedPage margins={true} grey={true}>
-        <div className="flex flex-col justify-center w-full">
-          <div className="w-full md:w-1/2 customMarginTop">
+          <div className="customMarginTop">
             {isDesktop && (
               <PageTitle
                 breadcrumbs={[
@@ -58,12 +60,19 @@ const CollectionTemplate = ({ collection }) => {
             )}
           </div>
           {/* Info */}
-          <div className="flex container-collection">
-            <img
-              className="img-headerCollection"
-              src={collection.image.src}
-              alt="headerCollection"
-            />
+          <div>
+            <div className="img-header-container">
+              <Image
+                  fill="true"
+                  style={{ objectFit: "cover" }}
+                  placeholder="blur"
+                  blurDataURL={collection.image.src}
+                  sizes="100%"
+                  priority={true}
+                  src={collection.image.src}
+                  alt="header-collection"
+              />
+            </div>
             <div>
               <h1 className="text-center">
                 {isBrand ? (
@@ -91,7 +100,6 @@ const CollectionTemplate = ({ collection }) => {
               </p>
             </div>
           </div>
-        </div>
         {/* Products */}
         <div className="mt-8 w-full">
           <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-8 gap-y-8 md:gap-y-12">
@@ -132,14 +140,11 @@ const CollectionTemplate = ({ collection }) => {
       </AnimatedPage>
       <style jsx="true">
         {`
-          .container-collection {
-            flex-direction: column;
-          }
-          .img-headerCollection {
-            width: 100%;
-            height: 30vh;
+          .img-header-container {
+            position: relative;
+            height: 250px;
             border-radius: 15px;
-            object-fit: cover;
+            overflow: hidden;
           }
           @media (max-width: 768px) {
             .customMarginTop {
@@ -168,10 +173,7 @@ export async function getServerSideProps({ params }) {
 const Product = ({ product, collection }) => {
   return (
     <Link
-      href={{
-        pathname: "/collections/[collection]/[product]",
-        query: { collection: collection.handle, product: product.handle },
-      }}
+      href={`/collections/${collection.handle}/${product.handle}`}
     >
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full" style={{ paddingTop: "66.6%" }}>

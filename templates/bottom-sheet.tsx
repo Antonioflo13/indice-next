@@ -19,7 +19,7 @@ interface Props {
 
 const getY = (height: number, mode: Mode): number => {
   if (mode === "collapsed") {
-    return height - 130;
+    return height - 150;
   }
   return height - height + 70;
 };

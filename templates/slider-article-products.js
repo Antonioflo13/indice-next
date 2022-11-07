@@ -23,12 +23,11 @@ const SliderArticleProducts = ({ productsinArticle }) => {
         >
           {productsinArticle.map(item => (
             <SwiperSlide key={item.id}>
-                {item.node.handle}
+              {item.node.handle}
               <Link
-                  href={{
-                      pathname: '/collections/[product]',
-                      query: { product: item.node.handle },
-                  }}
+                href={{
+                  pathname: `/collections/${item.node.handle}`,
+                }}
               >
                 <div style={{ cursor: "pointer" }}>
                   <img

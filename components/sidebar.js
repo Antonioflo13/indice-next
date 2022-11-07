@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLanguage } from "../store/modules/language";
 import { setSideBarShow } from "../store/modules/sideBar";
-import { setCart } from "../store/modules/cart";
 //MOTION
 import { motion } from "framer-motion";
 //INTL
@@ -29,9 +28,6 @@ const sidebarVariants = {
 const Sidebar = () => {
   //STORE
   const language = useSelector(state => state.language.value);
-  const shopifyCheckout = useSelector(state =>
-    JSON.parse(state.shopify.checkout)
-  );
   const dispatch = useDispatch();
 
   //INTL
@@ -42,7 +38,6 @@ const Sidebar = () => {
 
   //FUNCTIONS
   const changeSidebar = () => {
-    dispatch(setCart(shopifyCheckout));
     dispatch(setSideBarShow(false));
   };
 

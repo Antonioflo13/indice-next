@@ -4,14 +4,15 @@ import React from "react";
 import getProduct from "../../api/product";
 import { getCollection } from "../../api/collections";
 //STORE
-import { setShopifyCheckout } from "../../store/modules/shopify";
 import { setDialogContactShow } from "../../store/modules/dialogContact";
-import { setCart } from "../../store/modules/cart";
+import { setDialogContactProduct } from "../../store/modules/dialogContact";
+import { setShowCart, setCartContent } from "../../store/modules/cart";
 import { useDispatch, useSelector } from "react-redux";
 //HOOKS
 import useMediaQuery from "../../hooks/useMediaQuery";
+import shopifyBuildClient from "../../hooks/shopifyBuildClient";
 //UTILS
-import { getCookie, setCookie } from "../../utils/cookie";
+import { getCookie } from "../../utils/cookie";
 //COMPONENTS
 import GalleryProducts from "../../components/gallery-products";
 import AnimatedPage from "../../components/animated-page";
@@ -30,7 +31,7 @@ const Product = ({
   const product = resProduct.data.product;
 
   //STORE
-  const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
+  const language = useSelector(state => state.language.value);
   const dispatch = useDispatch();
 
   //HOOKS
@@ -41,44 +42,51 @@ const Product = ({
     size: false,
     shipping: false,
   });
+
   const relatedProducts = CollectionProducts.data.collection.products.nodes;
-
-  const buy = async () => {
-    let checkoutId = getCookie("checkoutId");
-    if (!checkoutId) {
-      checkoutId = (await shopifyClient.checkout.create()).id;
-      setCookie("checkoutId", checkoutId, 90);
-    }
-    const updatedCheckout = await shopifyClient.checkout.addLineItems(
-      checkoutId,
-      [
-        {
-          variantId: product.id,
-          quantity: 1,
-        },
-      ]
-    );
-
-    const { lineItems, totalPrice } = updatedCheckout;
-    const cartContent = { lineItems, totalPrice };
-    await dispatch(setShopifyCheckout(updatedCheckout));
-    dispatch(setCart(cartContent));
-  };
-
-  const askForPrice = () => {
-    dispatch(setDialogContactShow(true, product));
-  };
-
   const mainImage = (
     <GalleryProducts
       images={product.variants.edges[0].node.product.images.nodes}
     />
   );
 
+  const title = `Indice - ${productHandle}`;
+
+  //FUNCTIONS
+  const buy = async () => {
+    let checkoutId = getCookie("checkoutId");
+
+    if (!checkoutId) {
+      await shopifyBuildClient("createCheckout", language);
+    }
+    const items = {
+      variantId: product.variants.edges[0].node.id,
+      quantity: 1,
+    };
+    const updatedCheckout = await shopifyBuildClient(
+      "updateCheckout",
+      language,
+      items
+    );
+
+    const { lineItems, totalPrice } = updatedCheckout;
+    const cartContent = { lineItems, totalPrice };
+
+    dispatch(setCartContent(JSON.stringify(cartContent)));
+    dispatch(setShowCart(true));
+  };
+
+  const askForPrice = () => {
+    dispatch(setDialogContactShow(true));
+    dispatch(
+      setDialogContactProduct({ title: product.title, vendor: product.vendor })
+    );
+  };
+
   return (
     <Layout>
       <Head>
-        <title>Indice - {productHandle}</title>
+        <title>{title}</title>
         <meta name="description" content={productHandle} />
       </Head>
       <AnimatedPage margins={true} noAnimate={true} fullHeight={true}>
@@ -120,7 +128,7 @@ const Product = ({
         ) : (
           <MobileProduct
             // shopifyProducts={products}
-            shopifyProduct={product}
+            product={product}
             buy={buy}
             askForPrice={askForPrice}
             mainImage={mainImage}

@@ -9,6 +9,7 @@ import { setSideBarShow } from "../store/modules/sideBar";
 import { motion } from "framer-motion";
 //ICONS
 import imageMenu from "../assets/images/menu.jpg";
+import Image from "next/image";
 
 const LinkMenu = ({ children, to, sidebar }) => {
   //STORE
@@ -39,7 +40,16 @@ const LinkMenu = ({ children, to, sidebar }) => {
         <Link href={to}>
           <motion.button>
             <div className="containerItemMenu">
-              <img className="imageMenu" src={imageMenu.src} alt="imageMenu" />
+              <Image
+                fill="true"
+                priority={true}
+                style={{ objectFit: "cover" }}
+                sizes="100%"
+                placeholder="blur"
+                blurDataURL={imageMenu.src}
+                src={imageMenu.src}
+                alt="imageMenu"
+              />
               <div className="textMenu">{children}</div>
             </div>
           </motion.button>
@@ -47,13 +57,10 @@ const LinkMenu = ({ children, to, sidebar }) => {
         <style jsx="true">{`
           .containerItemMenu {
             position: relative;
-          }
-
-          .imageMenu {
             border-radius: 25px;
-            height: 70px !important;
-            width: 200px !important;
-            object-fit: cover;
+            overflow: hidden;
+            height: 70px;
+            width: 200px;
           }
 
           .textMenu {
@@ -74,9 +81,9 @@ const LinkMenu = ({ children, to, sidebar }) => {
               font-size: 12px;
             }
 
-            .imageMenu {
-              height: 70px !important;
-              width: 165px !important;
+            .containerItemMenu {
+              height: 70px;
+              width: 165px;
             }
           }
         `}</style>

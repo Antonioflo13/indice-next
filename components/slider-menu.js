@@ -5,7 +5,7 @@ import LinkMenu from "../components/linkMenu";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 const SliderMenu = () => {
-  const isDesktop = useMediaQuery(768);
+  const isDesktop = useMediaQuery(1024);
   return (
     <>
       {isDesktop ? (
@@ -82,6 +82,13 @@ const SliderMenu = () => {
           max-width: 90rem;
           margin-left: auto;
           margin-right: auto;
+          overflow-x: scroll;
+          -ms-overflow-style: none; /* for Internet Explorer, Edge */
+          scrollbar-width: none; /* for Firefox */
+        }
+        
+        .sliderMenu::-webkit-scrollbar {
+          display: none; /* for Chrome, Safari, and Opera */
         }
 
         .sliderMenuMobile {

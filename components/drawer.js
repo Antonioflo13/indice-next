@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 //STORE
 import { useDispatch, useSelector } from "react-redux";
-import { setShopifyCheckout } from "../store/modules/shopify";
+import { setCartContent } from "../store/modules/cart";
+//HOOKS
+import shopifyBuildClient from "../hooks/shopifyBuildClient";
 //UTILS
 import { numberWithCommas, parserLineItems } from "../utils/parser"; //INTL
 import { useIntl } from "react-intl";
@@ -32,68 +34,61 @@ const sidebarVariants = {
   },
 };
 
-const Drawer = ({ handleClose, setShowCart }) => {
+const Drawer = ({ handleClose }) => {
   //STATE
   const [isVisible, setIsVisible] = useState(true);
   const intl = useIntl();
 
   //STORE
-  const shopifyClient = useSelector(state => JSON.parse(state.shopify.client));
-  const cart = useSelector(state => state.cart.value);
+  const cart = useSelector(state => JSON.parse(state.cart.value));
+  const language = useSelector(state =>state.language.value);
   const dispatch = useDispatch();
 
   //FUNCTIONS
   const handleAddItem = async id => {
-    const checkoutId = getCookie("checkoutId");
-    const updatedCheckout = await shopifyClient.checkout.addLineItems(
-      checkoutId,
-      [
-        {
-          variantId: id,
-          quantity: 1,
-        },
-      ]
-    );
+    const item =  [
+      {
+        variantId: id,
+        quantity: 1,
+      },
+    ]
+    const updatedCheckout = await shopifyBuildClient('updateCheckout', language, item);
+
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
 
-    await dispatch(setShopifyCheckout(updatedCheckout));
-    setShowCart(cartContent);
+    dispatch(setCartContent(JSON.stringify(cartContent)));
   };
+
   const handleRemoveItem = async id => {
-    const checkoutId = getCookie("checkoutId");
-    const updatedCheckout = await shopifyClient.checkout.addLineItems(
-      checkoutId,
-      [
-        {
-          variantId: id,
-          quantity: -1,
-        },
-      ]
-    );
+    const item =  [
+      {
+        variantId: id,
+        quantity: -1,
+      },
+    ]
+    const updatedCheckout = await shopifyBuildClient('updateCheckout', language, item);
+
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
 
-    await dispatch(setShopifyCheckout(updatedCheckout));
-    setShowCart(cartContent);
+    dispatch(setCartContent(JSON.stringify(cartContent)));
   };
 
   const handleRemoveItems = async id => {
-    const checkoutId = getCookie("checkoutId");
-    const lineItemIdsToRemove = [id];
-    const updatedCheckout = await shopifyClient.checkout.removeLineItems(
-      checkoutId,
-      lineItemIdsToRemove
-    );
+    const item = [id];
+    const updatedCheckout = await shopifyBuildClient('removeLineItems', language, item);
+
     const { lineItems, totalPrice } = updatedCheckout;
     const cartContent = { lineItems, totalPrice };
 
-    await setShopifyCheckout(updatedCheckout);
-    setShowCart(cartContent);
+    dispatch(setCartContent(JSON.stringify(cartContent)));
   };
-  // const goToCheckout = () => {
-  //   window.open(shopifyCheckout.webUrl, "_self")
-  //}
+
+  const goToCheckout = async () => {
+    const checkoutWebUrl = getCookie("checkoutWebUrl");
+    window.open(checkoutWebUrl, "_self");
+  }
 
   const items = parserLineItems(getItems(cart));
 
@@ -146,7 +141,7 @@ const Drawer = ({ handleClose, setShowCart }) => {
                         <div className="text-xs uppercase font-bold">
                           {item.titleProduct}
                         </div>
-                        <div>€ {item.details.price}</div>
+                        <div>€ {item.details.price.amount}</div>
                       </div>
                       <div className="drawer-product-actions">
                         <div className="icon-change-quantity">
@@ -180,13 +175,14 @@ const Drawer = ({ handleClose, setShowCart }) => {
                 <div className="font-bold">
                   {intl.formatMessage({ id: "drawer.total" }) +
                     "   " +
-                    numberWithCommas(cart?.totalPrice ? cart?.totalPrice : 0)}
+                    numberWithCommas(cart?.totalPrice ? cart?.totalPrice.amount : 0)}
                 </div>
               </div>
               <div className="drawer-recap-checkout mt-4">
                 <motion.button
                   className="w-full rounded-full bg-indice-red pt-1 pb-px px-4 leading-5 text-white font-bold text-xs uppercase"
                   style={{ height: "45px" }}
+                  onClick={goToCheckout}
                 >
                   <div className="font-bold">
                     {intl.formatMessage({ id: "drawer.label_button" })}
@@ -194,10 +190,10 @@ const Drawer = ({ handleClose, setShowCart }) => {
                 </motion.button>
               </div>
               <div className="flex mt-10 gap-10">
-                <img src={paypal} width={30} alt="" />
-                <img src={mastercard} width={30} alt="" />
-                <img src={visa} width={30} alt="" />
-                <img src={amex} width={30} alt="" />
+                <img src={paypal.src} width={30} alt="" />
+                <img src={mastercard.src} width={30} alt="" />
+                <img src={visa.src} width={30} alt="" />
+                <img src={amex.src} width={30} alt="" />
               </div>
             </div>
           </div>

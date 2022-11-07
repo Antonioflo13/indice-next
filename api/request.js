@@ -9,10 +9,10 @@ async function request(requestTo, query) {
       };
       break;
     case "shopify":
-      URL = `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2022-07/graphql.json`;
+      URL = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2022-07/graphql.json`;
       headers = {
         "X-Shopify-Storefront-Access-Token":
-          process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
+          process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESSTOKEN,
         Accept: "application/json",
         "Content-Type": "application/json",
       };
